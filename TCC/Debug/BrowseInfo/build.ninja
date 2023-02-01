@@ -1,0 +1,61 @@
+##IAR Ninja build file
+
+
+#Rules
+rule COMPILER_XCL
+  command = "C$:\Program$ Files\IAR$ Systems\Embedded$ Workbench$ 9.1\common\bin\XclFileGenerator.exe" $xclcommand -f "$rspfile_name"
+  description = IAR_NEW_TOOL+++COMPILER_XCL+++$in
+  rspfile = $rspfile_name
+  rspfile_content = $flags
+
+rule INDEXER
+  command = "C$:\Program$ Files\IAR$ Systems\Embedded$ Workbench$ 9.1\common\bin\SourceIndexer.exe" $flags
+  depfile = $out.dep
+  description = IAR_NEW_TOOL+++INDEXER+++$out
+
+rule MAKEBROWSE
+  command = "C$:\Program$ Files\IAR$ Systems\Embedded$ Workbench$ 9.1\common\bin\makeBrowseData.exe" $flags
+  description = IAR_NEW_TOOL+++MAKEBROWSE+++$out
+
+rule PDBLINK
+  command = "C$:\Program$ Files\IAR$ Systems\Embedded$ Workbench$ 9.1\common\bin\PbdLink.exe" $flags
+  description = IAR_NEW_TOOL+++PDBLINK+++$out
+
+
+
+#Build steps
+build C$:\EK-TM4C1294_IAR8\Projects\TCC\Debug\BrowseInfo\cfaf128x128x16.xcl : COMPILER_XCL 
+  xclcommand = -source_file C$:\EK-TM4C1294_IAR8\Projects\drivers\cfaf128x128x16.c -xcl_file C$:\EK-TM4C1294_IAR8\Projects\TCC\Debug\BrowseInfo\cfaf128x128x16.xcl -macro_file C$:\EK-TM4C1294_IAR8\Projects\TCC\Debug\BrowseInfo\cfaf128x128x16.tmp -icc_path "C$:\Program$ Files\IAR$ Systems\Embedded$ Workbench$ 9.1\arm\bin\iccarm.exe"
+  flags = C$:\EK-TM4C1294_IAR8\Projects\drivers\cfaf128x128x16.c -D PART_TM4C1294NCPDT -o C$:\EK-TM4C1294_IAR8\Projects\TCC\Debug\Obj\ --no_cse --no_unroll --no_inline --no_code_motion --no_tbaa --no_clustering --no_scheduling --debug --endian=little --cpu=Cortex-M4 -e --fpu=VFPv4_sp --dlib_config "C$:\Program$ Files\IAR$ Systems\Embedded$ Workbench$ 9.1\arm\inc\c\DLib_Config_Normal.h" -I C$:\EK-TM4C1294_IAR8\Projects\TCC\src\ -I C$:\EK-TM4C1294_IAR8\Projects\TCC\..\drivers\ -I C$:\EK-TM4C1294_IAR8\Projects\TCC\..\..\TivaWare_C_Series-2.1.4.178\ -Ol -I "C$:\Program$ Files\IAR$ Systems\Embedded$ Workbench$ 9.1\arm\CMSIS\Core\Include\\" --predef_macros C$:\EK-TM4C1294_IAR8\Projects\TCC\Debug\BrowseInfo\cfaf128x128x16.tmp
+  rspfile_name = C$:\EK-TM4C1294_IAR8\Projects\TCC\Debug\BrowseInfo\cfaf128x128x16.xcl.rsp
+
+build C$:\EK-TM4C1294_IAR8\Projects\TCC\Debug\BrowseInfo\simple_display.xcl : COMPILER_XCL 
+  xclcommand = -source_file C$:\EK-TM4C1294_IAR8\Projects\TCC\src\simple_display.c -xcl_file C$:\EK-TM4C1294_IAR8\Projects\TCC\Debug\BrowseInfo\simple_display.xcl -macro_file C$:\EK-TM4C1294_IAR8\Projects\TCC\Debug\BrowseInfo\simple_display.tmp -icc_path "C$:\Program$ Files\IAR$ Systems\Embedded$ Workbench$ 9.1\arm\bin\iccarm.exe"
+  flags = C$:\EK-TM4C1294_IAR8\Projects\TCC\src\simple_display.c -D PART_TM4C1294NCPDT -o C$:\EK-TM4C1294_IAR8\Projects\TCC\Debug\Obj\ --no_cse --no_unroll --no_inline --no_code_motion --no_tbaa --no_clustering --no_scheduling --debug --endian=little --cpu=Cortex-M4 -e --fpu=VFPv4_sp --dlib_config "C$:\Program$ Files\IAR$ Systems\Embedded$ Workbench$ 9.1\arm\inc\c\DLib_Config_Normal.h" -I C$:\EK-TM4C1294_IAR8\Projects\TCC\src\ -I C$:\EK-TM4C1294_IAR8\Projects\TCC\..\drivers\ -I C$:\EK-TM4C1294_IAR8\Projects\TCC\..\..\TivaWare_C_Series-2.1.4.178\ -Ol -I "C$:\Program$ Files\IAR$ Systems\Embedded$ Workbench$ 9.1\arm\CMSIS\Core\Include\\" --predef_macros C$:\EK-TM4C1294_IAR8\Projects\TCC\Debug\BrowseInfo\simple_display.tmp
+  rspfile_name = C$:\EK-TM4C1294_IAR8\Projects\TCC\Debug\BrowseInfo\simple_display.xcl.rsp
+
+build C$:\EK-TM4C1294_IAR8\Projects\TCC\Debug\BrowseInfo\system_TM4C1294_TW.xcl : COMPILER_XCL 
+  xclcommand = -source_file C$:\EK-TM4C1294_IAR8\Projects\TCC\src\system_TM4C1294_TW.c -xcl_file C$:\EK-TM4C1294_IAR8\Projects\TCC\Debug\BrowseInfo\system_TM4C1294_TW.xcl -macro_file C$:\EK-TM4C1294_IAR8\Projects\TCC\Debug\BrowseInfo\system_TM4C1294_TW.tmp -icc_path "C$:\Program$ Files\IAR$ Systems\Embedded$ Workbench$ 9.1\arm\bin\iccarm.exe"
+  flags = C$:\EK-TM4C1294_IAR8\Projects\TCC\src\system_TM4C1294_TW.c -D PART_TM4C1294NCPDT -o C$:\EK-TM4C1294_IAR8\Projects\TCC\Debug\Obj\ --no_cse --no_unroll --no_inline --no_code_motion --no_tbaa --no_clustering --no_scheduling --debug --endian=little --cpu=Cortex-M4 -e --fpu=VFPv4_sp --dlib_config "C$:\Program$ Files\IAR$ Systems\Embedded$ Workbench$ 9.1\arm\inc\c\DLib_Config_Normal.h" -I C$:\EK-TM4C1294_IAR8\Projects\TCC\src\ -I C$:\EK-TM4C1294_IAR8\Projects\TCC\..\drivers\ -I C$:\EK-TM4C1294_IAR8\Projects\TCC\..\..\TivaWare_C_Series-2.1.4.178\ -Ol -I "C$:\Program$ Files\IAR$ Systems\Embedded$ Workbench$ 9.1\arm\CMSIS\Core\Include\\" --predef_macros C$:\EK-TM4C1294_IAR8\Projects\TCC\Debug\BrowseInfo\system_TM4C1294_TW.tmp
+  rspfile_name = C$:\EK-TM4C1294_IAR8\Projects\TCC\Debug\BrowseInfo\system_TM4C1294_TW.xcl.rsp
+
+build C$:\EK-TM4C1294_IAR8\Projects\TCC\Debug\BrowseInfo\cfaf128x128x16.pbi : INDEXER C$:\EK-TM4C1294_IAR8\Projects\TCC\Debug\BrowseInfo\cfaf128x128x16.xcl |  $
+C$:\EK-TM4C1294_IAR8\Projects\drivers\cfaf128x128x16.c
+  flags = -out=C$:\EK-TM4C1294_IAR8\Projects\TCC\Debug\BrowseInfo\cfaf128x128x16.pbi -f C$:\EK-TM4C1294_IAR8\Projects\TCC\Debug\BrowseInfo\cfaf128x128x16.xcl
+
+build C$:\EK-TM4C1294_IAR8\Projects\TCC\Debug\BrowseInfo\simple_display.pbi : INDEXER C$:\EK-TM4C1294_IAR8\Projects\TCC\Debug\BrowseInfo\simple_display.xcl |  $
+C$:\EK-TM4C1294_IAR8\Projects\TCC\src\simple_display.c
+  flags = -out=C$:\EK-TM4C1294_IAR8\Projects\TCC\Debug\BrowseInfo\simple_display.pbi -f C$:\EK-TM4C1294_IAR8\Projects\TCC\Debug\BrowseInfo\simple_display.xcl
+
+build C$:\EK-TM4C1294_IAR8\Projects\TCC\Debug\BrowseInfo\system_TM4C1294_TW.pbi : INDEXER C$:\EK-TM4C1294_IAR8\Projects\TCC\Debug\BrowseInfo\system_TM4C1294_TW.xcl |  $
+C$:\EK-TM4C1294_IAR8\Projects\TCC\src\system_TM4C1294_TW.c
+  flags = -out=C$:\EK-TM4C1294_IAR8\Projects\TCC\Debug\BrowseInfo\system_TM4C1294_TW.pbi -f C$:\EK-TM4C1294_IAR8\Projects\TCC\Debug\BrowseInfo\system_TM4C1294_TW.xcl
+
+build C$:\EK-TM4C1294_IAR8\Projects\TCC\Debug\BrowseInfo\TCC.pbw : MAKEBROWSE C$:\EK-TM4C1294_IAR8\Projects\TCC\Debug\BrowseInfo\TCC.pbd
+  flags = C$:\EK-TM4C1294_IAR8\Projects\TCC\Debug\BrowseInfo\TCC.pbd -output C$:\EK-TM4C1294_IAR8\Projects\TCC\Debug\BrowseInfo\TCC.pbw
+
+build C$:\EK-TM4C1294_IAR8\Projects\TCC\Debug\BrowseInfo\TCC.pbd : PDBLINK C$:\EK-TM4C1294_IAR8\Projects\TCC\Debug\BrowseInfo\cfaf128x128x16.pbi |  $
+C$:\EK-TM4C1294_IAR8\Projects\TCC\Debug\BrowseInfo\simple_display.pbi $
+C$:\EK-TM4C1294_IAR8\Projects\TCC\Debug\BrowseInfo\system_TM4C1294_TW.pbi
+  flags = -M C$:\EK-TM4C1294_IAR8\Projects\TCC\Debug\BrowseInfo\TCC.pbd C$:\EK-TM4C1294_IAR8\Projects\TCC\Debug\BrowseInfo\cfaf128x128x16.pbi C$:\EK-TM4C1294_IAR8\Projects\TCC\Debug\BrowseInfo\simple_display.pbi C$:\EK-TM4C1294_IAR8\Projects\TCC\Debug\BrowseInfo\system_TM4C1294_TW.pbi
+
