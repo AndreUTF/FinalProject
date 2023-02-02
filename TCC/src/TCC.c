@@ -93,28 +93,33 @@ int WaterLevelSensor()
 
 void MenuManualMode()
 {
+  cfaf128x128x16Clear();
+  GrFlush(&sContext);
+  GrStringDraw(&sContext, "1: Sanitazing", -1, 1, 1, true);
+  GrStringDraw(&sContext, "2: Recirculation", -1, 1, 10, true);
+  GrStringDraw(&sContext, "3: Absolute Water", -1, 1, 20, true);
+  GrStringDraw(&sContext, "Level", -1, 1, 30, true);
+  GrStringDraw(&sContext, "4: Relative Water Level", -1, 1, 40, true);
+  GrStringDraw(&sContext, "Level", -1, 1, 50, true);
+  GrStringDraw(&sContext, "5: Temperature Read", -1, 1, 60, true);
+  GrStringDraw(&sContext, "6: Water Output", -1, 1, 70, true);
+  GrStringDraw(&sContext, "7: Initial Manual Mode", -1, 1, 80, true);
+  GrStringDraw(&sContext, "Mode", -1, 1, 90, true);
   int option=1;
   char greetings[] = "Input ";
-  char option_str[] = itoa(option);
-  strcat(greetings,option_str);
-  ClearDisplay();
-  if(WaterLevelSensor() == 1){
-    //return -1;
-  }
-  else{
-    GrStringDraw(&sContext, "1: Sanitazing", -1, 1, 1, true);
-    GrStringDraw(&sContext, "2: Recirculation", -1, 1, 10, true);
-    GrStringDraw(&sContext, "3: Absolute Level Read", -1, 1, 20, true);
-    GrStringDraw(&sContext, "4: Relative Level Level", -1, 1, 30, true);
-    GrStringDraw(&sContext, "5: Temperature Read", -1, 1, 40, true);
-    GrStringDraw(&sContext, "6: Water Output", -1, 1, 50, true);
-    GrStringDraw(&sContext, "7: Initial Manual Mode", -1, 1, 60, true);
-    GrStringDraw(&sContext, greetings , -1, 1, 70, true);
+  sprintf(greetings, "Input: %d", option);
+  GrStringDraw(&sContext, greetings, -1, 1, 100, true); 
     while(1)
     {
-      if(WaterLevelSensor() == 1)
+      if(WaterLevelSensor() == 1){
         break;
-      
+      }
+      if(isSwitchButtonKit1Pressed() == true){
+        (option > 7) ? option=1 : option++;
+        sprintf(greetings, "Input: %d", option);
+        GrStringDraw(&sContext, greetings, -1, 1, 100, true);
+        SysCtlDelay(5000000);
+      }
     }
   }
 }//MenuManualMode
