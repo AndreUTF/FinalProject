@@ -2855,6 +2855,9 @@
         <name>$PROJ_DIR$\..\..\TivaWare_C_Series-2.1.4.178\grlib\ewarm\Exe\grlib.a</name>
     </file>
     <file>
+        <name>$PROJ_DIR$\src\LM35.h</name>
+    </file>
+    <file>
         <name>$PROJ_DIR$\src\startup_TM4C1294.s</name>
     </file>
     <file>

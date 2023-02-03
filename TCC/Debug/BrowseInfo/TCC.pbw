@@ -69374,2014 +69374,3768 @@
     "scope": null
   },
   {
-    "ID": "c:stdlib.h@102@macro@_STDLIB",
+    "ID": "c:adc.h@2036@macro@__DRIVERLIB_ADC_H__",
     "What": "MacroDef",
     "defdec": "Def",
-    "display": "_STDLIB",
+    "display": "__DRIVERLIB_ADC_H__",
     "location": {
       "column": "9",
-      "line": "5",
-      "path": "C:\\Program Files\\IAR Systems\\Embedded Workbench 9.1\\arm\\inc\\c\\stdlib.h"
+      "line": "41",
+      "path": "C:\\EK-TM4C1294_IAR8\\TivaWare_C_Series-2.1.4.178\\driverlib\\adc.h"
     },
-    "name": "_STDLIB",
-    "origin": "system_include",
+    "name": "__DRIVERLIB_ADC_H__",
+    "origin": "user_include",
     "scope": null
   },
   {
-    "ID": "c:@F@__iar_Mbcurmax",
-    "What": "Function",
-    "defdec": "Dec",
-    "display": "size_t __iar_Mbcurmax(void)",
-    "location": {
-      "column": "25",
-      "line": "31",
-      "path": "C:\\Program Files\\IAR Systems\\Embedded Workbench 9.1\\arm\\inc\\c\\stdlib.h"
-    },
-    "name": "__iar_Mbcurmax",
-    "origin": "system_include",
-    "scope": null
-  },
-  {
-    "ID": "c:stdlib.h@753@macro@MB_CUR_MAX",
+    "ID": "c:adc.h@2642@macro@ADC_TRIGGER_PROCESSOR",
     "What": "MacroDef",
     "defdec": "Def",
-    "display": "MB_CUR_MAX",
-    "location": {
-      "column": "11",
-      "line": "33",
-      "path": "C:\\Program Files\\IAR Systems\\Embedded Workbench 9.1\\arm\\inc\\c\\stdlib.h"
-    },
-    "name": "MB_CUR_MAX",
-    "origin": "system_include",
-    "scope": null
-  },
-  {
-    "ID": "c:stdlib.h@873@macro@EXIT_FAILURE",
-    "What": "MacroDef",
-    "defdec": "Def",
-    "display": "EXIT_FAILURE",
+    "display": "ADC_TRIGGER_PROCESSOR",
     "location": {
       "column": "9",
-      "line": "42",
-      "path": "C:\\Program Files\\IAR Systems\\Embedded Workbench 9.1\\arm\\inc\\c\\stdlib.h"
+      "line": "60",
+      "path": "C:\\EK-TM4C1294_IAR8\\TivaWare_C_Series-2.1.4.178\\driverlib\\adc.h"
     },
-    "name": "EXIT_FAILURE",
-    "origin": "system_include",
+    "name": "ADC_TRIGGER_PROCESSOR",
+    "origin": "user_include",
     "scope": null
   },
   {
-    "ID": "c:stdlib.h@900@macro@EXIT_SUCCESS",
+    "ID": "c:adc.h@2706@macro@ADC_TRIGGER_COMP0",
     "What": "MacroDef",
     "defdec": "Def",
-    "display": "EXIT_SUCCESS",
+    "display": "ADC_TRIGGER_COMP0",
     "location": {
       "column": "9",
-      "line": "43",
-      "path": "C:\\Program Files\\IAR Systems\\Embedded Workbench 9.1\\arm\\inc\\c\\stdlib.h"
-    },
-    "name": "EXIT_SUCCESS",
-    "origin": "system_include",
-    "scope": null
-  },
-  {
-    "ID": "c:stdlib.h@954@macro@RAND_MAX",
-    "What": "MacroDef",
-    "defdec": "Def",
-    "display": "RAND_MAX",
-    "location": {
-      "column": "11",
-      "line": "46",
-      "path": "C:\\Program Files\\IAR Systems\\Embedded Workbench 9.1\\arm\\inc\\c\\stdlib.h"
-    },
-    "name": "RAND_MAX",
-    "origin": "system_include",
-    "scope": null
-  },
-  {
-    "ID": "c:stdlib.h@1080@macro@_WCHART",
-    "What": "MacroDef",
-    "defdec": "Def",
-    "display": "_WCHART",
-    "location": {
-      "column": "11",
-      "line": "53",
-      "path": "C:\\Program Files\\IAR Systems\\Embedded Workbench 9.1\\arm\\inc\\c\\stdlib.h"
-    },
-    "name": "_WCHART",
-    "origin": "system_include",
-    "scope": null
-  },
-  {
-    "ID": "c:stdlib.h@T@wchar_t",
-    "What": "Typedef",
-    "defdec": "Def",
-    "display": "_Wchart",
-    "location": {
-      "column": "19",
-      "line": "54",
-      "path": "C:\\Program Files\\IAR Systems\\Embedded Workbench 9.1\\arm\\inc\\c\\stdlib.h"
-    },
-    "name": "wchar_t",
-    "origin": "system_include",
-    "scope": null
-  },
-  {
-    "ID": "c:@SA@div_t",
-    "What": "Struct",
-    "defdec": "Def",
-    "display": "",
-    "location": {
-      "column": "9",
-      "line": "57",
-      "path": "C:\\Program Files\\IAR Systems\\Embedded Workbench 9.1\\arm\\inc\\c\\stdlib.h"
-    },
-    "members": [
-      {
-        "ID": "c:@SA@div_t@FI@quot",
-        "What": "FieldDecl",
-        "defdec": "Def",
-        "display": "quot",
-        "location": {
-          "column": "7",
-          "line": "59",
-          "path": "C:\\Program Files\\IAR Systems\\Embedded Workbench 9.1\\arm\\inc\\c\\stdlib.h"
-        },
-        "name": "quot",
-        "origin": "system_include",
-        "scope": "_anonymous_stdlib_h_57_9"
-      },
-      {
-        "ID": "c:@SA@div_t@FI@rem",
-        "What": "FieldDecl",
-        "defdec": "Def",
-        "display": "rem",
-        "location": {
-          "column": "7",
-          "line": "60",
-          "path": "C:\\Program Files\\IAR Systems\\Embedded Workbench 9.1\\arm\\inc\\c\\stdlib.h"
-        },
-        "name": "rem",
-        "origin": "system_include",
-        "scope": "_anonymous_stdlib_h_57_9"
-      }
-    ],
-    "name": "",
-    "origin": "system_include",
-    "scope": null
-  },
-  {
-    "ID": "c:@T@div_t",
-    "What": "Typedef",
-    "defdec": "Def",
-    "display": "struct div_t",
-    "location": {
-      "column": "3",
       "line": "61",
-      "path": "C:\\Program Files\\IAR Systems\\Embedded Workbench 9.1\\arm\\inc\\c\\stdlib.h"
+      "path": "C:\\EK-TM4C1294_IAR8\\TivaWare_C_Series-2.1.4.178\\driverlib\\adc.h"
     },
-    "name": "div_t",
-    "origin": "system_include",
+    "name": "ADC_TRIGGER_COMP0",
+    "origin": "user_include",
     "scope": null
   },
   {
-    "ID": "c:@SA@ldiv_t",
-    "What": "Struct",
+    "ID": "c:adc.h@2780@macro@ADC_TRIGGER_COMP1",
+    "What": "MacroDef",
     "defdec": "Def",
-    "display": "",
+    "display": "ADC_TRIGGER_COMP1",
+    "location": {
+      "column": "9",
+      "line": "62",
+      "path": "C:\\EK-TM4C1294_IAR8\\TivaWare_C_Series-2.1.4.178\\driverlib\\adc.h"
+    },
+    "name": "ADC_TRIGGER_COMP1",
+    "origin": "user_include",
+    "scope": null
+  },
+  {
+    "ID": "c:adc.h@2854@macro@ADC_TRIGGER_COMP2",
+    "What": "MacroDef",
+    "defdec": "Def",
+    "display": "ADC_TRIGGER_COMP2",
     "location": {
       "column": "9",
       "line": "63",
-      "path": "C:\\Program Files\\IAR Systems\\Embedded Workbench 9.1\\arm\\inc\\c\\stdlib.h"
+      "path": "C:\\EK-TM4C1294_IAR8\\TivaWare_C_Series-2.1.4.178\\driverlib\\adc.h"
     },
-    "members": [
-      {
-        "ID": "c:@SA@ldiv_t@FI@quot",
-        "What": "FieldDecl",
-        "defdec": "Def",
-        "display": "quot",
-        "location": {
-          "column": "8",
-          "line": "65",
-          "path": "C:\\Program Files\\IAR Systems\\Embedded Workbench 9.1\\arm\\inc\\c\\stdlib.h"
-        },
-        "name": "quot",
-        "origin": "system_include",
-        "scope": "_anonymous_stdlib_h_63_9"
-      },
-      {
-        "ID": "c:@SA@ldiv_t@FI@rem",
-        "What": "FieldDecl",
-        "defdec": "Def",
-        "display": "rem",
-        "location": {
-          "column": "8",
-          "line": "66",
-          "path": "C:\\Program Files\\IAR Systems\\Embedded Workbench 9.1\\arm\\inc\\c\\stdlib.h"
-        },
-        "name": "rem",
-        "origin": "system_include",
-        "scope": "_anonymous_stdlib_h_63_9"
-      }
-    ],
-    "name": "",
-    "origin": "system_include",
+    "name": "ADC_TRIGGER_COMP2",
+    "origin": "user_include",
     "scope": null
   },
   {
-    "ID": "c:@T@ldiv_t",
-    "What": "Typedef",
+    "ID": "c:adc.h@2928@macro@ADC_TRIGGER_EXTERNAL",
+    "What": "MacroDef",
     "defdec": "Def",
-    "display": "struct ldiv_t",
+    "display": "ADC_TRIGGER_EXTERNAL",
     "location": {
-      "column": "3",
+      "column": "9",
+      "line": "64",
+      "path": "C:\\EK-TM4C1294_IAR8\\TivaWare_C_Series-2.1.4.178\\driverlib\\adc.h"
+    },
+    "name": "ADC_TRIGGER_EXTERNAL",
+    "origin": "user_include",
+    "scope": null
+  },
+  {
+    "ID": "c:adc.h@2991@macro@ADC_TRIGGER_TIMER",
+    "What": "MacroDef",
+    "defdec": "Def",
+    "display": "ADC_TRIGGER_TIMER",
+    "location": {
+      "column": "9",
+      "line": "65",
+      "path": "C:\\EK-TM4C1294_IAR8\\TivaWare_C_Series-2.1.4.178\\driverlib\\adc.h"
+    },
+    "name": "ADC_TRIGGER_TIMER",
+    "origin": "user_include",
+    "scope": null
+  },
+  {
+    "ID": "c:adc.h@3051@macro@ADC_TRIGGER_PWM0",
+    "What": "MacroDef",
+    "defdec": "Def",
+    "display": "ADC_TRIGGER_PWM0",
+    "location": {
+      "column": "9",
+      "line": "66",
+      "path": "C:\\EK-TM4C1294_IAR8\\TivaWare_C_Series-2.1.4.178\\driverlib\\adc.h"
+    },
+    "name": "ADC_TRIGGER_PWM0",
+    "origin": "user_include",
+    "scope": null
+  },
+  {
+    "ID": "c:adc.h@3110@macro@ADC_TRIGGER_PWM1",
+    "What": "MacroDef",
+    "defdec": "Def",
+    "display": "ADC_TRIGGER_PWM1",
+    "location": {
+      "column": "9",
       "line": "67",
-      "path": "C:\\Program Files\\IAR Systems\\Embedded Workbench 9.1\\arm\\inc\\c\\stdlib.h"
+      "path": "C:\\EK-TM4C1294_IAR8\\TivaWare_C_Series-2.1.4.178\\driverlib\\adc.h"
     },
-    "name": "ldiv_t",
-    "origin": "system_include",
+    "name": "ADC_TRIGGER_PWM1",
+    "origin": "user_include",
     "scope": null
   },
   {
-    "ID": "c:@SA@lldiv_t",
-    "What": "Struct",
+    "ID": "c:adc.h@3169@macro@ADC_TRIGGER_PWM2",
+    "What": "MacroDef",
     "defdec": "Def",
-    "display": "",
+    "display": "ADC_TRIGGER_PWM2",
     "location": {
-      "column": "11",
+      "column": "9",
+      "line": "68",
+      "path": "C:\\EK-TM4C1294_IAR8\\TivaWare_C_Series-2.1.4.178\\driverlib\\adc.h"
+    },
+    "name": "ADC_TRIGGER_PWM2",
+    "origin": "user_include",
+    "scope": null
+  },
+  {
+    "ID": "c:adc.h@3228@macro@ADC_TRIGGER_PWM3",
+    "What": "MacroDef",
+    "defdec": "Def",
+    "display": "ADC_TRIGGER_PWM3",
+    "location": {
+      "column": "9",
+      "line": "69",
+      "path": "C:\\EK-TM4C1294_IAR8\\TivaWare_C_Series-2.1.4.178\\driverlib\\adc.h"
+    },
+    "name": "ADC_TRIGGER_PWM3",
+    "origin": "user_include",
+    "scope": null
+  },
+  {
+    "ID": "c:adc.h@3287@macro@ADC_TRIGGER_NEVER",
+    "What": "MacroDef",
+    "defdec": "Def",
+    "display": "ADC_TRIGGER_NEVER",
+    "location": {
+      "column": "9",
       "line": "70",
-      "path": "C:\\Program Files\\IAR Systems\\Embedded Workbench 9.1\\arm\\inc\\c\\stdlib.h"
+      "path": "C:\\EK-TM4C1294_IAR8\\TivaWare_C_Series-2.1.4.178\\driverlib\\adc.h"
     },
-    "members": [
-      {
-        "ID": "c:@SA@lldiv_t@FI@quot",
-        "What": "FieldDecl",
-        "defdec": "Def",
-        "display": "quot",
-        "location": {
-          "column": "15",
-          "line": "72",
-          "path": "C:\\Program Files\\IAR Systems\\Embedded Workbench 9.1\\arm\\inc\\c\\stdlib.h"
-        },
-        "name": "quot",
-        "origin": "system_include",
-        "scope": "_anonymous_stdlib_h_70_11"
-      },
-      {
-        "ID": "c:@SA@lldiv_t@FI@rem",
-        "What": "FieldDecl",
-        "defdec": "Def",
-        "display": "rem",
-        "location": {
-          "column": "15",
-          "line": "73",
-          "path": "C:\\Program Files\\IAR Systems\\Embedded Workbench 9.1\\arm\\inc\\c\\stdlib.h"
-        },
-        "name": "rem",
-        "origin": "system_include",
-        "scope": "_anonymous_stdlib_h_70_11"
-      }
-    ],
-    "name": "",
-    "origin": "system_include",
+    "name": "ADC_TRIGGER_NEVER",
+    "origin": "user_include",
     "scope": null
   },
   {
-    "ID": "c:@T@lldiv_t",
-    "What": "Typedef",
+    "ID": "c:adc.h@3349@macro@ADC_TRIGGER_ALWAYS",
+    "What": "MacroDef",
     "defdec": "Def",
-    "display": "struct lldiv_t",
+    "display": "ADC_TRIGGER_ALWAYS",
     "location": {
-      "column": "5",
-      "line": "74",
-      "path": "C:\\Program Files\\IAR Systems\\Embedded Workbench 9.1\\arm\\inc\\c\\stdlib.h"
+      "column": "9",
+      "line": "71",
+      "path": "C:\\EK-TM4C1294_IAR8\\TivaWare_C_Series-2.1.4.178\\driverlib\\adc.h"
     },
-    "name": "lldiv_t",
-    "origin": "system_include",
+    "name": "ADC_TRIGGER_ALWAYS",
+    "origin": "user_include",
     "scope": null
   },
   {
-    "ID": "c:@F@atexit",
-    "What": "Function",
-    "defdec": "Dec",
-    "display": "int atexit(void (*)(void))",
+    "ID": "c:adc.h@3410@macro@ADC_TRIGGER_PWM_MOD0",
+    "What": "MacroDef",
+    "defdec": "Def",
+    "display": "ADC_TRIGGER_PWM_MOD0",
     "location": {
-      "column": "32",
+      "column": "9",
+      "line": "72",
+      "path": "C:\\EK-TM4C1294_IAR8\\TivaWare_C_Series-2.1.4.178\\driverlib\\adc.h"
+    },
+    "name": "ADC_TRIGGER_PWM_MOD0",
+    "origin": "user_include",
+    "scope": null
+  },
+  {
+    "ID": "c:adc.h@3481@macro@ADC_TRIGGER_PWM_MOD1",
+    "What": "MacroDef",
+    "defdec": "Def",
+    "display": "ADC_TRIGGER_PWM_MOD1",
+    "location": {
+      "column": "9",
+      "line": "73",
+      "path": "C:\\EK-TM4C1294_IAR8\\TivaWare_C_Series-2.1.4.178\\driverlib\\adc.h"
+    },
+    "name": "ADC_TRIGGER_PWM_MOD1",
+    "origin": "user_include",
+    "scope": null
+  },
+  {
+    "ID": "c:adc.h@3815@macro@ADC_CTL_TS",
+    "What": "MacroDef",
+    "defdec": "Def",
+    "display": "ADC_CTL_TS",
+    "location": {
+      "column": "9",
+      "line": "81",
+      "path": "C:\\EK-TM4C1294_IAR8\\TivaWare_C_Series-2.1.4.178\\driverlib\\adc.h"
+    },
+    "name": "ADC_CTL_TS",
+    "origin": "user_include",
+    "scope": null
+  },
+  {
+    "ID": "c:adc.h@3889@macro@ADC_CTL_IE",
+    "What": "MacroDef",
+    "defdec": "Def",
+    "display": "ADC_CTL_IE",
+    "location": {
+      "column": "9",
+      "line": "82",
+      "path": "C:\\EK-TM4C1294_IAR8\\TivaWare_C_Series-2.1.4.178\\driverlib\\adc.h"
+    },
+    "name": "ADC_CTL_IE",
+    "origin": "user_include",
+    "scope": null
+  },
+  {
+    "ID": "c:adc.h@3954@macro@ADC_CTL_END",
+    "What": "MacroDef",
+    "defdec": "Def",
+    "display": "ADC_CTL_END",
+    "location": {
+      "column": "9",
+      "line": "83",
+      "path": "C:\\EK-TM4C1294_IAR8\\TivaWare_C_Series-2.1.4.178\\driverlib\\adc.h"
+    },
+    "name": "ADC_CTL_END",
+    "origin": "user_include",
+    "scope": null
+  },
+  {
+    "ID": "c:adc.h@4022@macro@ADC_CTL_D",
+    "What": "MacroDef",
+    "defdec": "Def",
+    "display": "ADC_CTL_D",
+    "location": {
+      "column": "9",
+      "line": "84",
+      "path": "C:\\EK-TM4C1294_IAR8\\TivaWare_C_Series-2.1.4.178\\driverlib\\adc.h"
+    },
+    "name": "ADC_CTL_D",
+    "origin": "user_include",
+    "scope": null
+  },
+  {
+    "ID": "c:adc.h@4090@macro@ADC_CTL_CH0",
+    "What": "MacroDef",
+    "defdec": "Def",
+    "display": "ADC_CTL_CH0",
+    "location": {
+      "column": "9",
+      "line": "85",
+      "path": "C:\\EK-TM4C1294_IAR8\\TivaWare_C_Series-2.1.4.178\\driverlib\\adc.h"
+    },
+    "name": "ADC_CTL_CH0",
+    "origin": "user_include",
+    "scope": null
+  },
+  {
+    "ID": "c:adc.h@4154@macro@ADC_CTL_CH1",
+    "What": "MacroDef",
+    "defdec": "Def",
+    "display": "ADC_CTL_CH1",
+    "location": {
+      "column": "9",
+      "line": "86",
+      "path": "C:\\EK-TM4C1294_IAR8\\TivaWare_C_Series-2.1.4.178\\driverlib\\adc.h"
+    },
+    "name": "ADC_CTL_CH1",
+    "origin": "user_include",
+    "scope": null
+  },
+  {
+    "ID": "c:adc.h@4218@macro@ADC_CTL_CH2",
+    "What": "MacroDef",
+    "defdec": "Def",
+    "display": "ADC_CTL_CH2",
+    "location": {
+      "column": "9",
+      "line": "87",
+      "path": "C:\\EK-TM4C1294_IAR8\\TivaWare_C_Series-2.1.4.178\\driverlib\\adc.h"
+    },
+    "name": "ADC_CTL_CH2",
+    "origin": "user_include",
+    "scope": null
+  },
+  {
+    "ID": "c:adc.h@4282@macro@ADC_CTL_CH3",
+    "What": "MacroDef",
+    "defdec": "Def",
+    "display": "ADC_CTL_CH3",
+    "location": {
+      "column": "9",
+      "line": "88",
+      "path": "C:\\EK-TM4C1294_IAR8\\TivaWare_C_Series-2.1.4.178\\driverlib\\adc.h"
+    },
+    "name": "ADC_CTL_CH3",
+    "origin": "user_include",
+    "scope": null
+  },
+  {
+    "ID": "c:adc.h@4346@macro@ADC_CTL_CH4",
+    "What": "MacroDef",
+    "defdec": "Def",
+    "display": "ADC_CTL_CH4",
+    "location": {
+      "column": "9",
+      "line": "89",
+      "path": "C:\\EK-TM4C1294_IAR8\\TivaWare_C_Series-2.1.4.178\\driverlib\\adc.h"
+    },
+    "name": "ADC_CTL_CH4",
+    "origin": "user_include",
+    "scope": null
+  },
+  {
+    "ID": "c:adc.h@4410@macro@ADC_CTL_CH5",
+    "What": "MacroDef",
+    "defdec": "Def",
+    "display": "ADC_CTL_CH5",
+    "location": {
+      "column": "9",
+      "line": "90",
+      "path": "C:\\EK-TM4C1294_IAR8\\TivaWare_C_Series-2.1.4.178\\driverlib\\adc.h"
+    },
+    "name": "ADC_CTL_CH5",
+    "origin": "user_include",
+    "scope": null
+  },
+  {
+    "ID": "c:adc.h@4474@macro@ADC_CTL_CH6",
+    "What": "MacroDef",
+    "defdec": "Def",
+    "display": "ADC_CTL_CH6",
+    "location": {
+      "column": "9",
       "line": "91",
-      "path": "C:\\Program Files\\IAR Systems\\Embedded Workbench 9.1\\arm\\inc\\c\\stdlib.h"
+      "path": "C:\\EK-TM4C1294_IAR8\\TivaWare_C_Series-2.1.4.178\\driverlib\\adc.h"
     },
-    "name": "atexit",
-    "origin": "system_include",
+    "name": "ADC_CTL_CH6",
+    "origin": "user_include",
     "scope": null
   },
   {
-    "ID": "c:@F@at_quick_exit",
-    "What": "Function",
-    "defdec": "Dec",
-    "display": "int at_quick_exit(void (*)(void))",
+    "ID": "c:adc.h@4538@macro@ADC_CTL_CH7",
+    "What": "MacroDef",
+    "defdec": "Def",
+    "display": "ADC_CTL_CH7",
     "location": {
-      "column": "32",
+      "column": "9",
+      "line": "92",
+      "path": "C:\\EK-TM4C1294_IAR8\\TivaWare_C_Series-2.1.4.178\\driverlib\\adc.h"
+    },
+    "name": "ADC_CTL_CH7",
+    "origin": "user_include",
+    "scope": null
+  },
+  {
+    "ID": "c:adc.h@4602@macro@ADC_CTL_CH8",
+    "What": "MacroDef",
+    "defdec": "Def",
+    "display": "ADC_CTL_CH8",
+    "location": {
+      "column": "9",
       "line": "93",
-      "path": "C:\\Program Files\\IAR Systems\\Embedded Workbench 9.1\\arm\\inc\\c\\stdlib.h"
+      "path": "C:\\EK-TM4C1294_IAR8\\TivaWare_C_Series-2.1.4.178\\driverlib\\adc.h"
     },
-    "name": "at_quick_exit",
-    "origin": "system_include",
+    "name": "ADC_CTL_CH8",
+    "origin": "user_include",
     "scope": null
   },
   {
-    "ID": "c:@F@_Exit",
-    "What": "Function",
-    "defdec": "Dec",
-    "display": "void _Exit(int)",
+    "ID": "c:adc.h@4666@macro@ADC_CTL_CH9",
+    "What": "MacroDef",
+    "defdec": "Def",
+    "display": "ADC_CTL_CH9",
     "location": {
-      "column": "32",
+      "column": "9",
       "line": "94",
-      "path": "C:\\Program Files\\IAR Systems\\Embedded Workbench 9.1\\arm\\inc\\c\\stdlib.h"
+      "path": "C:\\EK-TM4C1294_IAR8\\TivaWare_C_Series-2.1.4.178\\driverlib\\adc.h"
     },
-    "name": "_Exit",
-    "origin": "system_include",
+    "name": "ADC_CTL_CH9",
+    "origin": "user_include",
     "scope": null
   },
   {
-    "ID": "c:@F@quick_exit",
-    "What": "Function",
-    "defdec": "Dec",
-    "display": "void quick_exit(int)",
+    "ID": "c:adc.h@4730@macro@ADC_CTL_CH10",
+    "What": "MacroDef",
+    "defdec": "Def",
+    "display": "ADC_CTL_CH10",
     "location": {
-      "column": "32",
+      "column": "9",
       "line": "95",
-      "path": "C:\\Program Files\\IAR Systems\\Embedded Workbench 9.1\\arm\\inc\\c\\stdlib.h"
+      "path": "C:\\EK-TM4C1294_IAR8\\TivaWare_C_Series-2.1.4.178\\driverlib\\adc.h"
     },
-    "name": "quick_exit",
-    "origin": "system_include",
+    "name": "ADC_CTL_CH10",
+    "origin": "user_include",
     "scope": null
   },
   {
-    "ID": "c:@F@exit",
-    "What": "Function",
-    "defdec": "Dec",
-    "display": "void exit(int)",
+    "ID": "c:adc.h@4795@macro@ADC_CTL_CH11",
+    "What": "MacroDef",
+    "defdec": "Def",
+    "display": "ADC_CTL_CH11",
     "location": {
-      "column": "32",
+      "column": "9",
+      "line": "96",
+      "path": "C:\\EK-TM4C1294_IAR8\\TivaWare_C_Series-2.1.4.178\\driverlib\\adc.h"
+    },
+    "name": "ADC_CTL_CH11",
+    "origin": "user_include",
+    "scope": null
+  },
+  {
+    "ID": "c:adc.h@4860@macro@ADC_CTL_CH12",
+    "What": "MacroDef",
+    "defdec": "Def",
+    "display": "ADC_CTL_CH12",
+    "location": {
+      "column": "9",
       "line": "97",
-      "path": "C:\\Program Files\\IAR Systems\\Embedded Workbench 9.1\\arm\\inc\\c\\stdlib.h"
+      "path": "C:\\EK-TM4C1294_IAR8\\TivaWare_C_Series-2.1.4.178\\driverlib\\adc.h"
     },
-    "name": "exit",
-    "origin": "system_include",
+    "name": "ADC_CTL_CH12",
+    "origin": "user_include",
     "scope": null
   },
   {
-    "ID": "c:@F@getenv",
-    "What": "Function",
-    "defdec": "Dec",
-    "display": "char * getenv(const char *)",
+    "ID": "c:adc.h@4925@macro@ADC_CTL_CH13",
+    "What": "MacroDef",
+    "defdec": "Def",
+    "display": "ADC_CTL_CH13",
     "location": {
-      "column": "32",
+      "column": "9",
       "line": "98",
-      "path": "C:\\Program Files\\IAR Systems\\Embedded Workbench 9.1\\arm\\inc\\c\\stdlib.h"
+      "path": "C:\\EK-TM4C1294_IAR8\\TivaWare_C_Series-2.1.4.178\\driverlib\\adc.h"
     },
-    "name": "getenv",
-    "origin": "system_include",
+    "name": "ADC_CTL_CH13",
+    "origin": "user_include",
     "scope": null
   },
   {
-    "ID": "c:@F@system",
-    "What": "Function",
-    "defdec": "Dec",
-    "display": "int system(const char *)",
+    "ID": "c:adc.h@4990@macro@ADC_CTL_CH14",
+    "What": "MacroDef",
+    "defdec": "Def",
+    "display": "ADC_CTL_CH14",
     "location": {
-      "column": "32",
+      "column": "9",
       "line": "99",
-      "path": "C:\\Program Files\\IAR Systems\\Embedded Workbench 9.1\\arm\\inc\\c\\stdlib.h"
+      "path": "C:\\EK-TM4C1294_IAR8\\TivaWare_C_Series-2.1.4.178\\driverlib\\adc.h"
     },
-    "name": "system",
-    "origin": "system_include",
+    "name": "ADC_CTL_CH14",
+    "origin": "user_include",
     "scope": null
   },
   {
-    "ID": "c:@F@aligned_alloc",
-    "What": "Function",
-    "defdec": "Dec",
-    "display": "void * aligned_alloc(size_t, size_t)",
+    "ID": "c:adc.h@5055@macro@ADC_CTL_CH15",
+    "What": "MacroDef",
+    "defdec": "Def",
+    "display": "ADC_CTL_CH15",
     "location": {
-      "column": "39",
+      "column": "9",
+      "line": "100",
+      "path": "C:\\EK-TM4C1294_IAR8\\TivaWare_C_Series-2.1.4.178\\driverlib\\adc.h"
+    },
+    "name": "ADC_CTL_CH15",
+    "origin": "user_include",
+    "scope": null
+  },
+  {
+    "ID": "c:adc.h@5120@macro@ADC_CTL_CH16",
+    "What": "MacroDef",
+    "defdec": "Def",
+    "display": "ADC_CTL_CH16",
+    "location": {
+      "column": "9",
+      "line": "101",
+      "path": "C:\\EK-TM4C1294_IAR8\\TivaWare_C_Series-2.1.4.178\\driverlib\\adc.h"
+    },
+    "name": "ADC_CTL_CH16",
+    "origin": "user_include",
+    "scope": null
+  },
+  {
+    "ID": "c:adc.h@5185@macro@ADC_CTL_CH17",
+    "What": "MacroDef",
+    "defdec": "Def",
+    "display": "ADC_CTL_CH17",
+    "location": {
+      "column": "9",
+      "line": "102",
+      "path": "C:\\EK-TM4C1294_IAR8\\TivaWare_C_Series-2.1.4.178\\driverlib\\adc.h"
+    },
+    "name": "ADC_CTL_CH17",
+    "origin": "user_include",
+    "scope": null
+  },
+  {
+    "ID": "c:adc.h@5250@macro@ADC_CTL_CH18",
+    "What": "MacroDef",
+    "defdec": "Def",
+    "display": "ADC_CTL_CH18",
+    "location": {
+      "column": "9",
+      "line": "103",
+      "path": "C:\\EK-TM4C1294_IAR8\\TivaWare_C_Series-2.1.4.178\\driverlib\\adc.h"
+    },
+    "name": "ADC_CTL_CH18",
+    "origin": "user_include",
+    "scope": null
+  },
+  {
+    "ID": "c:adc.h@5315@macro@ADC_CTL_CH19",
+    "What": "MacroDef",
+    "defdec": "Def",
+    "display": "ADC_CTL_CH19",
+    "location": {
+      "column": "9",
       "line": "104",
-      "path": "C:\\Program Files\\IAR Systems\\Embedded Workbench 9.1\\arm\\inc\\c\\stdlib.h"
+      "path": "C:\\EK-TM4C1294_IAR8\\TivaWare_C_Series-2.1.4.178\\driverlib\\adc.h"
     },
-    "name": "aligned_alloc",
-    "origin": "system_include",
+    "name": "ADC_CTL_CH19",
+    "origin": "user_include",
     "scope": null
   },
   {
-    "ID": "c:@F@abort",
-    "What": "Function",
-    "defdec": "Dec",
-    "display": "void abort(void)",
-    "location": {
-      "column": "39",
-      "line": "106",
-      "path": "C:\\Program Files\\IAR Systems\\Embedded Workbench 9.1\\arm\\inc\\c\\stdlib.h"
-    },
-    "name": "abort",
-    "origin": "system_include",
-    "scope": null
-  },
-  {
-    "ID": "c:@F@abs",
-    "What": "Function",
-    "defdec": "Dec",
-    "display": "int abs(int)",
-    "location": {
-      "column": "39",
-      "line": "107",
-      "path": "C:\\Program Files\\IAR Systems\\Embedded Workbench 9.1\\arm\\inc\\c\\stdlib.h"
-    },
-    "name": "abs",
-    "origin": "system_include",
-    "scope": null
-  },
-  {
-    "ID": "c:@F@calloc",
-    "What": "Function",
-    "defdec": "Dec",
-    "display": "void * calloc(size_t, size_t)",
-    "location": {
-      "column": "39",
-      "line": "108",
-      "path": "C:\\Program Files\\IAR Systems\\Embedded Workbench 9.1\\arm\\inc\\c\\stdlib.h"
-    },
-    "name": "calloc",
-    "origin": "system_include",
-    "scope": null
-  },
-  {
-    "ID": "c:@F@div",
-    "What": "Function",
-    "defdec": "Dec",
-    "display": "div_t div(int, int)",
-    "location": {
-      "column": "39",
-      "line": "109",
-      "path": "C:\\Program Files\\IAR Systems\\Embedded Workbench 9.1\\arm\\inc\\c\\stdlib.h"
-    },
-    "name": "div",
-    "origin": "system_include",
-    "scope": null
-  },
-  {
-    "ID": "c:@F@free",
-    "What": "Function",
-    "defdec": "Dec",
-    "display": "void free(void *)",
-    "location": {
-      "column": "39",
-      "line": "110",
-      "path": "C:\\Program Files\\IAR Systems\\Embedded Workbench 9.1\\arm\\inc\\c\\stdlib.h"
-    },
-    "name": "free",
-    "origin": "system_include",
-    "scope": null
-  },
-  {
-    "ID": "c:@F@labs",
-    "What": "Function",
-    "defdec": "Dec",
-    "display": "long labs(long)",
-    "location": {
-      "column": "39",
-      "line": "111",
-      "path": "C:\\Program Files\\IAR Systems\\Embedded Workbench 9.1\\arm\\inc\\c\\stdlib.h"
-    },
-    "name": "labs",
-    "origin": "system_include",
-    "scope": null
-  },
-  {
-    "ID": "c:@F@ldiv",
-    "What": "Function",
-    "defdec": "Dec",
-    "display": "ldiv_t ldiv(long, long)",
-    "location": {
-      "column": "39",
-      "line": "112",
-      "path": "C:\\Program Files\\IAR Systems\\Embedded Workbench 9.1\\arm\\inc\\c\\stdlib.h"
-    },
-    "name": "ldiv",
-    "origin": "system_include",
-    "scope": null
-  },
-  {
-    "ID": "c:@F@llabs",
-    "What": "Function",
-    "defdec": "Dec",
-    "display": "long long llabs(long long)",
-    "location": {
-      "column": "39",
-      "line": "114",
-      "path": "C:\\Program Files\\IAR Systems\\Embedded Workbench 9.1\\arm\\inc\\c\\stdlib.h"
-    },
-    "name": "llabs",
-    "origin": "system_include",
-    "scope": null
-  },
-  {
-    "ID": "c:@F@lldiv",
-    "What": "Function",
-    "defdec": "Dec",
-    "display": "lldiv_t lldiv(long long, long long)",
-    "location": {
-      "column": "39",
-      "line": "115",
-      "path": "C:\\Program Files\\IAR Systems\\Embedded Workbench 9.1\\arm\\inc\\c\\stdlib.h"
-    },
-    "name": "lldiv",
-    "origin": "system_include",
-    "scope": null
-  },
-  {
-    "ID": "c:@F@fabs",
-    "What": "Function",
-    "defdec": "Dec",
-    "display": "double fabs(double)",
-    "location": {
-      "column": "39",
-      "line": "117",
-      "path": "C:\\Program Files\\IAR Systems\\Embedded Workbench 9.1\\arm\\inc\\c\\stdlib.h"
-    },
-    "name": "fabs",
-    "origin": "system_include",
-    "scope": null
-  },
-  {
-    "ID": "c:@F@fabsf",
-    "What": "Function",
-    "defdec": "Dec",
-    "display": "float fabsf(float)",
-    "location": {
-      "column": "39",
-      "line": "118",
-      "path": "C:\\Program Files\\IAR Systems\\Embedded Workbench 9.1\\arm\\inc\\c\\stdlib.h"
-    },
-    "name": "fabsf",
-    "origin": "system_include",
-    "scope": null
-  },
-  {
-    "ID": "c:@F@fabsl",
-    "What": "Function",
-    "defdec": "Dec",
-    "display": "long double fabsl(long double)",
-    "location": {
-      "column": "41",
-      "line": "119",
-      "path": "C:\\Program Files\\IAR Systems\\Embedded Workbench 9.1\\arm\\inc\\c\\stdlib.h"
-    },
-    "name": "fabsl",
-    "origin": "system_include",
-    "scope": null
-  },
-  {
-    "ID": "c:@F@malloc",
-    "What": "Function",
-    "defdec": "Dec",
-    "display": "void * malloc(size_t)",
-    "location": {
-      "column": "39",
-      "line": "120",
-      "path": "C:\\Program Files\\IAR Systems\\Embedded Workbench 9.1\\arm\\inc\\c\\stdlib.h"
-    },
-    "name": "malloc",
-    "origin": "system_include",
-    "scope": null
-  },
-  {
-    "ID": "c:@F@mblen",
-    "What": "Function",
-    "defdec": "Dec",
-    "display": "int mblen(const char *, size_t)",
-    "location": {
-      "column": "39",
-      "line": "121",
-      "path": "C:\\Program Files\\IAR Systems\\Embedded Workbench 9.1\\arm\\inc\\c\\stdlib.h"
-    },
-    "name": "mblen",
-    "origin": "system_include",
-    "scope": null
-  },
-  {
-    "ID": "c:@F@mbstowcs",
-    "What": "Function",
-    "defdec": "Dec",
-    "display": "size_t mbstowcs(wchar_t *restrict, const char *restrict, size_t)",
-    "location": {
-      "column": "40",
-      "line": "123",
-      "path": "C:\\Program Files\\IAR Systems\\Embedded Workbench 9.1\\arm\\inc\\c\\stdlib.h"
-    },
-    "name": "mbstowcs",
-    "origin": "system_include",
-    "scope": null
-  },
-  {
-    "ID": "c:@F@mbtowc",
-    "What": "Function",
-    "defdec": "Dec",
-    "display": "int mbtowc(wchar_t *restrict, const char *restrict, size_t)",
-    "location": {
-      "column": "40",
-      "line": "125",
-      "path": "C:\\Program Files\\IAR Systems\\Embedded Workbench 9.1\\arm\\inc\\c\\stdlib.h"
-    },
-    "name": "mbtowc",
-    "origin": "system_include",
-    "scope": null
-  },
-  {
-    "ID": "c:@F@rand",
-    "What": "Function",
-    "defdec": "Dec",
-    "display": "int rand(void)",
-    "location": {
-      "column": "36",
-      "line": "128",
-      "path": "C:\\Program Files\\IAR Systems\\Embedded Workbench 9.1\\arm\\inc\\c\\stdlib.h"
-    },
-    "name": "rand",
-    "origin": "system_include",
-    "scope": null
-  },
-  {
-    "ID": "c:@F@srand",
-    "What": "Function",
-    "defdec": "Dec",
-    "display": "void srand(unsigned int)",
-    "location": {
-      "column": "36",
-      "line": "129",
-      "path": "C:\\Program Files\\IAR Systems\\Embedded Workbench 9.1\\arm\\inc\\c\\stdlib.h"
-    },
-    "name": "srand",
-    "origin": "system_include",
-    "scope": null
-  },
-  {
-    "ID": "c:@F@realloc",
-    "What": "Function",
-    "defdec": "Dec",
-    "display": "void * realloc(void *, size_t)",
-    "location": {
-      "column": "36",
-      "line": "130",
-      "path": "C:\\Program Files\\IAR Systems\\Embedded Workbench 9.1\\arm\\inc\\c\\stdlib.h"
-    },
-    "name": "realloc",
-    "origin": "system_include",
-    "scope": null
-  },
-  {
-    "ID": "c:@F@__iar_realloc_in_place",
-    "What": "Function",
-    "defdec": "Dec",
-    "display": "void * __iar_realloc_in_place(void *, size_t)",
-    "location": {
-      "column": "36",
-      "line": "132",
-      "path": "C:\\Program Files\\IAR Systems\\Embedded Workbench 9.1\\arm\\inc\\c\\stdlib.h"
-    },
-    "name": "__iar_realloc_in_place",
-    "origin": "system_include",
-    "scope": null
-  },
-  {
-    "ID": "c:@F@strtol",
-    "What": "Function",
-    "defdec": "Dec",
-    "display": "long strtol(const char *restrict, char **restrict, int)",
-    "location": {
-      "column": "43",
-      "line": "134",
-      "path": "C:\\Program Files\\IAR Systems\\Embedded Workbench 9.1\\arm\\inc\\c\\stdlib.h"
-    },
-    "name": "strtol",
-    "origin": "system_include",
-    "scope": null
-  },
-  {
-    "ID": "c:@F@strtoul",
-    "What": "Function",
-    "defdec": "Dec",
-    "display": "unsigned long strtoul(const char *, char **, int)",
-    "location": {
-      "column": "43",
-      "line": "136",
-      "path": "C:\\Program Files\\IAR Systems\\Embedded Workbench 9.1\\arm\\inc\\c\\stdlib.h"
-    },
-    "name": "strtoul",
-    "origin": "system_include",
-    "scope": null
-  },
-  {
-    "ID": "c:@F@wcstombs",
-    "What": "Function",
-    "defdec": "Dec",
-    "display": "size_t wcstombs(char *restrict, const wchar_t *restrict, size_t)",
-    "location": {
-      "column": "40",
-      "line": "138",
-      "path": "C:\\Program Files\\IAR Systems\\Embedded Workbench 9.1\\arm\\inc\\c\\stdlib.h"
-    },
-    "name": "wcstombs",
-    "origin": "system_include",
-    "scope": null
-  },
-  {
-    "ID": "c:@F@wctomb",
-    "What": "Function",
-    "defdec": "Dec",
-    "display": "int wctomb(char *, wchar_t)",
-    "location": {
-      "column": "40",
-      "line": "141",
-      "path": "C:\\Program Files\\IAR Systems\\Embedded Workbench 9.1\\arm\\inc\\c\\stdlib.h"
-    },
-    "name": "wctomb",
-    "origin": "system_include",
-    "scope": null
-  },
-  {
-    "ID": "c:@F@strtoll",
-    "What": "Function",
-    "defdec": "Dec",
-    "display": "long long strtoll(const char *, char **, int)",
-    "location": {
-      "column": "41",
-      "line": "144",
-      "path": "C:\\Program Files\\IAR Systems\\Embedded Workbench 9.1\\arm\\inc\\c\\stdlib.h"
-    },
-    "name": "strtoll",
-    "origin": "system_include",
-    "scope": null
-  },
-  {
-    "ID": "c:@F@strtoull",
-    "What": "Function",
-    "defdec": "Dec",
-    "display": "unsigned long long strtoull(const char *, char **, int)",
-    "location": {
-      "column": "50",
-      "line": "145",
-      "path": "C:\\Program Files\\IAR Systems\\Embedded Workbench 9.1\\arm\\inc\\c\\stdlib.h"
-    },
-    "name": "strtoull",
-    "origin": "system_include",
-    "scope": null
-  },
-  {
-    "ID": "c:stdlib.h@T@_Cmpfun",
-    "What": "Typedef",
-    "defdec": "Def",
-    "display": "int (const void *, const void *)",
-    "location": {
-      "column": "15",
-      "line": "169",
-      "path": "C:\\Program Files\\IAR Systems\\Embedded Workbench 9.1\\arm\\inc\\c\\stdlib.h"
-    },
-    "name": "_Cmpfun",
-    "origin": "system_include",
-    "scope": null
-  },
-  {
-    "ID": "c:@F@bsearch",
-    "What": "Function",
-    "defdec": "Dec",
-    "display": "void * bsearch(const void *, const void *, size_t, size_t, _Cmpfun *)",
-    "location": {
-      "column": "48",
-      "line": "170",
-      "path": "C:\\Program Files\\IAR Systems\\Embedded Workbench 9.1\\arm\\inc\\c\\stdlib.h"
-    },
-    "name": "bsearch",
-    "origin": "system_include",
-    "scope": null
-  },
-  {
-    "ID": "c:@F@qsort",
-    "What": "Function",
-    "defdec": "Dec",
-    "display": "void qsort(void *, size_t, size_t, _Cmpfun *)",
-    "location": {
-      "column": "48",
-      "line": "173",
-      "path": "C:\\Program Files\\IAR Systems\\Embedded Workbench 9.1\\arm\\inc\\c\\stdlib.h"
-    },
-    "name": "qsort",
-    "origin": "system_include",
-    "scope": null
-  },
-  {
-    "ID": "c:@F@__qsortbbl",
-    "What": "Function",
-    "defdec": "Dec",
-    "display": "void __qsortbbl(void *, size_t, size_t, _Cmpfun *)",
-    "location": {
-      "column": "48",
-      "line": "175",
-      "path": "C:\\Program Files\\IAR Systems\\Embedded Workbench 9.1\\arm\\inc\\c\\stdlib.h"
-    },
-    "name": "__qsortbbl",
-    "origin": "system_include",
-    "scope": null
-  },
-  {
-    "ID": "c:@F@atof",
-    "What": "Function",
-    "defdec": "Dec",
-    "display": "double atof(const char *)",
-    "location": {
-      "column": "48",
-      "line": "177",
-      "path": "C:\\Program Files\\IAR Systems\\Embedded Workbench 9.1\\arm\\inc\\c\\stdlib.h"
-    },
-    "name": "atof",
-    "origin": "system_include",
-    "scope": null
-  },
-  {
-    "ID": "c:@F@atoi",
-    "What": "Function",
-    "defdec": "Dec",
-    "display": "int atoi(const char *)",
-    "location": {
-      "column": "48",
-      "line": "178",
-      "path": "C:\\Program Files\\IAR Systems\\Embedded Workbench 9.1\\arm\\inc\\c\\stdlib.h"
-    },
-    "name": "atoi",
-    "origin": "system_include",
-    "scope": null
-  },
-  {
-    "ID": "c:@F@atol",
-    "What": "Function",
-    "defdec": "Dec",
-    "display": "long atol(const char *)",
-    "location": {
-      "column": "48",
-      "line": "179",
-      "path": "C:\\Program Files\\IAR Systems\\Embedded Workbench 9.1\\arm\\inc\\c\\stdlib.h"
-    },
-    "name": "atol",
-    "origin": "system_include",
-    "scope": null
-  },
-  {
-    "ID": "c:@F@atoll",
-    "What": "Function",
-    "defdec": "Dec",
-    "display": "long long atoll(const char *)",
-    "location": {
-      "column": "46",
-      "line": "181",
-      "path": "C:\\Program Files\\IAR Systems\\Embedded Workbench 9.1\\arm\\inc\\c\\stdlib.h"
-    },
-    "name": "atoll",
-    "origin": "system_include",
-    "scope": null
-  },
-  {
-    "ID": "c:@F@strtof",
-    "What": "Function",
-    "defdec": "Dec",
-    "display": "float strtof(const char *restrict, char **restrict)",
-    "location": {
-      "column": "46",
-      "line": "182",
-      "path": "C:\\Program Files\\IAR Systems\\Embedded Workbench 9.1\\arm\\inc\\c\\stdlib.h"
-    },
-    "name": "strtof",
-    "origin": "system_include",
-    "scope": null
-  },
-  {
-    "ID": "c:@F@strtold",
-    "What": "Function",
-    "defdec": "Dec",
-    "display": "long double strtold(const char *, char **)",
-    "location": {
-      "column": "46",
-      "line": "184",
-      "path": "C:\\Program Files\\IAR Systems\\Embedded Workbench 9.1\\arm\\inc\\c\\stdlib.h"
-    },
-    "name": "strtold",
-    "origin": "system_include",
-    "scope": null
-  },
-  {
-    "ID": "c:@F@strtod",
-    "What": "Function",
-    "defdec": "Dec",
-    "display": "double strtod(const char *restrict, char **restrict)",
-    "location": {
-      "column": "46",
-      "line": "186",
-      "path": "C:\\Program Files\\IAR Systems\\Embedded Workbench 9.1\\arm\\inc\\c\\stdlib.h"
-    },
-    "name": "strtod",
-    "origin": "system_include",
-    "scope": null
-  },
-  {
-    "ID": "c:@F@__iar_DLib_library_version",
-    "What": "Function",
-    "defdec": "Dec",
-    "display": "int __iar_DLib_library_version(void)",
-    "location": {
-      "column": "46",
-      "line": "189",
-      "path": "C:\\Program Files\\IAR Systems\\Embedded Workbench 9.1\\arm\\inc\\c\\stdlib.h"
-    },
-    "name": "__iar_DLib_library_version",
-    "origin": "system_include",
-    "scope": null
-  },
-  {
-    "ID": "c:@F@abs",
-    "What": "Function",
-    "defdec": "Def",
-    "display": "int abs(int)",
-    "location": {
-      "column": "7",
-      "line": "196",
-      "path": "C:\\Program Files\\IAR Systems\\Embedded Workbench 9.1\\arm\\inc\\c\\stdlib.h"
-    },
-    "name": "abs",
-    "origin": "system_include",
-    "scope": null
-  },
-  {
-    "ID": "c:@F@labs",
-    "What": "Function",
-    "defdec": "Def",
-    "display": "long labs(long)",
-    "location": {
-      "column": "8",
-      "line": "202",
-      "path": "C:\\Program Files\\IAR Systems\\Embedded Workbench 9.1\\arm\\inc\\c\\stdlib.h"
-    },
-    "name": "labs",
-    "origin": "system_include",
-    "scope": null
-  },
-  {
-    "ID": "c:@F@llabs",
-    "What": "Function",
-    "defdec": "Def",
-    "display": "long long llabs(long long)",
-    "location": {
-      "column": "15",
-      "line": "209",
-      "path": "C:\\Program Files\\IAR Systems\\Embedded Workbench 9.1\\arm\\inc\\c\\stdlib.h"
-    },
-    "name": "llabs",
-    "origin": "system_include",
-    "scope": null
-  },
-  {
-    "ID": "c:stdlib.h@11402@macro@IAR_TABLE_INIT",
+    "ID": "c:adc.h@5380@macro@ADC_CTL_CH20",
     "What": "MacroDef",
     "defdec": "Def",
-    "display": "IAR_TABLE_INIT",
-    "location": {
-      "column": "9",
-      "line": "317",
-      "path": "C:\\Program Files\\IAR Systems\\Embedded Workbench 9.1\\arm\\inc\\c\\stdlib.h"
-    },
-    "name": "IAR_TABLE_INIT",
-    "origin": "system_include",
-    "scope": null
-  },
-  {
-    "ID": "c:@F@__iar_table_init3",
-    "What": "Function",
-    "defdec": "Dec",
-    "display": "void __iar_table_init3(const void *, const void *)",
-    "location": {
-      "column": "8",
-      "line": "319",
-      "path": "C:\\Program Files\\IAR Systems\\Embedded Workbench 9.1\\arm\\inc\\c\\stdlib.h"
-    },
-    "name": "__iar_table_init3",
-    "origin": "system_include",
-    "scope": null
-  },
-  {
-    "ID": "c:stdio.h@99@macro@_STDIO",
-    "What": "MacroDef",
-    "defdec": "Def",
-    "display": "_STDIO",
-    "location": {
-      "column": "9",
-      "line": "4",
-      "path": "C:\\Program Files\\IAR Systems\\Embedded Workbench 9.1\\arm\\inc\\c\\stdio.h"
-    },
-    "name": "_STDIO",
-    "origin": "system_include",
-    "scope": null
-  },
-  {
-    "ID": "c:stdio.h@436@macro@NULL",
-    "What": "MacroDef",
-    "defdec": "Def",
-    "display": "NULL",
-    "location": {
-      "column": "11",
-      "line": "21",
-      "path": "C:\\Program Files\\IAR Systems\\Embedded Workbench 9.1\\arm\\inc\\c\\stdio.h"
-    },
-    "name": "NULL",
-    "origin": "system_include",
-    "scope": null
-  },
-  {
-    "ID": "c:stdio.h@3344@macro@EOF",
-    "What": "MacroDef",
-    "defdec": "Def",
-    "display": "EOF",
+    "display": "ADC_CTL_CH20",
     "location": {
       "column": "9",
       "line": "105",
-      "path": "C:\\Program Files\\IAR Systems\\Embedded Workbench 9.1\\arm\\inc\\c\\stdio.h"
+      "path": "C:\\EK-TM4C1294_IAR8\\TivaWare_C_Series-2.1.4.178\\driverlib\\adc.h"
     },
-    "name": "EOF",
-    "origin": "system_include",
+    "name": "ADC_CTL_CH20",
+    "origin": "user_include",
     "scope": null
   },
   {
-    "ID": "c:stdio.h@3376@macro@SEEK_SET",
+    "ID": "c:adc.h@5445@macro@ADC_CTL_CH21",
     "What": "MacroDef",
     "defdec": "Def",
-    "display": "SEEK_SET",
+    "display": "ADC_CTL_CH21",
+    "location": {
+      "column": "9",
+      "line": "106",
+      "path": "C:\\EK-TM4C1294_IAR8\\TivaWare_C_Series-2.1.4.178\\driverlib\\adc.h"
+    },
+    "name": "ADC_CTL_CH21",
+    "origin": "user_include",
+    "scope": null
+  },
+  {
+    "ID": "c:adc.h@5510@macro@ADC_CTL_CH22",
+    "What": "MacroDef",
+    "defdec": "Def",
+    "display": "ADC_CTL_CH22",
     "location": {
       "column": "9",
       "line": "107",
-      "path": "C:\\Program Files\\IAR Systems\\Embedded Workbench 9.1\\arm\\inc\\c\\stdio.h"
+      "path": "C:\\EK-TM4C1294_IAR8\\TivaWare_C_Series-2.1.4.178\\driverlib\\adc.h"
     },
-    "name": "SEEK_SET",
-    "origin": "system_include",
+    "name": "ADC_CTL_CH22",
+    "origin": "user_include",
     "scope": null
   },
   {
-    "ID": "c:stdio.h@3403@macro@SEEK_CUR",
+    "ID": "c:adc.h@5575@macro@ADC_CTL_CH23",
     "What": "MacroDef",
     "defdec": "Def",
-    "display": "SEEK_CUR",
+    "display": "ADC_CTL_CH23",
     "location": {
       "column": "9",
       "line": "108",
-      "path": "C:\\Program Files\\IAR Systems\\Embedded Workbench 9.1\\arm\\inc\\c\\stdio.h"
+      "path": "C:\\EK-TM4C1294_IAR8\\TivaWare_C_Series-2.1.4.178\\driverlib\\adc.h"
     },
-    "name": "SEEK_CUR",
-    "origin": "system_include",
+    "name": "ADC_CTL_CH23",
+    "origin": "user_include",
     "scope": null
   },
   {
-    "ID": "c:stdio.h@3430@macro@SEEK_END",
+    "ID": "c:adc.h@5640@macro@ADC_CTL_CMP0",
     "What": "MacroDef",
     "defdec": "Def",
-    "display": "SEEK_END",
+    "display": "ADC_CTL_CMP0",
     "location": {
       "column": "9",
       "line": "109",
-      "path": "C:\\Program Files\\IAR Systems\\Embedded Workbench 9.1\\arm\\inc\\c\\stdio.h"
+      "path": "C:\\EK-TM4C1294_IAR8\\TivaWare_C_Series-2.1.4.178\\driverlib\\adc.h"
     },
-    "name": "SEEK_END",
-    "origin": "system_include",
+    "name": "ADC_CTL_CMP0",
+    "origin": "user_include",
     "scope": null
   },
   {
-    "ID": "c:stdio.h@T@fpos_t",
-    "What": "Typedef",
+    "ID": "c:adc.h@5708@macro@ADC_CTL_CMP1",
+    "What": "MacroDef",
     "defdec": "Def",
-    "display": "_Fpost",
+    "display": "ADC_CTL_CMP1",
     "location": {
-      "column": "16",
+      "column": "9",
+      "line": "110",
+      "path": "C:\\EK-TM4C1294_IAR8\\TivaWare_C_Series-2.1.4.178\\driverlib\\adc.h"
+    },
+    "name": "ADC_CTL_CMP1",
+    "origin": "user_include",
+    "scope": null
+  },
+  {
+    "ID": "c:adc.h@5776@macro@ADC_CTL_CMP2",
+    "What": "MacroDef",
+    "defdec": "Def",
+    "display": "ADC_CTL_CMP2",
+    "location": {
+      "column": "9",
+      "line": "111",
+      "path": "C:\\EK-TM4C1294_IAR8\\TivaWare_C_Series-2.1.4.178\\driverlib\\adc.h"
+    },
+    "name": "ADC_CTL_CMP2",
+    "origin": "user_include",
+    "scope": null
+  },
+  {
+    "ID": "c:adc.h@5844@macro@ADC_CTL_CMP3",
+    "What": "MacroDef",
+    "defdec": "Def",
+    "display": "ADC_CTL_CMP3",
+    "location": {
+      "column": "9",
       "line": "112",
-      "path": "C:\\Program Files\\IAR Systems\\Embedded Workbench 9.1\\arm\\inc\\c\\stdio.h"
+      "path": "C:\\EK-TM4C1294_IAR8\\TivaWare_C_Series-2.1.4.178\\driverlib\\adc.h"
     },
-    "name": "fpos_t",
-    "origin": "system_include",
+    "name": "ADC_CTL_CMP3",
+    "origin": "user_include",
     "scope": null
   },
   {
-    "ID": "c:stdio.h@3798@macro@__PRINTFPR",
+    "ID": "c:adc.h@5912@macro@ADC_CTL_CMP4",
     "What": "MacroDef",
     "defdec": "Def",
-    "display": "__PRINTFPR",
+    "display": "ADC_CTL_CMP4",
     "location": {
-      "column": "11",
-      "line": "128",
-      "path": "C:\\Program Files\\IAR Systems\\Embedded Workbench 9.1\\arm\\inc\\c\\stdio.h"
+      "column": "9",
+      "line": "113",
+      "path": "C:\\EK-TM4C1294_IAR8\\TivaWare_C_Series-2.1.4.178\\driverlib\\adc.h"
     },
-    "name": "__PRINTFPR",
-    "origin": "system_include",
+    "name": "ADC_CTL_CMP4",
+    "origin": "user_include",
     "scope": null
   },
   {
-    "ID": "c:stdio.h@3995@macro@__SCANFPR",
+    "ID": "c:adc.h@5980@macro@ADC_CTL_CMP5",
     "What": "MacroDef",
     "defdec": "Def",
-    "display": "__SCANFPR",
+    "display": "ADC_CTL_CMP5",
     "location": {
-      "column": "11",
+      "column": "9",
+      "line": "114",
+      "path": "C:\\EK-TM4C1294_IAR8\\TivaWare_C_Series-2.1.4.178\\driverlib\\adc.h"
+    },
+    "name": "ADC_CTL_CMP5",
+    "origin": "user_include",
+    "scope": null
+  },
+  {
+    "ID": "c:adc.h@6048@macro@ADC_CTL_CMP6",
+    "What": "MacroDef",
+    "defdec": "Def",
+    "display": "ADC_CTL_CMP6",
+    "location": {
+      "column": "9",
+      "line": "115",
+      "path": "C:\\EK-TM4C1294_IAR8\\TivaWare_C_Series-2.1.4.178\\driverlib\\adc.h"
+    },
+    "name": "ADC_CTL_CMP6",
+    "origin": "user_include",
+    "scope": null
+  },
+  {
+    "ID": "c:adc.h@6116@macro@ADC_CTL_CMP7",
+    "What": "MacroDef",
+    "defdec": "Def",
+    "display": "ADC_CTL_CMP7",
+    "location": {
+      "column": "9",
+      "line": "116",
+      "path": "C:\\EK-TM4C1294_IAR8\\TivaWare_C_Series-2.1.4.178\\driverlib\\adc.h"
+    },
+    "name": "ADC_CTL_CMP7",
+    "origin": "user_include",
+    "scope": null
+  },
+  {
+    "ID": "c:adc.h@6184@macro@ADC_CTL_SHOLD_4",
+    "What": "MacroDef",
+    "defdec": "Def",
+    "display": "ADC_CTL_SHOLD_4",
+    "location": {
+      "column": "9",
+      "line": "117",
+      "path": "C:\\EK-TM4C1294_IAR8\\TivaWare_C_Series-2.1.4.178\\driverlib\\adc.h"
+    },
+    "name": "ADC_CTL_SHOLD_4",
+    "origin": "user_include",
+    "scope": null
+  },
+  {
+    "ID": "c:adc.h@6261@macro@ADC_CTL_SHOLD_8",
+    "What": "MacroDef",
+    "defdec": "Def",
+    "display": "ADC_CTL_SHOLD_8",
+    "location": {
+      "column": "9",
+      "line": "118",
+      "path": "C:\\EK-TM4C1294_IAR8\\TivaWare_C_Series-2.1.4.178\\driverlib\\adc.h"
+    },
+    "name": "ADC_CTL_SHOLD_8",
+    "origin": "user_include",
+    "scope": null
+  },
+  {
+    "ID": "c:adc.h@6338@macro@ADC_CTL_SHOLD_16",
+    "What": "MacroDef",
+    "defdec": "Def",
+    "display": "ADC_CTL_SHOLD_16",
+    "location": {
+      "column": "9",
+      "line": "119",
+      "path": "C:\\EK-TM4C1294_IAR8\\TivaWare_C_Series-2.1.4.178\\driverlib\\adc.h"
+    },
+    "name": "ADC_CTL_SHOLD_16",
+    "origin": "user_include",
+    "scope": null
+  },
+  {
+    "ID": "c:adc.h@6416@macro@ADC_CTL_SHOLD_32",
+    "What": "MacroDef",
+    "defdec": "Def",
+    "display": "ADC_CTL_SHOLD_32",
+    "location": {
+      "column": "9",
+      "line": "120",
+      "path": "C:\\EK-TM4C1294_IAR8\\TivaWare_C_Series-2.1.4.178\\driverlib\\adc.h"
+    },
+    "name": "ADC_CTL_SHOLD_32",
+    "origin": "user_include",
+    "scope": null
+  },
+  {
+    "ID": "c:adc.h@6494@macro@ADC_CTL_SHOLD_64",
+    "What": "MacroDef",
+    "defdec": "Def",
+    "display": "ADC_CTL_SHOLD_64",
+    "location": {
+      "column": "9",
+      "line": "121",
+      "path": "C:\\EK-TM4C1294_IAR8\\TivaWare_C_Series-2.1.4.178\\driverlib\\adc.h"
+    },
+    "name": "ADC_CTL_SHOLD_64",
+    "origin": "user_include",
+    "scope": null
+  },
+  {
+    "ID": "c:adc.h@6572@macro@ADC_CTL_SHOLD_128",
+    "What": "MacroDef",
+    "defdec": "Def",
+    "display": "ADC_CTL_SHOLD_128",
+    "location": {
+      "column": "9",
+      "line": "122",
+      "path": "C:\\EK-TM4C1294_IAR8\\TivaWare_C_Series-2.1.4.178\\driverlib\\adc.h"
+    },
+    "name": "ADC_CTL_SHOLD_128",
+    "origin": "user_include",
+    "scope": null
+  },
+  {
+    "ID": "c:adc.h@6651@macro@ADC_CTL_SHOLD_256",
+    "What": "MacroDef",
+    "defdec": "Def",
+    "display": "ADC_CTL_SHOLD_256",
+    "location": {
+      "column": "9",
+      "line": "123",
+      "path": "C:\\EK-TM4C1294_IAR8\\TivaWare_C_Series-2.1.4.178\\driverlib\\adc.h"
+    },
+    "name": "ADC_CTL_SHOLD_256",
+    "origin": "user_include",
+    "scope": null
+  },
+  {
+    "ID": "c:adc.h@6999@macro@ADC_COMP_TRIG_NONE",
+    "What": "MacroDef",
+    "defdec": "Def",
+    "display": "ADC_COMP_TRIG_NONE",
+    "location": {
+      "column": "9",
       "line": "131",
-      "path": "C:\\Program Files\\IAR Systems\\Embedded Workbench 9.1\\arm\\inc\\c\\stdio.h"
+      "path": "C:\\EK-TM4C1294_IAR8\\TivaWare_C_Series-2.1.4.178\\driverlib\\adc.h"
     },
-    "name": "__SCANFPR",
-    "origin": "system_include",
+    "name": "ADC_COMP_TRIG_NONE",
+    "origin": "user_include",
     "scope": null
   },
   {
-    "ID": "c:stdio.h@4192@macro@__SCANFSPR",
+    "ID": "c:adc.h@7064@macro@ADC_COMP_TRIG_LOW_ALWAYS",
     "What": "MacroDef",
     "defdec": "Def",
-    "display": "__SCANFSPR",
+    "display": "ADC_COMP_TRIG_LOW_ALWAYS",
     "location": {
-      "column": "11",
-      "line": "134",
-      "path": "C:\\Program Files\\IAR Systems\\Embedded Workbench 9.1\\arm\\inc\\c\\stdio.h"
+      "column": "9",
+      "line": "132",
+      "path": "C:\\EK-TM4C1294_IAR8\\TivaWare_C_Series-2.1.4.178\\driverlib\\adc.h"
     },
-    "name": "__SCANFSPR",
-    "origin": "system_include",
+    "name": "ADC_COMP_TRIG_LOW_ALWAYS",
+    "origin": "user_include",
     "scope": null
   },
   {
-    "ID": "c:stdio.h@4509@macro@__DEPREC_PRINTF",
+    "ID": "c:adc.h@7167@macro@ADC_COMP_TRIG_LOW_ONCE",
     "What": "MacroDef",
     "defdec": "Def",
-    "display": "__DEPREC_PRINTF",
+    "display": "ADC_COMP_TRIG_LOW_ONCE",
+    "location": {
+      "column": "9",
+      "line": "134",
+      "path": "C:\\EK-TM4C1294_IAR8\\TivaWare_C_Series-2.1.4.178\\driverlib\\adc.h"
+    },
+    "name": "ADC_COMP_TRIG_LOW_ONCE",
+    "origin": "user_include",
+    "scope": null
+  },
+  {
+    "ID": "c:adc.h@7232@macro@ADC_COMP_TRIG_LOW_HALWAYS",
+    "What": "MacroDef",
+    "defdec": "Def",
+    "display": "ADC_COMP_TRIG_LOW_HALWAYS",
+    "location": {
+      "column": "9",
+      "line": "135",
+      "path": "C:\\EK-TM4C1294_IAR8\\TivaWare_C_Series-2.1.4.178\\driverlib\\adc.h"
+    },
+    "name": "ADC_COMP_TRIG_LOW_HALWAYS",
+    "origin": "user_include",
+    "scope": null
+  },
+  {
+    "ID": "c:adc.h@7349@macro@ADC_COMP_TRIG_LOW_HONCE",
+    "What": "MacroDef",
+    "defdec": "Def",
+    "display": "ADC_COMP_TRIG_LOW_HONCE",
+    "location": {
+      "column": "9",
+      "line": "137",
+      "path": "C:\\EK-TM4C1294_IAR8\\TivaWare_C_Series-2.1.4.178\\driverlib\\adc.h"
+    },
+    "name": "ADC_COMP_TRIG_LOW_HONCE",
+    "origin": "user_include",
+    "scope": null
+  },
+  {
+    "ID": "c:adc.h@7427@macro@ADC_COMP_TRIG_MID_ALWAYS",
+    "What": "MacroDef",
+    "defdec": "Def",
+    "display": "ADC_COMP_TRIG_MID_ALWAYS",
+    "location": {
+      "column": "9",
+      "line": "138",
+      "path": "C:\\EK-TM4C1294_IAR8\\TivaWare_C_Series-2.1.4.178\\driverlib\\adc.h"
+    },
+    "name": "ADC_COMP_TRIG_MID_ALWAYS",
+    "origin": "user_include",
+    "scope": null
+  },
+  {
+    "ID": "c:adc.h@7530@macro@ADC_COMP_TRIG_MID_ONCE",
+    "What": "MacroDef",
+    "defdec": "Def",
+    "display": "ADC_COMP_TRIG_MID_ONCE",
+    "location": {
+      "column": "9",
+      "line": "140",
+      "path": "C:\\EK-TM4C1294_IAR8\\TivaWare_C_Series-2.1.4.178\\driverlib\\adc.h"
+    },
+    "name": "ADC_COMP_TRIG_MID_ONCE",
+    "origin": "user_include",
+    "scope": null
+  },
+  {
+    "ID": "c:adc.h@7595@macro@ADC_COMP_TRIG_HIGH_ALWAYS",
+    "What": "MacroDef",
+    "defdec": "Def",
+    "display": "ADC_COMP_TRIG_HIGH_ALWAYS",
+    "location": {
+      "column": "9",
+      "line": "141",
+      "path": "C:\\EK-TM4C1294_IAR8\\TivaWare_C_Series-2.1.4.178\\driverlib\\adc.h"
+    },
+    "name": "ADC_COMP_TRIG_HIGH_ALWAYS",
+    "origin": "user_include",
+    "scope": null
+  },
+  {
+    "ID": "c:adc.h@7700@macro@ADC_COMP_TRIG_HIGH_ONCE",
+    "What": "MacroDef",
+    "defdec": "Def",
+    "display": "ADC_COMP_TRIG_HIGH_ONCE",
     "location": {
       "column": "9",
       "line": "143",
-      "path": "C:\\Program Files\\IAR Systems\\Embedded Workbench 9.1\\arm\\inc\\c\\stdio.h"
+      "path": "C:\\EK-TM4C1294_IAR8\\TivaWare_C_Series-2.1.4.178\\driverlib\\adc.h"
     },
-    "name": "__DEPREC_PRINTF",
-    "origin": "system_include",
+    "name": "ADC_COMP_TRIG_HIGH_ONCE",
+    "origin": "user_include",
     "scope": null
   },
   {
-    "ID": "c:stdio.h@4554@macro@__DEPREC_SCANF",
+    "ID": "c:adc.h@7766@macro@ADC_COMP_TRIG_HIGH_HALWAYS",
     "What": "MacroDef",
     "defdec": "Def",
-    "display": "__DEPREC_SCANF",
+    "display": "ADC_COMP_TRIG_HIGH_HALWAYS",
     "location": {
       "column": "9",
       "line": "144",
-      "path": "C:\\Program Files\\IAR Systems\\Embedded Workbench 9.1\\arm\\inc\\c\\stdio.h"
+      "path": "C:\\EK-TM4C1294_IAR8\\TivaWare_C_Series-2.1.4.178\\driverlib\\adc.h"
     },
-    "name": "__DEPREC_SCANF",
-    "origin": "system_include",
+    "name": "ADC_COMP_TRIG_HIGH_HALWAYS",
+    "origin": "user_include",
     "scope": null
   },
   {
-    "ID": "c:@F@__gets",
-    "What": "Function",
-    "defdec": "Dec",
-    "display": "char * __gets(char *, int)",
+    "ID": "c:adc.h@7885@macro@ADC_COMP_TRIG_HIGH_HONCE",
+    "What": "MacroDef",
+    "defdec": "Def",
+    "display": "ADC_COMP_TRIG_HIGH_HONCE",
     "location": {
-      "column": "37",
+      "column": "9",
+      "line": "146",
+      "path": "C:\\EK-TM4C1294_IAR8\\TivaWare_C_Series-2.1.4.178\\driverlib\\adc.h"
+    },
+    "name": "ADC_COMP_TRIG_HIGH_HONCE",
+    "origin": "user_include",
+    "scope": null
+  },
+  {
+    "ID": "c:adc.h@8002@macro@ADC_COMP_INT_NONE",
+    "What": "MacroDef",
+    "defdec": "Def",
+    "display": "ADC_COMP_INT_NONE",
+    "location": {
+      "column": "9",
+      "line": "149",
+      "path": "C:\\EK-TM4C1294_IAR8\\TivaWare_C_Series-2.1.4.178\\driverlib\\adc.h"
+    },
+    "name": "ADC_COMP_INT_NONE",
+    "origin": "user_include",
+    "scope": null
+  },
+  {
+    "ID": "c:adc.h@8069@macro@ADC_COMP_INT_LOW_ALWAYS",
+    "What": "MacroDef",
+    "defdec": "Def",
+    "display": "ADC_COMP_INT_LOW_ALWAYS",
+    "location": {
+      "column": "9",
+      "line": "150",
+      "path": "C:\\EK-TM4C1294_IAR8\\TivaWare_C_Series-2.1.4.178\\driverlib\\adc.h"
+    },
+    "name": "ADC_COMP_INT_LOW_ALWAYS",
+    "origin": "user_include",
+    "scope": null
+  },
+  {
+    "ID": "c:adc.h@8173@macro@ADC_COMP_INT_LOW_ONCE",
+    "What": "MacroDef",
+    "defdec": "Def",
+    "display": "ADC_COMP_INT_LOW_ONCE",
+    "location": {
+      "column": "9",
+      "line": "152",
+      "path": "C:\\EK-TM4C1294_IAR8\\TivaWare_C_Series-2.1.4.178\\driverlib\\adc.h"
+    },
+    "name": "ADC_COMP_INT_LOW_ONCE",
+    "origin": "user_include",
+    "scope": null
+  },
+  {
+    "ID": "c:adc.h@8240@macro@ADC_COMP_INT_LOW_HALWAYS",
+    "What": "MacroDef",
+    "defdec": "Def",
+    "display": "ADC_COMP_INT_LOW_HALWAYS",
+    "location": {
+      "column": "9",
+      "line": "153",
+      "path": "C:\\EK-TM4C1294_IAR8\\TivaWare_C_Series-2.1.4.178\\driverlib\\adc.h"
+    },
+    "name": "ADC_COMP_INT_LOW_HALWAYS",
+    "origin": "user_include",
+    "scope": null
+  },
+  {
+    "ID": "c:adc.h@8406@macro@ADC_COMP_INT_LOW_HONCE",
+    "What": "MacroDef",
+    "defdec": "Def",
+    "display": "ADC_COMP_INT_LOW_HONCE",
+    "location": {
+      "column": "9",
+      "line": "156",
+      "path": "C:\\EK-TM4C1294_IAR8\\TivaWare_C_Series-2.1.4.178\\driverlib\\adc.h"
+    },
+    "name": "ADC_COMP_INT_LOW_HONCE",
+    "origin": "user_include",
+    "scope": null
+  },
+  {
+    "ID": "c:adc.h@8486@macro@ADC_COMP_INT_MID_ALWAYS",
+    "What": "MacroDef",
+    "defdec": "Def",
+    "display": "ADC_COMP_INT_MID_ALWAYS",
+    "location": {
+      "column": "9",
+      "line": "157",
+      "path": "C:\\EK-TM4C1294_IAR8\\TivaWare_C_Series-2.1.4.178\\driverlib\\adc.h"
+    },
+    "name": "ADC_COMP_INT_MID_ALWAYS",
+    "origin": "user_include",
+    "scope": null
+  },
+  {
+    "ID": "c:adc.h@8590@macro@ADC_COMP_INT_MID_ONCE",
+    "What": "MacroDef",
+    "defdec": "Def",
+    "display": "ADC_COMP_INT_MID_ONCE",
+    "location": {
+      "column": "9",
+      "line": "159",
+      "path": "C:\\EK-TM4C1294_IAR8\\TivaWare_C_Series-2.1.4.178\\driverlib\\adc.h"
+    },
+    "name": "ADC_COMP_INT_MID_ONCE",
+    "origin": "user_include",
+    "scope": null
+  },
+  {
+    "ID": "c:adc.h@8657@macro@ADC_COMP_INT_HIGH_ALWAYS",
+    "What": "MacroDef",
+    "defdec": "Def",
+    "display": "ADC_COMP_INT_HIGH_ALWAYS",
+    "location": {
+      "column": "9",
+      "line": "160",
+      "path": "C:\\EK-TM4C1294_IAR8\\TivaWare_C_Series-2.1.4.178\\driverlib\\adc.h"
+    },
+    "name": "ADC_COMP_INT_HIGH_ALWAYS",
+    "origin": "user_include",
+    "scope": null
+  },
+  {
+    "ID": "c:adc.h@8763@macro@ADC_COMP_INT_HIGH_ONCE",
+    "What": "MacroDef",
+    "defdec": "Def",
+    "display": "ADC_COMP_INT_HIGH_ONCE",
+    "location": {
+      "column": "9",
+      "line": "162",
+      "path": "C:\\EK-TM4C1294_IAR8\\TivaWare_C_Series-2.1.4.178\\driverlib\\adc.h"
+    },
+    "name": "ADC_COMP_INT_HIGH_ONCE",
+    "origin": "user_include",
+    "scope": null
+  },
+  {
+    "ID": "c:adc.h@8831@macro@ADC_COMP_INT_HIGH_HALWAYS",
+    "What": "MacroDef",
+    "defdec": "Def",
+    "display": "ADC_COMP_INT_HIGH_HALWAYS",
+    "location": {
+      "column": "9",
+      "line": "163",
+      "path": "C:\\EK-TM4C1294_IAR8\\TivaWare_C_Series-2.1.4.178\\driverlib\\adc.h"
+    },
+    "name": "ADC_COMP_INT_HIGH_HALWAYS",
+    "origin": "user_include",
+    "scope": null
+  },
+  {
+    "ID": "c:adc.h@8999@macro@ADC_COMP_INT_HIGH_HONCE",
+    "What": "MacroDef",
+    "defdec": "Def",
+    "display": "ADC_COMP_INT_HIGH_HONCE",
+    "location": {
+      "column": "9",
+      "line": "166",
+      "path": "C:\\EK-TM4C1294_IAR8\\TivaWare_C_Series-2.1.4.178\\driverlib\\adc.h"
+    },
+    "name": "ADC_COMP_INT_HIGH_HONCE",
+    "origin": "user_include",
+    "scope": null
+  },
+  {
+    "ID": "c:adc.h@9444@macro@ADC_TRIGGER_WAIT",
+    "What": "MacroDef",
+    "defdec": "Def",
+    "display": "ADC_TRIGGER_WAIT",
+    "location": {
+      "column": "9",
+      "line": "176",
+      "path": "C:\\EK-TM4C1294_IAR8\\TivaWare_C_Series-2.1.4.178\\driverlib\\adc.h"
+    },
+    "name": "ADC_TRIGGER_WAIT",
+    "origin": "user_include",
+    "scope": null
+  },
+  {
+    "ID": "c:adc.h@9525@macro@ADC_TRIGGER_SIGNAL",
+    "What": "MacroDef",
+    "defdec": "Def",
+    "display": "ADC_TRIGGER_SIGNAL",
+    "location": {
+      "column": "9",
+      "line": "177",
+      "path": "C:\\EK-TM4C1294_IAR8\\TivaWare_C_Series-2.1.4.178\\driverlib\\adc.h"
+    },
+    "name": "ADC_TRIGGER_SIGNAL",
+    "origin": "user_include",
+    "scope": null
+  },
+  {
+    "ID": "c:adc.h@9893@macro@ADC_PHASE_0",
+    "What": "MacroDef",
+    "defdec": "Def",
+    "display": "ADC_PHASE_0",
+    "location": {
+      "column": "9",
+      "line": "185",
+      "path": "C:\\EK-TM4C1294_IAR8\\TivaWare_C_Series-2.1.4.178\\driverlib\\adc.h"
+    },
+    "name": "ADC_PHASE_0",
+    "origin": "user_include",
+    "scope": null
+  },
+  {
+    "ID": "c:adc.h@9951@macro@ADC_PHASE_22_5",
+    "What": "MacroDef",
+    "defdec": "Def",
+    "display": "ADC_PHASE_22_5",
+    "location": {
+      "column": "9",
+      "line": "186",
+      "path": "C:\\EK-TM4C1294_IAR8\\TivaWare_C_Series-2.1.4.178\\driverlib\\adc.h"
+    },
+    "name": "ADC_PHASE_22_5",
+    "origin": "user_include",
+    "scope": null
+  },
+  {
+    "ID": "c:adc.h@10012@macro@ADC_PHASE_45",
+    "What": "MacroDef",
+    "defdec": "Def",
+    "display": "ADC_PHASE_45",
+    "location": {
+      "column": "9",
+      "line": "187",
+      "path": "C:\\EK-TM4C1294_IAR8\\TivaWare_C_Series-2.1.4.178\\driverlib\\adc.h"
+    },
+    "name": "ADC_PHASE_45",
+    "origin": "user_include",
+    "scope": null
+  },
+  {
+    "ID": "c:adc.h@10071@macro@ADC_PHASE_67_5",
+    "What": "MacroDef",
+    "defdec": "Def",
+    "display": "ADC_PHASE_67_5",
+    "location": {
+      "column": "9",
+      "line": "188",
+      "path": "C:\\EK-TM4C1294_IAR8\\TivaWare_C_Series-2.1.4.178\\driverlib\\adc.h"
+    },
+    "name": "ADC_PHASE_67_5",
+    "origin": "user_include",
+    "scope": null
+  },
+  {
+    "ID": "c:adc.h@10132@macro@ADC_PHASE_90",
+    "What": "MacroDef",
+    "defdec": "Def",
+    "display": "ADC_PHASE_90",
+    "location": {
+      "column": "9",
+      "line": "189",
+      "path": "C:\\EK-TM4C1294_IAR8\\TivaWare_C_Series-2.1.4.178\\driverlib\\adc.h"
+    },
+    "name": "ADC_PHASE_90",
+    "origin": "user_include",
+    "scope": null
+  },
+  {
+    "ID": "c:adc.h@10191@macro@ADC_PHASE_112_5",
+    "What": "MacroDef",
+    "defdec": "Def",
+    "display": "ADC_PHASE_112_5",
+    "location": {
+      "column": "9",
+      "line": "190",
+      "path": "C:\\EK-TM4C1294_IAR8\\TivaWare_C_Series-2.1.4.178\\driverlib\\adc.h"
+    },
+    "name": "ADC_PHASE_112_5",
+    "origin": "user_include",
+    "scope": null
+  },
+  {
+    "ID": "c:adc.h@10253@macro@ADC_PHASE_135",
+    "What": "MacroDef",
+    "defdec": "Def",
+    "display": "ADC_PHASE_135",
+    "location": {
+      "column": "9",
+      "line": "191",
+      "path": "C:\\EK-TM4C1294_IAR8\\TivaWare_C_Series-2.1.4.178\\driverlib\\adc.h"
+    },
+    "name": "ADC_PHASE_135",
+    "origin": "user_include",
+    "scope": null
+  },
+  {
+    "ID": "c:adc.h@10313@macro@ADC_PHASE_157_5",
+    "What": "MacroDef",
+    "defdec": "Def",
+    "display": "ADC_PHASE_157_5",
+    "location": {
+      "column": "9",
+      "line": "192",
+      "path": "C:\\EK-TM4C1294_IAR8\\TivaWare_C_Series-2.1.4.178\\driverlib\\adc.h"
+    },
+    "name": "ADC_PHASE_157_5",
+    "origin": "user_include",
+    "scope": null
+  },
+  {
+    "ID": "c:adc.h@10375@macro@ADC_PHASE_180",
+    "What": "MacroDef",
+    "defdec": "Def",
+    "display": "ADC_PHASE_180",
+    "location": {
+      "column": "9",
+      "line": "193",
+      "path": "C:\\EK-TM4C1294_IAR8\\TivaWare_C_Series-2.1.4.178\\driverlib\\adc.h"
+    },
+    "name": "ADC_PHASE_180",
+    "origin": "user_include",
+    "scope": null
+  },
+  {
+    "ID": "c:adc.h@10435@macro@ADC_PHASE_202_5",
+    "What": "MacroDef",
+    "defdec": "Def",
+    "display": "ADC_PHASE_202_5",
+    "location": {
+      "column": "9",
+      "line": "194",
+      "path": "C:\\EK-TM4C1294_IAR8\\TivaWare_C_Series-2.1.4.178\\driverlib\\adc.h"
+    },
+    "name": "ADC_PHASE_202_5",
+    "origin": "user_include",
+    "scope": null
+  },
+  {
+    "ID": "c:adc.h@10497@macro@ADC_PHASE_225",
+    "What": "MacroDef",
+    "defdec": "Def",
+    "display": "ADC_PHASE_225",
+    "location": {
+      "column": "9",
+      "line": "195",
+      "path": "C:\\EK-TM4C1294_IAR8\\TivaWare_C_Series-2.1.4.178\\driverlib\\adc.h"
+    },
+    "name": "ADC_PHASE_225",
+    "origin": "user_include",
+    "scope": null
+  },
+  {
+    "ID": "c:adc.h@10557@macro@ADC_PHASE_247_5",
+    "What": "MacroDef",
+    "defdec": "Def",
+    "display": "ADC_PHASE_247_5",
+    "location": {
+      "column": "9",
+      "line": "196",
+      "path": "C:\\EK-TM4C1294_IAR8\\TivaWare_C_Series-2.1.4.178\\driverlib\\adc.h"
+    },
+    "name": "ADC_PHASE_247_5",
+    "origin": "user_include",
+    "scope": null
+  },
+  {
+    "ID": "c:adc.h@10619@macro@ADC_PHASE_270",
+    "What": "MacroDef",
+    "defdec": "Def",
+    "display": "ADC_PHASE_270",
+    "location": {
+      "column": "9",
+      "line": "197",
+      "path": "C:\\EK-TM4C1294_IAR8\\TivaWare_C_Series-2.1.4.178\\driverlib\\adc.h"
+    },
+    "name": "ADC_PHASE_270",
+    "origin": "user_include",
+    "scope": null
+  },
+  {
+    "ID": "c:adc.h@10679@macro@ADC_PHASE_292_5",
+    "What": "MacroDef",
+    "defdec": "Def",
+    "display": "ADC_PHASE_292_5",
+    "location": {
+      "column": "9",
+      "line": "198",
+      "path": "C:\\EK-TM4C1294_IAR8\\TivaWare_C_Series-2.1.4.178\\driverlib\\adc.h"
+    },
+    "name": "ADC_PHASE_292_5",
+    "origin": "user_include",
+    "scope": null
+  },
+  {
+    "ID": "c:adc.h@10741@macro@ADC_PHASE_315",
+    "What": "MacroDef",
+    "defdec": "Def",
+    "display": "ADC_PHASE_315",
+    "location": {
+      "column": "9",
       "line": "199",
-      "path": "C:\\Program Files\\IAR Systems\\Embedded Workbench 9.1\\arm\\inc\\c\\stdio.h"
+      "path": "C:\\EK-TM4C1294_IAR8\\TivaWare_C_Series-2.1.4.178\\driverlib\\adc.h"
     },
-    "name": "__gets",
-    "origin": "system_include",
+    "name": "ADC_PHASE_315",
+    "origin": "user_include",
     "scope": null
   },
   {
-    "ID": "c:@F@gets",
-    "What": "Function",
-    "defdec": "Dec",
-    "display": "char * gets(char *)",
+    "ID": "c:adc.h@10801@macro@ADC_PHASE_337_5",
+    "What": "MacroDef",
+    "defdec": "Def",
+    "display": "ADC_PHASE_337_5",
     "location": {
-      "column": "37",
+      "column": "9",
       "line": "200",
-      "path": "C:\\Program Files\\IAR Systems\\Embedded Workbench 9.1\\arm\\inc\\c\\stdio.h"
+      "path": "C:\\EK-TM4C1294_IAR8\\TivaWare_C_Series-2.1.4.178\\driverlib\\adc.h"
     },
-    "name": "gets",
-    "origin": "system_include",
+    "name": "ADC_PHASE_337_5",
+    "origin": "user_include",
     "scope": null
   },
   {
-    "ID": "c:@F@perror",
-    "What": "Function",
-    "defdec": "Dec",
-    "display": "void perror(const char *)",
+    "ID": "c:adc.h@11110@macro@ADC_REF_INT",
+    "What": "MacroDef",
+    "defdec": "Def",
+    "display": "ADC_REF_INT",
     "location": {
-      "column": "39",
-      "line": "202",
-      "path": "C:\\Program Files\\IAR Systems\\Embedded Workbench 9.1\\arm\\inc\\c\\stdio.h"
+      "column": "9",
+      "line": "207",
+      "path": "C:\\EK-TM4C1294_IAR8\\TivaWare_C_Series-2.1.4.178\\driverlib\\adc.h"
     },
-    "name": "perror",
-    "origin": "system_include",
+    "name": "ADC_REF_INT",
+    "origin": "user_include",
     "scope": null
   },
   {
-    "ID": "c:@F@printf",
-    "What": "Function",
-    "defdec": "Dec",
-    "display": "int printf(const char *restrict, ...)",
+    "ID": "c:adc.h@11177@macro@ADC_REF_EXT_3V",
+    "What": "MacroDef",
+    "defdec": "Def",
+    "display": "ADC_REF_EXT_3V",
     "location": {
-      "column": "39",
-      "line": "203",
-      "path": "C:\\Program Files\\IAR Systems\\Embedded Workbench 9.1\\arm\\inc\\c\\stdio.h"
-    },
-    "name": "printf",
-    "origin": "system_include",
-    "scope": null
-  },
-  {
-    "ID": "c:@F@puts",
-    "What": "Function",
-    "defdec": "Dec",
-    "display": "int puts(const char *)",
-    "location": {
-      "column": "39",
-      "line": "204",
-      "path": "C:\\Program Files\\IAR Systems\\Embedded Workbench 9.1\\arm\\inc\\c\\stdio.h"
-    },
-    "name": "puts",
-    "origin": "system_include",
-    "scope": null
-  },
-  {
-    "ID": "c:@F@scanf",
-    "What": "Function",
-    "defdec": "Dec",
-    "display": "int scanf(const char *restrict, ...)",
-    "location": {
-      "column": "39",
-      "line": "205",
-      "path": "C:\\Program Files\\IAR Systems\\Embedded Workbench 9.1\\arm\\inc\\c\\stdio.h"
-    },
-    "name": "scanf",
-    "origin": "system_include",
-    "scope": null
-  },
-  {
-    "ID": "c:@F@sprintf",
-    "What": "Function",
-    "defdec": "Dec",
-    "display": "int sprintf(char *restrict, const char *restrict, ...)",
-    "location": {
-      "column": "39",
-      "line": "206",
-      "path": "C:\\Program Files\\IAR Systems\\Embedded Workbench 9.1\\arm\\inc\\c\\stdio.h"
-    },
-    "name": "sprintf",
-    "origin": "system_include",
-    "scope": null
-  },
-  {
-    "ID": "c:@F@sscanf",
-    "What": "Function",
-    "defdec": "Dec",
-    "display": "int sscanf(const char *restrict, const char *restrict, ...)",
-    "location": {
-      "column": "39",
+      "column": "9",
       "line": "208",
-      "path": "C:\\Program Files\\IAR Systems\\Embedded Workbench 9.1\\arm\\inc\\c\\stdio.h"
+      "path": "C:\\EK-TM4C1294_IAR8\\TivaWare_C_Series-2.1.4.178\\driverlib\\adc.h"
     },
-    "name": "sscanf",
-    "origin": "system_include",
+    "name": "ADC_REF_EXT_3V",
+    "origin": "user_include",
     "scope": null
   },
   {
-    "ID": "c:@F@__ungetchar",
-    "What": "Function",
-    "defdec": "Dec",
-    "display": "int __ungetchar(int)",
+    "ID": "c:adc.h@11531@macro@ADC_INT_SS0",
+    "What": "MacroDef",
+    "defdec": "Def",
+    "display": "ADC_INT_SS0",
     "location": {
-      "column": "39",
-      "line": "211",
-      "path": "C:\\Program Files\\IAR Systems\\Embedded Workbench 9.1\\arm\\inc\\c\\stdio.h"
-    },
-    "name": "__ungetchar",
-    "origin": "system_include",
-    "scope": null
-  },
-  {
-    "ID": "c:@F@vprintf",
-    "What": "Function",
-    "defdec": "Dec",
-    "display": "int vprintf(const char *restrict, __Va_list)",
-    "location": {
-      "column": "39",
-      "line": "212",
-      "path": "C:\\Program Files\\IAR Systems\\Embedded Workbench 9.1\\arm\\inc\\c\\stdio.h"
-    },
-    "name": "vprintf",
-    "origin": "system_include",
-    "scope": null
-  },
-  {
-    "ID": "c:@F@vscanf",
-    "What": "Function",
-    "defdec": "Dec",
-    "display": "int vscanf(const char *restrict, __Va_list)",
-    "location": {
-      "column": "37",
-      "line": "215",
-      "path": "C:\\Program Files\\IAR Systems\\Embedded Workbench 9.1\\arm\\inc\\c\\stdio.h"
-    },
-    "name": "vscanf",
-    "origin": "system_include",
-    "scope": null
-  },
-  {
-    "ID": "c:@F@vsscanf",
-    "What": "Function",
-    "defdec": "Dec",
-    "display": "int vsscanf(const char *restrict, const char *restrict, __Va_list)",
-    "location": {
-      "column": "37",
+      "column": "9",
       "line": "216",
-      "path": "C:\\Program Files\\IAR Systems\\Embedded Workbench 9.1\\arm\\inc\\c\\stdio.h"
+      "path": "C:\\EK-TM4C1294_IAR8\\TivaWare_C_Series-2.1.4.178\\driverlib\\adc.h"
     },
-    "name": "vsscanf",
-    "origin": "system_include",
+    "name": "ADC_INT_SS0",
+    "origin": "user_include",
     "scope": null
   },
   {
-    "ID": "c:@F@vsprintf",
-    "What": "Function",
-    "defdec": "Dec",
-    "display": "int vsprintf(char *restrict, const char *restrict, __Va_list)",
+    "ID": "c:adc.h@11575@macro@ADC_INT_SS1",
+    "What": "MacroDef",
+    "defdec": "Def",
+    "display": "ADC_INT_SS1",
     "location": {
-      "column": "37",
+      "column": "9",
+      "line": "217",
+      "path": "C:\\EK-TM4C1294_IAR8\\TivaWare_C_Series-2.1.4.178\\driverlib\\adc.h"
+    },
+    "name": "ADC_INT_SS1",
+    "origin": "user_include",
+    "scope": null
+  },
+  {
+    "ID": "c:adc.h@11619@macro@ADC_INT_SS2",
+    "What": "MacroDef",
+    "defdec": "Def",
+    "display": "ADC_INT_SS2",
+    "location": {
+      "column": "9",
+      "line": "218",
+      "path": "C:\\EK-TM4C1294_IAR8\\TivaWare_C_Series-2.1.4.178\\driverlib\\adc.h"
+    },
+    "name": "ADC_INT_SS2",
+    "origin": "user_include",
+    "scope": null
+  },
+  {
+    "ID": "c:adc.h@11663@macro@ADC_INT_SS3",
+    "What": "MacroDef",
+    "defdec": "Def",
+    "display": "ADC_INT_SS3",
+    "location": {
+      "column": "9",
       "line": "219",
-      "path": "C:\\Program Files\\IAR Systems\\Embedded Workbench 9.1\\arm\\inc\\c\\stdio.h"
+      "path": "C:\\EK-TM4C1294_IAR8\\TivaWare_C_Series-2.1.4.178\\driverlib\\adc.h"
     },
-    "name": "vsprintf",
-    "origin": "system_include",
+    "name": "ADC_INT_SS3",
+    "origin": "user_include",
     "scope": null
   },
   {
-    "ID": "c:@F@__write_array",
-    "What": "Function",
-    "defdec": "Dec",
-    "display": "size_t __write_array(const void *, size_t, size_t)",
+    "ID": "c:adc.h@11707@macro@ADC_INT_DMA_SS0",
+    "What": "MacroDef",
+    "defdec": "Def",
+    "display": "ADC_INT_DMA_SS0",
     "location": {
-      "column": "35",
+      "column": "9",
+      "line": "220",
+      "path": "C:\\EK-TM4C1294_IAR8\\TivaWare_C_Series-2.1.4.178\\driverlib\\adc.h"
+    },
+    "name": "ADC_INT_DMA_SS0",
+    "origin": "user_include",
+    "scope": null
+  },
+  {
+    "ID": "c:adc.h@11751@macro@ADC_INT_DMA_SS1",
+    "What": "MacroDef",
+    "defdec": "Def",
+    "display": "ADC_INT_DMA_SS1",
+    "location": {
+      "column": "9",
+      "line": "221",
+      "path": "C:\\EK-TM4C1294_IAR8\\TivaWare_C_Series-2.1.4.178\\driverlib\\adc.h"
+    },
+    "name": "ADC_INT_DMA_SS1",
+    "origin": "user_include",
+    "scope": null
+  },
+  {
+    "ID": "c:adc.h@11795@macro@ADC_INT_DMA_SS2",
+    "What": "MacroDef",
+    "defdec": "Def",
+    "display": "ADC_INT_DMA_SS2",
+    "location": {
+      "column": "9",
       "line": "222",
-      "path": "C:\\Program Files\\IAR Systems\\Embedded Workbench 9.1\\arm\\inc\\c\\stdio.h"
+      "path": "C:\\EK-TM4C1294_IAR8\\TivaWare_C_Series-2.1.4.178\\driverlib\\adc.h"
     },
-    "name": "__write_array",
-    "origin": "system_include",
+    "name": "ADC_INT_DMA_SS2",
+    "origin": "user_include",
     "scope": null
   },
   {
-    "ID": "c:@F@snprintf",
-    "What": "Function",
-    "defdec": "Dec",
-    "display": "int snprintf(char *restrict, size_t, const char *restrict, ...)",
+    "ID": "c:adc.h@11839@macro@ADC_INT_DMA_SS3",
+    "What": "MacroDef",
+    "defdec": "Def",
+    "display": "ADC_INT_DMA_SS3",
     "location": {
-      "column": "38",
+      "column": "9",
+      "line": "223",
+      "path": "C:\\EK-TM4C1294_IAR8\\TivaWare_C_Series-2.1.4.178\\driverlib\\adc.h"
+    },
+    "name": "ADC_INT_DMA_SS3",
+    "origin": "user_include",
+    "scope": null
+  },
+  {
+    "ID": "c:adc.h@11883@macro@ADC_INT_DCON_SS0",
+    "What": "MacroDef",
+    "defdec": "Def",
+    "display": "ADC_INT_DCON_SS0",
+    "location": {
+      "column": "9",
       "line": "224",
-      "path": "C:\\Program Files\\IAR Systems\\Embedded Workbench 9.1\\arm\\inc\\c\\stdio.h"
+      "path": "C:\\EK-TM4C1294_IAR8\\TivaWare_C_Series-2.1.4.178\\driverlib\\adc.h"
     },
-    "name": "snprintf",
-    "origin": "system_include",
+    "name": "ADC_INT_DCON_SS0",
+    "origin": "user_include",
     "scope": null
   },
   {
-    "ID": "c:@F@vsnprintf",
-    "What": "Function",
-    "defdec": "Dec",
-    "display": "int vsnprintf(char *restrict, size_t, const char *restrict, __Va_list)",
+    "ID": "c:adc.h@11927@macro@ADC_INT_DCON_SS1",
+    "What": "MacroDef",
+    "defdec": "Def",
+    "display": "ADC_INT_DCON_SS1",
     "location": {
-      "column": "38",
+      "column": "9",
+      "line": "225",
+      "path": "C:\\EK-TM4C1294_IAR8\\TivaWare_C_Series-2.1.4.178\\driverlib\\adc.h"
+    },
+    "name": "ADC_INT_DCON_SS1",
+    "origin": "user_include",
+    "scope": null
+  },
+  {
+    "ID": "c:adc.h@11971@macro@ADC_INT_DCON_SS2",
+    "What": "MacroDef",
+    "defdec": "Def",
+    "display": "ADC_INT_DCON_SS2",
+    "location": {
+      "column": "9",
       "line": "226",
-      "path": "C:\\Program Files\\IAR Systems\\Embedded Workbench 9.1\\arm\\inc\\c\\stdio.h"
+      "path": "C:\\EK-TM4C1294_IAR8\\TivaWare_C_Series-2.1.4.178\\driverlib\\adc.h"
     },
-    "name": "vsnprintf",
-    "origin": "system_include",
+    "name": "ADC_INT_DCON_SS2",
+    "origin": "user_include",
     "scope": null
   },
   {
-    "ID": "c:@F@getchar",
-    "What": "Function",
-    "defdec": "Dec",
-    "display": "int getchar(void)",
+    "ID": "c:adc.h@12015@macro@ADC_INT_DCON_SS3",
+    "What": "MacroDef",
+    "defdec": "Def",
+    "display": "ADC_INT_DCON_SS3",
     "location": {
-      "column": "35",
-      "line": "231",
-      "path": "C:\\Program Files\\IAR Systems\\Embedded Workbench 9.1\\arm\\inc\\c\\stdio.h"
+      "column": "9",
+      "line": "227",
+      "path": "C:\\EK-TM4C1294_IAR8\\TivaWare_C_Series-2.1.4.178\\driverlib\\adc.h"
     },
-    "name": "getchar",
-    "origin": "system_include",
+    "name": "ADC_INT_DCON_SS3",
+    "origin": "user_include",
     "scope": null
   },
   {
-    "ID": "c:@F@putchar",
-    "What": "Function",
-    "defdec": "Dec",
-    "display": "int putchar(int)",
+    "ID": "c:adc.h@12309@macro@ADC_CLOCK_RATE_FULL",
+    "What": "MacroDef",
+    "defdec": "Def",
+    "display": "ADC_CLOCK_RATE_FULL",
     "location": {
-      "column": "35",
-      "line": "232",
-      "path": "C:\\Program Files\\IAR Systems\\Embedded Workbench 9.1\\arm\\inc\\c\\stdio.h"
+      "column": "9",
+      "line": "234",
+      "path": "C:\\EK-TM4C1294_IAR8\\TivaWare_C_Series-2.1.4.178\\driverlib\\adc.h"
     },
-    "name": "putchar",
-    "origin": "system_include",
+    "name": "ADC_CLOCK_RATE_FULL",
+    "origin": "user_include",
     "scope": null
   },
   {
-    "ID": "c:@F@remove",
-    "What": "Function",
-    "defdec": "Dec",
-    "display": "int remove(const char *)",
+    "ID": "c:adc.h@12353@macro@ADC_CLOCK_RATE_HALF",
+    "What": "MacroDef",
+    "defdec": "Def",
+    "display": "ADC_CLOCK_RATE_HALF",
     "location": {
-      "column": "35",
+      "column": "9",
       "line": "235",
-      "path": "C:\\Program Files\\IAR Systems\\Embedded Workbench 9.1\\arm\\inc\\c\\stdio.h"
+      "path": "C:\\EK-TM4C1294_IAR8\\TivaWare_C_Series-2.1.4.178\\driverlib\\adc.h"
     },
-    "name": "remove",
-    "origin": "system_include",
+    "name": "ADC_CLOCK_RATE_HALF",
+    "origin": "user_include",
     "scope": null
   },
   {
-    "ID": "c:@F@rename",
-    "What": "Function",
-    "defdec": "Dec",
-    "display": "int rename(const char *, const char *)",
+    "ID": "c:adc.h@12397@macro@ADC_CLOCK_RATE_FOURTH",
+    "What": "MacroDef",
+    "defdec": "Def",
+    "display": "ADC_CLOCK_RATE_FOURTH",
     "location": {
-      "column": "35",
+      "column": "9",
       "line": "236",
-      "path": "C:\\Program Files\\IAR Systems\\Embedded Workbench 9.1\\arm\\inc\\c\\stdio.h"
+      "path": "C:\\EK-TM4C1294_IAR8\\TivaWare_C_Series-2.1.4.178\\driverlib\\adc.h"
     },
-    "name": "rename",
-    "origin": "system_include",
+    "name": "ADC_CLOCK_RATE_FOURTH",
+    "origin": "user_include",
     "scope": null
   },
   {
-    "ID": "c:@EA@state_Automatic",
-    "What": "Enum",
+    "ID": "c:adc.h@12441@macro@ADC_CLOCK_RATE_EIGHTH",
+    "What": "MacroDef",
     "defdec": "Def",
-    "display": "",
-    "fields": [
-      {
-        "ID": "c:@EA@state_Automatic@InitialAutomaticMode",
-        "What": "Enumerator",
-        "defdec": "Def",
-        "display": "InitialAutomaticMode",
-        "location": {
-          "column": "15",
-          "line": "13",
-          "path": "C:\\EK-TM4C1294_IAR8\\Projects\\TCC\\src\\TCC.c"
-        },
-        "name": "InitialAutomaticMode",
-        "origin": "project_file",
-        "scope": null
-      },
-      {
-        "ID": "c:@EA@state_Automatic@AwaitingRain",
-        "What": "Enumerator",
-        "defdec": "Def",
-        "display": "AwaitingRain",
-        "location": {
-          "column": "37",
-          "line": "13",
-          "path": "C:\\EK-TM4C1294_IAR8\\Projects\\TCC\\src\\TCC.c"
-        },
-        "name": "AwaitingRain",
-        "origin": "project_file",
-        "scope": null
-      },
-      {
-        "ID": "c:@EA@state_Automatic@RemovingWasteWater",
-        "What": "Enumerator",
-        "defdec": "Def",
-        "display": "RemovingWasteWater",
-        "location": {
-          "column": "51",
-          "line": "13",
-          "path": "C:\\EK-TM4C1294_IAR8\\Projects\\TCC\\src\\TCC.c"
-        },
-        "name": "RemovingWasteWater",
-        "origin": "project_file",
-        "scope": null
-      },
-      {
-        "ID": "c:@EA@state_Automatic@WaterCollect",
-        "What": "Enumerator",
-        "defdec": "Def",
-        "display": "WaterCollect",
-        "location": {
-          "column": "71",
-          "line": "13",
-          "path": "C:\\EK-TM4C1294_IAR8\\Projects\\TCC\\src\\TCC.c"
-        },
-        "name": "WaterCollect",
-        "origin": "project_file",
-        "scope": null
-      },
-      {
-        "ID": "c:@EA@state_Automatic@WaterRemoval",
-        "What": "Enumerator",
-        "defdec": "Def",
-        "display": "WaterRemoval",
-        "location": {
-          "column": "85",
-          "line": "13",
-          "path": "C:\\EK-TM4C1294_IAR8\\Projects\\TCC\\src\\TCC.c"
-        },
-        "name": "WaterRemoval",
-        "origin": "project_file",
-        "scope": null
-      }
-    ],
+    "display": "ADC_CLOCK_RATE_EIGHTH",
     "location": {
       "column": "9",
-      "line": "13",
-      "path": "C:\\EK-TM4C1294_IAR8\\Projects\\TCC\\src\\TCC.c"
+      "line": "237",
+      "path": "C:\\EK-TM4C1294_IAR8\\TivaWare_C_Series-2.1.4.178\\driverlib\\adc.h"
     },
-    "name": "",
-    "origin": "project_file",
+    "name": "ADC_CLOCK_RATE_EIGHTH",
+    "origin": "user_include",
     "scope": null
   },
   {
-    "ID": "c:@T@state_Automatic",
-    "What": "Typedef",
+    "ID": "c:adc.h@12485@macro@ADC_CLOCK_SRC_PLL",
+    "What": "MacroDef",
     "defdec": "Def",
-    "display": "enum state_Automatic",
-    "location": {
-      "column": "99",
-      "line": "13",
-      "path": "C:\\EK-TM4C1294_IAR8\\Projects\\TCC\\src\\TCC.c"
-    },
-    "name": "state_Automatic",
-    "origin": "project_file",
-    "scope": null
-  },
-  {
-    "ID": "c:@EA@state_Manual",
-    "What": "Enum",
-    "defdec": "Def",
-    "display": "",
-    "fields": [
-      {
-        "ID": "c:@EA@state_Manual@InitialManualMode",
-        "What": "Enumerator",
-        "defdec": "Def",
-        "display": "InitialManualMode",
-        "location": {
-          "column": "15",
-          "line": "14",
-          "path": "C:\\EK-TM4C1294_IAR8\\Projects\\TCC\\src\\TCC.c"
-        },
-        "name": "InitialManualMode",
-        "origin": "project_file",
-        "scope": null
-      },
-      {
-        "ID": "c:@EA@state_Manual@Sanitazing",
-        "What": "Enumerator",
-        "defdec": "Def",
-        "display": "Sanitazing",
-        "location": {
-          "column": "34",
-          "line": "14",
-          "path": "C:\\EK-TM4C1294_IAR8\\Projects\\TCC\\src\\TCC.c"
-        },
-        "name": "Sanitazing",
-        "origin": "project_file",
-        "scope": null
-      },
-      {
-        "ID": "c:@EA@state_Manual@InternalRecircularion",
-        "What": "Enumerator",
-        "defdec": "Def",
-        "display": "InternalRecircularion",
-        "location": {
-          "column": "46",
-          "line": "14",
-          "path": "C:\\EK-TM4C1294_IAR8\\Projects\\TCC\\src\\TCC.c"
-        },
-        "name": "InternalRecircularion",
-        "origin": "project_file",
-        "scope": null
-      },
-      {
-        "ID": "c:@EA@state_Manual@AbsoluteTankLevel",
-        "What": "Enumerator",
-        "defdec": "Def",
-        "display": "AbsoluteTankLevel",
-        "location": {
-          "column": "69",
-          "line": "14",
-          "path": "C:\\EK-TM4C1294_IAR8\\Projects\\TCC\\src\\TCC.c"
-        },
-        "name": "AbsoluteTankLevel",
-        "origin": "project_file",
-        "scope": null
-      },
-      {
-        "ID": "c:@EA@state_Manual@RelativeTankLevel",
-        "What": "Enumerator",
-        "defdec": "Def",
-        "display": "RelativeTankLevel",
-        "location": {
-          "column": "88",
-          "line": "14",
-          "path": "C:\\EK-TM4C1294_IAR8\\Projects\\TCC\\src\\TCC.c"
-        },
-        "name": "RelativeTankLevel",
-        "origin": "project_file",
-        "scope": null
-      },
-      {
-        "ID": "c:@EA@state_Manual@TemperatureRead",
-        "What": "Enumerator",
-        "defdec": "Def",
-        "display": "TemperatureRead",
-        "location": {
-          "column": "107",
-          "line": "14",
-          "path": "C:\\EK-TM4C1294_IAR8\\Projects\\TCC\\src\\TCC.c"
-        },
-        "name": "TemperatureRead",
-        "origin": "project_file",
-        "scope": null
-      },
-      {
-        "ID": "c:@EA@state_Manual@WaterOutput",
-        "What": "Enumerator",
-        "defdec": "Def",
-        "display": "WaterOutput",
-        "location": {
-          "column": "124",
-          "line": "14",
-          "path": "C:\\EK-TM4C1294_IAR8\\Projects\\TCC\\src\\TCC.c"
-        },
-        "name": "WaterOutput",
-        "origin": "project_file",
-        "scope": null
-      }
-    ],
+    "display": "ADC_CLOCK_SRC_PLL",
     "location": {
       "column": "9",
-      "line": "14",
-      "path": "C:\\EK-TM4C1294_IAR8\\Projects\\TCC\\src\\TCC.c"
+      "line": "238",
+      "path": "C:\\EK-TM4C1294_IAR8\\TivaWare_C_Series-2.1.4.178\\driverlib\\adc.h"
     },
-    "name": "",
-    "origin": "project_file",
+    "name": "ADC_CLOCK_SRC_PLL",
+    "origin": "user_include",
     "scope": null
   },
   {
-    "ID": "c:@T@state_Manual",
-    "What": "Typedef",
+    "ID": "c:adc.h@12529@macro@ADC_CLOCK_SRC_PIOSC",
+    "What": "MacroDef",
     "defdec": "Def",
-    "display": "enum state_Manual",
-    "location": {
-      "column": "137",
-      "line": "14",
-      "path": "C:\\EK-TM4C1294_IAR8\\Projects\\TCC\\src\\TCC.c"
-    },
-    "name": "state_Manual",
-    "origin": "project_file",
-    "scope": null
-  },
-  {
-    "ID": "c:@LED_D1",
-    "What": "Variable",
-    "defdec": "Def",
-    "display": "LED_D1",
+    "display": "ADC_CLOCK_SRC_PIOSC",
     "location": {
       "column": "9",
-      "line": "16",
-      "path": "C:\\EK-TM4C1294_IAR8\\Projects\\TCC\\src\\TCC.c"
+      "line": "239",
+      "path": "C:\\EK-TM4C1294_IAR8\\TivaWare_C_Series-2.1.4.178\\driverlib\\adc.h"
     },
-    "name": "LED_D1",
-    "origin": "project_file",
+    "name": "ADC_CLOCK_SRC_PIOSC",
+    "origin": "user_include",
     "scope": null
   },
   {
-    "ID": "c:@sContext",
-    "What": "Variable",
+    "ID": "c:adc.h@12573@macro@ADC_CLOCK_SRC_ALTCLK",
+    "What": "MacroDef",
+    "defdec": "Def",
+    "display": "ADC_CLOCK_SRC_ALTCLK",
+    "location": {
+      "column": "9",
+      "line": "240",
+      "path": "C:\\EK-TM4C1294_IAR8\\TivaWare_C_Series-2.1.4.178\\driverlib\\adc.h"
+    },
+    "name": "ADC_CLOCK_SRC_ALTCLK",
+    "origin": "user_include",
+    "scope": null
+  },
+  {
+    "ID": "c:adc.h@12617@macro@ADC_CLOCK_SRC_MOSC",
+    "What": "MacroDef",
+    "defdec": "Def",
+    "display": "ADC_CLOCK_SRC_MOSC",
+    "location": {
+      "column": "9",
+      "line": "241",
+      "path": "C:\\EK-TM4C1294_IAR8\\TivaWare_C_Series-2.1.4.178\\driverlib\\adc.h"
+    },
+    "name": "ADC_CLOCK_SRC_MOSC",
+    "origin": "user_include",
+    "scope": null
+  },
+  {
+    "ID": "c:@F@ADCIntRegister",
+    "What": "Function",
     "defdec": "Dec",
-    "display": "sContext",
+    "display": "void ADCIntRegister(uint32_t, uint32_t, void (*)(void))",
     "location": {
-      "column": "10",
-      "line": "17",
-      "path": "C:\\EK-TM4C1294_IAR8\\Projects\\TCC\\src\\TCC.c"
+      "column": "13",
+      "line": "248",
+      "path": "C:\\EK-TM4C1294_IAR8\\TivaWare_C_Series-2.1.4.178\\driverlib\\adc.h"
     },
-    "name": "sContext",
-    "origin": "project_file",
+    "name": "ADCIntRegister",
+    "origin": "user_include",
     "scope": null
   },
   {
-    "ID": "c:@F@isSwitchButton1Pressed",
+    "ID": "c:@F@ADCIntUnregister",
     "What": "Function",
-    "defdec": "Def",
-    "display": "bool isSwitchButton1Pressed(void)",
+    "defdec": "Dec",
+    "display": "void ADCIntUnregister(uint32_t, uint32_t)",
     "location": {
-      "column": "6",
-      "line": "19",
-      "path": "C:\\EK-TM4C1294_IAR8\\Projects\\TCC\\src\\TCC.c"
+      "column": "13",
+      "line": "250",
+      "path": "C:\\EK-TM4C1294_IAR8\\TivaWare_C_Series-2.1.4.178\\driverlib\\adc.h"
     },
-    "name": "isSwitchButton1Pressed",
-    "origin": "project_file",
+    "name": "ADCIntUnregister",
+    "origin": "user_include",
     "scope": null
   },
   {
-    "ID": "c:@F@isSwitchButton2Pressed",
+    "ID": "c:@F@ADCIntDisable",
     "What": "Function",
-    "defdec": "Def",
-    "display": "bool isSwitchButton2Pressed(void)",
+    "defdec": "Dec",
+    "display": "void ADCIntDisable(uint32_t, uint32_t)",
     "location": {
-      "column": "6",
-      "line": "30",
-      "path": "C:\\EK-TM4C1294_IAR8\\Projects\\TCC\\src\\TCC.c"
+      "column": "13",
+      "line": "251",
+      "path": "C:\\EK-TM4C1294_IAR8\\TivaWare_C_Series-2.1.4.178\\driverlib\\adc.h"
     },
-    "name": "isSwitchButton2Pressed",
-    "origin": "project_file",
+    "name": "ADCIntDisable",
+    "origin": "user_include",
     "scope": null
   },
   {
-    "ID": "c:@F@isSwitchButtonKit1Pressed",
+    "ID": "c:@F@ADCIntEnable",
     "What": "Function",
-    "defdec": "Def",
-    "display": "bool isSwitchButtonKit1Pressed(void)",
+    "defdec": "Dec",
+    "display": "void ADCIntEnable(uint32_t, uint32_t)",
     "location": {
-      "column": "6",
+      "column": "13",
+      "line": "252",
+      "path": "C:\\EK-TM4C1294_IAR8\\TivaWare_C_Series-2.1.4.178\\driverlib\\adc.h"
+    },
+    "name": "ADCIntEnable",
+    "origin": "user_include",
+    "scope": null
+  },
+  {
+    "ID": "c:@F@ADCIntStatus",
+    "What": "Function",
+    "defdec": "Dec",
+    "display": "uint32_t ADCIntStatus(uint32_t, uint32_t, bool)",
+    "location": {
+      "column": "17",
+      "line": "253",
+      "path": "C:\\EK-TM4C1294_IAR8\\TivaWare_C_Series-2.1.4.178\\driverlib\\adc.h"
+    },
+    "name": "ADCIntStatus",
+    "origin": "user_include",
+    "scope": null
+  },
+  {
+    "ID": "c:@F@ADCIntClear",
+    "What": "Function",
+    "defdec": "Dec",
+    "display": "void ADCIntClear(uint32_t, uint32_t)",
+    "location": {
+      "column": "13",
+      "line": "255",
+      "path": "C:\\EK-TM4C1294_IAR8\\TivaWare_C_Series-2.1.4.178\\driverlib\\adc.h"
+    },
+    "name": "ADCIntClear",
+    "origin": "user_include",
+    "scope": null
+  },
+  {
+    "ID": "c:@F@ADCSequenceEnable",
+    "What": "Function",
+    "defdec": "Dec",
+    "display": "void ADCSequenceEnable(uint32_t, uint32_t)",
+    "location": {
+      "column": "13",
+      "line": "256",
+      "path": "C:\\EK-TM4C1294_IAR8\\TivaWare_C_Series-2.1.4.178\\driverlib\\adc.h"
+    },
+    "name": "ADCSequenceEnable",
+    "origin": "user_include",
+    "scope": null
+  },
+  {
+    "ID": "c:@F@ADCSequenceDisable",
+    "What": "Function",
+    "defdec": "Dec",
+    "display": "void ADCSequenceDisable(uint32_t, uint32_t)",
+    "location": {
+      "column": "13",
+      "line": "257",
+      "path": "C:\\EK-TM4C1294_IAR8\\TivaWare_C_Series-2.1.4.178\\driverlib\\adc.h"
+    },
+    "name": "ADCSequenceDisable",
+    "origin": "user_include",
+    "scope": null
+  },
+  {
+    "ID": "c:@F@ADCSequenceConfigure",
+    "What": "Function",
+    "defdec": "Dec",
+    "display": "void ADCSequenceConfigure(uint32_t, uint32_t, uint32_t, uint32_t)",
+    "location": {
+      "column": "13",
+      "line": "258",
+      "path": "C:\\EK-TM4C1294_IAR8\\TivaWare_C_Series-2.1.4.178\\driverlib\\adc.h"
+    },
+    "name": "ADCSequenceConfigure",
+    "origin": "user_include",
+    "scope": null
+  },
+  {
+    "ID": "c:@F@ADCSequenceStepConfigure",
+    "What": "Function",
+    "defdec": "Dec",
+    "display": "void ADCSequenceStepConfigure(uint32_t, uint32_t, uint32_t, uint32_t)",
+    "location": {
+      "column": "13",
+      "line": "260",
+      "path": "C:\\EK-TM4C1294_IAR8\\TivaWare_C_Series-2.1.4.178\\driverlib\\adc.h"
+    },
+    "name": "ADCSequenceStepConfigure",
+    "origin": "user_include",
+    "scope": null
+  },
+  {
+    "ID": "c:@F@ADCSequenceOverflow",
+    "What": "Function",
+    "defdec": "Dec",
+    "display": "int32_t ADCSequenceOverflow(uint32_t, uint32_t)",
+    "location": {
+      "column": "16",
+      "line": "263",
+      "path": "C:\\EK-TM4C1294_IAR8\\TivaWare_C_Series-2.1.4.178\\driverlib\\adc.h"
+    },
+    "name": "ADCSequenceOverflow",
+    "origin": "user_include",
+    "scope": null
+  },
+  {
+    "ID": "c:@F@ADCSequenceOverflowClear",
+    "What": "Function",
+    "defdec": "Dec",
+    "display": "void ADCSequenceOverflowClear(uint32_t, uint32_t)",
+    "location": {
+      "column": "13",
+      "line": "265",
+      "path": "C:\\EK-TM4C1294_IAR8\\TivaWare_C_Series-2.1.4.178\\driverlib\\adc.h"
+    },
+    "name": "ADCSequenceOverflowClear",
+    "origin": "user_include",
+    "scope": null
+  },
+  {
+    "ID": "c:@F@ADCSequenceUnderflow",
+    "What": "Function",
+    "defdec": "Dec",
+    "display": "int32_t ADCSequenceUnderflow(uint32_t, uint32_t)",
+    "location": {
+      "column": "16",
+      "line": "267",
+      "path": "C:\\EK-TM4C1294_IAR8\\TivaWare_C_Series-2.1.4.178\\driverlib\\adc.h"
+    },
+    "name": "ADCSequenceUnderflow",
+    "origin": "user_include",
+    "scope": null
+  },
+  {
+    "ID": "c:@F@ADCSequenceUnderflowClear",
+    "What": "Function",
+    "defdec": "Dec",
+    "display": "void ADCSequenceUnderflowClear(uint32_t, uint32_t)",
+    "location": {
+      "column": "13",
+      "line": "269",
+      "path": "C:\\EK-TM4C1294_IAR8\\TivaWare_C_Series-2.1.4.178\\driverlib\\adc.h"
+    },
+    "name": "ADCSequenceUnderflowClear",
+    "origin": "user_include",
+    "scope": null
+  },
+  {
+    "ID": "c:@F@ADCSequenceDataGet",
+    "What": "Function",
+    "defdec": "Dec",
+    "display": "int32_t ADCSequenceDataGet(uint32_t, uint32_t, uint32_t *)",
+    "location": {
+      "column": "16",
+      "line": "271",
+      "path": "C:\\EK-TM4C1294_IAR8\\TivaWare_C_Series-2.1.4.178\\driverlib\\adc.h"
+    },
+    "name": "ADCSequenceDataGet",
+    "origin": "user_include",
+    "scope": null
+  },
+  {
+    "ID": "c:@F@ADCProcessorTrigger",
+    "What": "Function",
+    "defdec": "Dec",
+    "display": "void ADCProcessorTrigger(uint32_t, uint32_t)",
+    "location": {
+      "column": "13",
+      "line": "273",
+      "path": "C:\\EK-TM4C1294_IAR8\\TivaWare_C_Series-2.1.4.178\\driverlib\\adc.h"
+    },
+    "name": "ADCProcessorTrigger",
+    "origin": "user_include",
+    "scope": null
+  },
+  {
+    "ID": "c:@F@ADCSoftwareOversampleConfigure",
+    "What": "Function",
+    "defdec": "Dec",
+    "display": "void ADCSoftwareOversampleConfigure(uint32_t, uint32_t, uint32_t)",
+    "location": {
+      "column": "13",
+      "line": "274",
+      "path": "C:\\EK-TM4C1294_IAR8\\TivaWare_C_Series-2.1.4.178\\driverlib\\adc.h"
+    },
+    "name": "ADCSoftwareOversampleConfigure",
+    "origin": "user_include",
+    "scope": null
+  },
+  {
+    "ID": "c:@F@ADCSoftwareOversampleStepConfigure",
+    "What": "Function",
+    "defdec": "Dec",
+    "display": "void ADCSoftwareOversampleStepConfigure(uint32_t, uint32_t, uint32_t, uint32_t)",
+    "location": {
+      "column": "13",
+      "line": "277",
+      "path": "C:\\EK-TM4C1294_IAR8\\TivaWare_C_Series-2.1.4.178\\driverlib\\adc.h"
+    },
+    "name": "ADCSoftwareOversampleStepConfigure",
+    "origin": "user_include",
+    "scope": null
+  },
+  {
+    "ID": "c:@F@ADCSoftwareOversampleDataGet",
+    "What": "Function",
+    "defdec": "Dec",
+    "display": "void ADCSoftwareOversampleDataGet(uint32_t, uint32_t, uint32_t *, uint32_t)",
+    "location": {
+      "column": "13",
+      "line": "281",
+      "path": "C:\\EK-TM4C1294_IAR8\\TivaWare_C_Series-2.1.4.178\\driverlib\\adc.h"
+    },
+    "name": "ADCSoftwareOversampleDataGet",
+    "origin": "user_include",
+    "scope": null
+  },
+  {
+    "ID": "c:@F@ADCHardwareOversampleConfigure",
+    "What": "Function",
+    "defdec": "Dec",
+    "display": "void ADCHardwareOversampleConfigure(uint32_t, uint32_t)",
+    "location": {
+      "column": "13",
+      "line": "285",
+      "path": "C:\\EK-TM4C1294_IAR8\\TivaWare_C_Series-2.1.4.178\\driverlib\\adc.h"
+    },
+    "name": "ADCHardwareOversampleConfigure",
+    "origin": "user_include",
+    "scope": null
+  },
+  {
+    "ID": "c:@F@ADCClockConfigSet",
+    "What": "Function",
+    "defdec": "Dec",
+    "display": "void ADCClockConfigSet(uint32_t, uint32_t, uint32_t)",
+    "location": {
+      "column": "13",
+      "line": "287",
+      "path": "C:\\EK-TM4C1294_IAR8\\TivaWare_C_Series-2.1.4.178\\driverlib\\adc.h"
+    },
+    "name": "ADCClockConfigSet",
+    "origin": "user_include",
+    "scope": null
+  },
+  {
+    "ID": "c:@F@ADCClockConfigGet",
+    "What": "Function",
+    "defdec": "Dec",
+    "display": "uint32_t ADCClockConfigGet(uint32_t, uint32_t *)",
+    "location": {
+      "column": "17",
+      "line": "289",
+      "path": "C:\\EK-TM4C1294_IAR8\\TivaWare_C_Series-2.1.4.178\\driverlib\\adc.h"
+    },
+    "name": "ADCClockConfigGet",
+    "origin": "user_include",
+    "scope": null
+  },
+  {
+    "ID": "c:@F@ADCComparatorConfigure",
+    "What": "Function",
+    "defdec": "Dec",
+    "display": "void ADCComparatorConfigure(uint32_t, uint32_t, uint32_t)",
+    "location": {
+      "column": "13",
+      "line": "291",
+      "path": "C:\\EK-TM4C1294_IAR8\\TivaWare_C_Series-2.1.4.178\\driverlib\\adc.h"
+    },
+    "name": "ADCComparatorConfigure",
+    "origin": "user_include",
+    "scope": null
+  },
+  {
+    "ID": "c:@F@ADCComparatorRegionSet",
+    "What": "Function",
+    "defdec": "Dec",
+    "display": "void ADCComparatorRegionSet(uint32_t, uint32_t, uint32_t, uint32_t)",
+    "location": {
+      "column": "13",
+      "line": "293",
+      "path": "C:\\EK-TM4C1294_IAR8\\TivaWare_C_Series-2.1.4.178\\driverlib\\adc.h"
+    },
+    "name": "ADCComparatorRegionSet",
+    "origin": "user_include",
+    "scope": null
+  },
+  {
+    "ID": "c:@F@ADCComparatorReset",
+    "What": "Function",
+    "defdec": "Dec",
+    "display": "void ADCComparatorReset(uint32_t, uint32_t, bool, bool)",
+    "location": {
+      "column": "13",
+      "line": "295",
+      "path": "C:\\EK-TM4C1294_IAR8\\TivaWare_C_Series-2.1.4.178\\driverlib\\adc.h"
+    },
+    "name": "ADCComparatorReset",
+    "origin": "user_include",
+    "scope": null
+  },
+  {
+    "ID": "c:@F@ADCComparatorIntDisable",
+    "What": "Function",
+    "defdec": "Dec",
+    "display": "void ADCComparatorIntDisable(uint32_t, uint32_t)",
+    "location": {
+      "column": "13",
+      "line": "297",
+      "path": "C:\\EK-TM4C1294_IAR8\\TivaWare_C_Series-2.1.4.178\\driverlib\\adc.h"
+    },
+    "name": "ADCComparatorIntDisable",
+    "origin": "user_include",
+    "scope": null
+  },
+  {
+    "ID": "c:@F@ADCComparatorIntEnable",
+    "What": "Function",
+    "defdec": "Dec",
+    "display": "void ADCComparatorIntEnable(uint32_t, uint32_t)",
+    "location": {
+      "column": "13",
+      "line": "299",
+      "path": "C:\\EK-TM4C1294_IAR8\\TivaWare_C_Series-2.1.4.178\\driverlib\\adc.h"
+    },
+    "name": "ADCComparatorIntEnable",
+    "origin": "user_include",
+    "scope": null
+  },
+  {
+    "ID": "c:@F@ADCComparatorIntStatus",
+    "What": "Function",
+    "defdec": "Dec",
+    "display": "uint32_t ADCComparatorIntStatus(uint32_t)",
+    "location": {
+      "column": "17",
+      "line": "301",
+      "path": "C:\\EK-TM4C1294_IAR8\\TivaWare_C_Series-2.1.4.178\\driverlib\\adc.h"
+    },
+    "name": "ADCComparatorIntStatus",
+    "origin": "user_include",
+    "scope": null
+  },
+  {
+    "ID": "c:@F@ADCComparatorIntClear",
+    "What": "Function",
+    "defdec": "Dec",
+    "display": "void ADCComparatorIntClear(uint32_t, uint32_t)",
+    "location": {
+      "column": "13",
+      "line": "302",
+      "path": "C:\\EK-TM4C1294_IAR8\\TivaWare_C_Series-2.1.4.178\\driverlib\\adc.h"
+    },
+    "name": "ADCComparatorIntClear",
+    "origin": "user_include",
+    "scope": null
+  },
+  {
+    "ID": "c:@F@ADCIntDisableEx",
+    "What": "Function",
+    "defdec": "Dec",
+    "display": "void ADCIntDisableEx(uint32_t, uint32_t)",
+    "location": {
+      "column": "13",
+      "line": "303",
+      "path": "C:\\EK-TM4C1294_IAR8\\TivaWare_C_Series-2.1.4.178\\driverlib\\adc.h"
+    },
+    "name": "ADCIntDisableEx",
+    "origin": "user_include",
+    "scope": null
+  },
+  {
+    "ID": "c:@F@ADCIntEnableEx",
+    "What": "Function",
+    "defdec": "Dec",
+    "display": "void ADCIntEnableEx(uint32_t, uint32_t)",
+    "location": {
+      "column": "13",
+      "line": "304",
+      "path": "C:\\EK-TM4C1294_IAR8\\TivaWare_C_Series-2.1.4.178\\driverlib\\adc.h"
+    },
+    "name": "ADCIntEnableEx",
+    "origin": "user_include",
+    "scope": null
+  },
+  {
+    "ID": "c:@F@ADCIntStatusEx",
+    "What": "Function",
+    "defdec": "Dec",
+    "display": "uint32_t ADCIntStatusEx(uint32_t, bool)",
+    "location": {
+      "column": "17",
+      "line": "305",
+      "path": "C:\\EK-TM4C1294_IAR8\\TivaWare_C_Series-2.1.4.178\\driverlib\\adc.h"
+    },
+    "name": "ADCIntStatusEx",
+    "origin": "user_include",
+    "scope": null
+  },
+  {
+    "ID": "c:@F@ADCIntClearEx",
+    "What": "Function",
+    "defdec": "Dec",
+    "display": "void ADCIntClearEx(uint32_t, uint32_t)",
+    "location": {
+      "column": "13",
+      "line": "306",
+      "path": "C:\\EK-TM4C1294_IAR8\\TivaWare_C_Series-2.1.4.178\\driverlib\\adc.h"
+    },
+    "name": "ADCIntClearEx",
+    "origin": "user_include",
+    "scope": null
+  },
+  {
+    "ID": "c:@F@ADCSequenceDMAEnable",
+    "What": "Function",
+    "defdec": "Dec",
+    "display": "void ADCSequenceDMAEnable(uint32_t, uint32_t)",
+    "location": {
+      "column": "13",
+      "line": "307",
+      "path": "C:\\EK-TM4C1294_IAR8\\TivaWare_C_Series-2.1.4.178\\driverlib\\adc.h"
+    },
+    "name": "ADCSequenceDMAEnable",
+    "origin": "user_include",
+    "scope": null
+  },
+  {
+    "ID": "c:@F@ADCSequenceDMADisable",
+    "What": "Function",
+    "defdec": "Dec",
+    "display": "void ADCSequenceDMADisable(uint32_t, uint32_t)",
+    "location": {
+      "column": "13",
+      "line": "308",
+      "path": "C:\\EK-TM4C1294_IAR8\\TivaWare_C_Series-2.1.4.178\\driverlib\\adc.h"
+    },
+    "name": "ADCSequenceDMADisable",
+    "origin": "user_include",
+    "scope": null
+  },
+  {
+    "ID": "c:@F@ADCBusy",
+    "What": "Function",
+    "defdec": "Dec",
+    "display": "bool ADCBusy(uint32_t)",
+    "location": {
+      "column": "13",
+      "line": "309",
+      "path": "C:\\EK-TM4C1294_IAR8\\TivaWare_C_Series-2.1.4.178\\driverlib\\adc.h"
+    },
+    "name": "ADCBusy",
+    "origin": "user_include",
+    "scope": null
+  },
+  {
+    "ID": "c:@F@ADCReferenceSet",
+    "What": "Function",
+    "defdec": "Dec",
+    "display": "void ADCReferenceSet(uint32_t, uint32_t)",
+    "location": {
+      "column": "13",
+      "line": "310",
+      "path": "C:\\EK-TM4C1294_IAR8\\TivaWare_C_Series-2.1.4.178\\driverlib\\adc.h"
+    },
+    "name": "ADCReferenceSet",
+    "origin": "user_include",
+    "scope": null
+  },
+  {
+    "ID": "c:@F@ADCReferenceGet",
+    "What": "Function",
+    "defdec": "Dec",
+    "display": "uint32_t ADCReferenceGet(uint32_t)",
+    "location": {
+      "column": "17",
+      "line": "311",
+      "path": "C:\\EK-TM4C1294_IAR8\\TivaWare_C_Series-2.1.4.178\\driverlib\\adc.h"
+    },
+    "name": "ADCReferenceGet",
+    "origin": "user_include",
+    "scope": null
+  },
+  {
+    "ID": "c:@F@ADCPhaseDelaySet",
+    "What": "Function",
+    "defdec": "Dec",
+    "display": "void ADCPhaseDelaySet(uint32_t, uint32_t)",
+    "location": {
+      "column": "13",
+      "line": "312",
+      "path": "C:\\EK-TM4C1294_IAR8\\TivaWare_C_Series-2.1.4.178\\driverlib\\adc.h"
+    },
+    "name": "ADCPhaseDelaySet",
+    "origin": "user_include",
+    "scope": null
+  },
+  {
+    "ID": "c:@F@ADCPhaseDelayGet",
+    "What": "Function",
+    "defdec": "Dec",
+    "display": "uint32_t ADCPhaseDelayGet(uint32_t)",
+    "location": {
+      "column": "17",
+      "line": "313",
+      "path": "C:\\EK-TM4C1294_IAR8\\TivaWare_C_Series-2.1.4.178\\driverlib\\adc.h"
+    },
+    "name": "ADCPhaseDelayGet",
+    "origin": "user_include",
+    "scope": null
+  },
+  {
+    "ID": "c:@F@ADCSampleRateSet",
+    "What": "Function",
+    "defdec": "Dec",
+    "display": "void ADCSampleRateSet(uint32_t, uint32_t, uint32_t)",
+    "location": {
+      "column": "13",
+      "line": "314",
+      "path": "C:\\EK-TM4C1294_IAR8\\TivaWare_C_Series-2.1.4.178\\driverlib\\adc.h"
+    },
+    "name": "ADCSampleRateSet",
+    "origin": "user_include",
+    "scope": null
+  },
+  {
+    "ID": "c:@F@ADCSampleRateGet",
+    "What": "Function",
+    "defdec": "Dec",
+    "display": "uint32_t ADCSampleRateGet(uint32_t)",
+    "location": {
+      "column": "17",
+      "line": "316",
+      "path": "C:\\EK-TM4C1294_IAR8\\TivaWare_C_Series-2.1.4.178\\driverlib\\adc.h"
+    },
+    "name": "ADCSampleRateGet",
+    "origin": "user_include",
+    "scope": null
+  },
+  {
+    "ID": "c:uart.h@2023@macro@__DRIVERLIB_UART_H__",
+    "What": "MacroDef",
+    "defdec": "Def",
+    "display": "__DRIVERLIB_UART_H__",
+    "location": {
+      "column": "9",
       "line": "41",
-      "path": "C:\\EK-TM4C1294_IAR8\\Projects\\TCC\\src\\TCC.c"
+      "path": "C:\\EK-TM4C1294_IAR8\\TivaWare_C_Series-2.1.4.178\\driverlib\\uart.h"
     },
-    "name": "isSwitchButtonKit1Pressed",
-    "origin": "project_file",
+    "name": "__DRIVERLIB_UART_H__",
+    "origin": "user_include",
     "scope": null
   },
   {
-    "ID": "c:@F@isSwitchButtonKit2Pressed",
-    "What": "Function",
+    "ID": "c:uart.h@2691@macro@UART_INT_DMATX",
+    "What": "MacroDef",
     "defdec": "Def",
-    "display": "bool isSwitchButtonKit2Pressed(void)",
+    "display": "UART_INT_DMATX",
     "location": {
-      "column": "6",
-      "line": "52",
-      "path": "C:\\EK-TM4C1294_IAR8\\Projects\\TCC\\src\\TCC.c"
+      "column": "9",
+      "line": "60",
+      "path": "C:\\EK-TM4C1294_IAR8\\TivaWare_C_Series-2.1.4.178\\driverlib\\uart.h"
     },
-    "name": "isSwitchButtonKit2Pressed",
-    "origin": "project_file",
+    "name": "UART_INT_DMATX",
+    "origin": "user_include",
     "scope": null
   },
   {
-    "ID": "c:@F@DisplayInit",
-    "What": "Function",
+    "ID": "c:uart.h@2756@macro@UART_INT_DMARX",
+    "What": "MacroDef",
     "defdec": "Def",
-    "display": "void DisplayInit(void)",
+    "display": "UART_INT_DMARX",
     "location": {
-      "column": "6",
+      "column": "9",
+      "line": "61",
+      "path": "C:\\EK-TM4C1294_IAR8\\TivaWare_C_Series-2.1.4.178\\driverlib\\uart.h"
+    },
+    "name": "UART_INT_DMARX",
+    "origin": "user_include",
+    "scope": null
+  },
+  {
+    "ID": "c:uart.h@2821@macro@UART_INT_9BIT",
+    "What": "MacroDef",
+    "defdec": "Def",
+    "display": "UART_INT_9BIT",
+    "location": {
+      "column": "9",
+      "line": "62",
+      "path": "C:\\EK-TM4C1294_IAR8\\TivaWare_C_Series-2.1.4.178\\driverlib\\uart.h"
+    },
+    "name": "UART_INT_9BIT",
+    "origin": "user_include",
+    "scope": null
+  },
+  {
+    "ID": "c:uart.h@2899@macro@UART_INT_OE",
+    "What": "MacroDef",
+    "defdec": "Def",
+    "display": "UART_INT_OE",
+    "location": {
+      "column": "9",
       "line": "63",
-      "path": "C:\\EK-TM4C1294_IAR8\\Projects\\TCC\\src\\TCC.c"
+      "path": "C:\\EK-TM4C1294_IAR8\\TivaWare_C_Series-2.1.4.178\\driverlib\\uart.h"
     },
-    "name": "DisplayInit",
-    "origin": "project_file",
+    "name": "UART_INT_OE",
+    "origin": "user_include",
     "scope": null
   },
   {
-    "ID": "c:TCC.c@1613@F@DisplayInit@pC",
-    "What": "Variable",
+    "ID": "c:uart.h@2976@macro@UART_INT_BE",
+    "What": "MacroDef",
     "defdec": "Def",
-    "display": "pC",
+    "display": "UART_INT_BE",
     "location": {
-      "column": "3",
+      "column": "9",
+      "line": "64",
+      "path": "C:\\EK-TM4C1294_IAR8\\TivaWare_C_Series-2.1.4.178\\driverlib\\uart.h"
+    },
+    "name": "UART_INT_BE",
+    "origin": "user_include",
+    "scope": null
+  },
+  {
+    "ID": "c:uart.h@3051@macro@UART_INT_PE",
+    "What": "MacroDef",
+    "defdec": "Def",
+    "display": "UART_INT_PE",
+    "location": {
+      "column": "9",
+      "line": "65",
+      "path": "C:\\EK-TM4C1294_IAR8\\TivaWare_C_Series-2.1.4.178\\driverlib\\uart.h"
+    },
+    "name": "UART_INT_PE",
+    "origin": "user_include",
+    "scope": null
+  },
+  {
+    "ID": "c:uart.h@3127@macro@UART_INT_FE",
+    "What": "MacroDef",
+    "defdec": "Def",
+    "display": "UART_INT_FE",
+    "location": {
+      "column": "9",
+      "line": "66",
+      "path": "C:\\EK-TM4C1294_IAR8\\TivaWare_C_Series-2.1.4.178\\driverlib\\uart.h"
+    },
+    "name": "UART_INT_FE",
+    "origin": "user_include",
+    "scope": null
+  },
+  {
+    "ID": "c:uart.h@3204@macro@UART_INT_RT",
+    "What": "MacroDef",
+    "defdec": "Def",
+    "display": "UART_INT_RT",
+    "location": {
+      "column": "9",
       "line": "67",
-      "path": "C:\\EK-TM4C1294_IAR8\\Projects\\TCC\\src\\TCC.c"
+      "path": "C:\\EK-TM4C1294_IAR8\\TivaWare_C_Series-2.1.4.178\\driverlib\\uart.h"
     },
-    "name": "pC",
-    "origin": "project_file",
+    "name": "UART_INT_RT",
+    "origin": "user_include",
     "scope": null
   },
   {
-    "ID": "c:TCC.c@1613@F@DisplayInit@pD",
-    "What": "Variable",
+    "ID": "c:uart.h@3283@macro@UART_INT_TX",
+    "What": "MacroDef",
     "defdec": "Def",
-    "display": "pD",
+    "display": "UART_INT_TX",
     "location": {
-      "column": "3",
-      "line": "67",
-      "path": "C:\\EK-TM4C1294_IAR8\\Projects\\TCC\\src\\TCC.c"
+      "column": "9",
+      "line": "68",
+      "path": "C:\\EK-TM4C1294_IAR8\\TivaWare_C_Series-2.1.4.178\\driverlib\\uart.h"
     },
-    "name": "pD",
-    "origin": "project_file",
+    "name": "UART_INT_TX",
+    "origin": "user_include",
     "scope": null
   },
   {
-    "ID": "c:TCC.c@1686@F@DisplayInit@pC",
-    "What": "Variable",
+    "ID": "c:uart.h@3355@macro@UART_INT_RX",
+    "What": "MacroDef",
     "defdec": "Def",
-    "display": "pC",
+    "display": "UART_INT_RX",
     "location": {
-      "column": "3",
+      "column": "9",
       "line": "69",
-      "path": "C:\\EK-TM4C1294_IAR8\\Projects\\TCC\\src\\TCC.c"
+      "path": "C:\\EK-TM4C1294_IAR8\\TivaWare_C_Series-2.1.4.178\\driverlib\\uart.h"
     },
-    "name": "pC",
-    "origin": "project_file",
+    "name": "UART_INT_RX",
+    "origin": "user_include",
     "scope": null
   },
   {
-    "ID": "c:TCC.c@1734@F@DisplayInit@pC",
-    "What": "Variable",
+    "ID": "c:uart.h@3426@macro@UART_INT_DSR",
+    "What": "MacroDef",
     "defdec": "Def",
-    "display": "pC",
+    "display": "UART_INT_DSR",
     "location": {
-      "column": "3",
+      "column": "9",
       "line": "70",
-      "path": "C:\\EK-TM4C1294_IAR8\\Projects\\TCC\\src\\TCC.c"
+      "path": "C:\\EK-TM4C1294_IAR8\\TivaWare_C_Series-2.1.4.178\\driverlib\\uart.h"
     },
-    "name": "pC",
-    "origin": "project_file",
+    "name": "UART_INT_DSR",
+    "origin": "user_include",
     "scope": null
   },
   {
-    "ID": "c:@F@ContextInit",
-    "What": "Function",
+    "ID": "c:uart.h@3499@macro@UART_INT_DCD",
+    "What": "MacroDef",
     "defdec": "Def",
-    "display": "void ContextInit(void)",
+    "display": "UART_INT_DCD",
     "location": {
-      "column": "6",
+      "column": "9",
+      "line": "71",
+      "path": "C:\\EK-TM4C1294_IAR8\\TivaWare_C_Series-2.1.4.178\\driverlib\\uart.h"
+    },
+    "name": "UART_INT_DCD",
+    "origin": "user_include",
+    "scope": null
+  },
+  {
+    "ID": "c:uart.h@3572@macro@UART_INT_CTS",
+    "What": "MacroDef",
+    "defdec": "Def",
+    "display": "UART_INT_CTS",
+    "location": {
+      "column": "9",
+      "line": "72",
+      "path": "C:\\EK-TM4C1294_IAR8\\TivaWare_C_Series-2.1.4.178\\driverlib\\uart.h"
+    },
+    "name": "UART_INT_CTS",
+    "origin": "user_include",
+    "scope": null
+  },
+  {
+    "ID": "c:uart.h@3645@macro@UART_INT_RI",
+    "What": "MacroDef",
+    "defdec": "Def",
+    "display": "UART_INT_RI",
+    "location": {
+      "column": "9",
       "line": "73",
-      "path": "C:\\EK-TM4C1294_IAR8\\Projects\\TCC\\src\\TCC.c"
+      "path": "C:\\EK-TM4C1294_IAR8\\TivaWare_C_Series-2.1.4.178\\driverlib\\uart.h"
     },
-    "name": "ContextInit",
-    "origin": "project_file",
+    "name": "UART_INT_RI",
+    "origin": "user_include",
     "scope": null
   },
   {
-    "ID": "c:@F@SysTick_Handler",
-    "What": "Function",
+    "ID": "c:uart.h@4198@macro@UART_CONFIG_WLEN_MASK",
+    "What": "MacroDef",
     "defdec": "Def",
-    "display": "void SysTick_Handler(void)",
+    "display": "UART_CONFIG_WLEN_MASK",
     "location": {
-      "column": "6",
-      "line": "78",
-      "path": "C:\\EK-TM4C1294_IAR8\\Projects\\TCC\\src\\TCC.c"
+      "column": "9",
+      "line": "84",
+      "path": "C:\\EK-TM4C1294_IAR8\\TivaWare_C_Series-2.1.4.178\\driverlib\\uart.h"
     },
-    "name": "SysTick_Handler",
-    "origin": "project_file",
+    "name": "UART_CONFIG_WLEN_MASK",
+    "origin": "user_include",
     "scope": null
   },
   {
-    "ID": "c:@F@ClearDisplay",
-    "What": "Function",
+    "ID": "c:uart.h@4278@macro@UART_CONFIG_WLEN_8",
+    "What": "MacroDef",
     "defdec": "Def",
-    "display": "void ClearDisplay(void)",
+    "display": "UART_CONFIG_WLEN_8",
     "location": {
-      "column": "6",
-      "line": "83",
-      "path": "C:\\EK-TM4C1294_IAR8\\Projects\\TCC\\src\\TCC.c"
+      "column": "9",
+      "line": "85",
+      "path": "C:\\EK-TM4C1294_IAR8\\TivaWare_C_Series-2.1.4.178\\driverlib\\uart.h"
     },
-    "name": "ClearDisplay",
-    "origin": "project_file",
+    "name": "UART_CONFIG_WLEN_8",
+    "origin": "user_include",
     "scope": null
   },
   {
-    "ID": "c:TCC.c@2201@F@ClearDisplay@pC",
-    "What": "Variable",
+    "ID": "c:uart.h@4337@macro@UART_CONFIG_WLEN_7",
+    "What": "MacroDef",
     "defdec": "Def",
-    "display": "pC",
+    "display": "UART_CONFIG_WLEN_7",
     "location": {
-      "column": "3",
+      "column": "9",
       "line": "86",
-      "path": "C:\\EK-TM4C1294_IAR8\\Projects\\TCC\\src\\TCC.c"
+      "path": "C:\\EK-TM4C1294_IAR8\\TivaWare_C_Series-2.1.4.178\\driverlib\\uart.h"
     },
-    "name": "pC",
-    "origin": "project_file",
+    "name": "UART_CONFIG_WLEN_7",
+    "origin": "user_include",
     "scope": null
   },
   {
-    "ID": "c:TCC.c@2201@F@ClearDisplay@pD",
-    "What": "Variable",
+    "ID": "c:uart.h@4396@macro@UART_CONFIG_WLEN_6",
+    "What": "MacroDef",
     "defdec": "Def",
-    "display": "pD",
+    "display": "UART_CONFIG_WLEN_6",
     "location": {
-      "column": "3",
-      "line": "86",
-      "path": "C:\\EK-TM4C1294_IAR8\\Projects\\TCC\\src\\TCC.c"
+      "column": "9",
+      "line": "87",
+      "path": "C:\\EK-TM4C1294_IAR8\\TivaWare_C_Series-2.1.4.178\\driverlib\\uart.h"
     },
-    "name": "pD",
-    "origin": "project_file",
+    "name": "UART_CONFIG_WLEN_6",
+    "origin": "user_include",
     "scope": null
   },
   {
-    "ID": "c:@F@WaterLevelSensor",
-    "What": "Function",
+    "ID": "c:uart.h@4455@macro@UART_CONFIG_WLEN_5",
+    "What": "MacroDef",
     "defdec": "Def",
-    "display": "int WaterLevelSensor(void)",
+    "display": "UART_CONFIG_WLEN_5",
     "location": {
-      "column": "5",
+      "column": "9",
+      "line": "88",
+      "path": "C:\\EK-TM4C1294_IAR8\\TivaWare_C_Series-2.1.4.178\\driverlib\\uart.h"
+    },
+    "name": "UART_CONFIG_WLEN_5",
+    "origin": "user_include",
+    "scope": null
+  },
+  {
+    "ID": "c:uart.h@4514@macro@UART_CONFIG_STOP_MASK",
+    "What": "MacroDef",
+    "defdec": "Def",
+    "display": "UART_CONFIG_STOP_MASK",
+    "location": {
+      "column": "9",
       "line": "89",
-      "path": "C:\\EK-TM4C1294_IAR8\\Projects\\TCC\\src\\TCC.c"
+      "path": "C:\\EK-TM4C1294_IAR8\\TivaWare_C_Series-2.1.4.178\\driverlib\\uart.h"
     },
-    "name": "WaterLevelSensor",
-    "origin": "project_file",
+    "name": "UART_CONFIG_STOP_MASK",
+    "origin": "user_include",
     "scope": null
   },
   {
-    "ID": "c:@F@MenuManualMode",
-    "What": "Function",
+    "ID": "c:uart.h@4592@macro@UART_CONFIG_STOP_ONE",
+    "What": "MacroDef",
     "defdec": "Def",
-    "display": "void MenuManualMode(void)",
+    "display": "UART_CONFIG_STOP_ONE",
     "location": {
-      "column": "6",
+      "column": "9",
+      "line": "90",
+      "path": "C:\\EK-TM4C1294_IAR8\\TivaWare_C_Series-2.1.4.178\\driverlib\\uart.h"
+    },
+    "name": "UART_CONFIG_STOP_ONE",
+    "origin": "user_include",
+    "scope": null
+  },
+  {
+    "ID": "c:uart.h@4653@macro@UART_CONFIG_STOP_TWO",
+    "What": "MacroDef",
+    "defdec": "Def",
+    "display": "UART_CONFIG_STOP_TWO",
+    "location": {
+      "column": "9",
+      "line": "91",
+      "path": "C:\\EK-TM4C1294_IAR8\\TivaWare_C_Series-2.1.4.178\\driverlib\\uart.h"
+    },
+    "name": "UART_CONFIG_STOP_TWO",
+    "origin": "user_include",
+    "scope": null
+  },
+  {
+    "ID": "c:uart.h@4715@macro@UART_CONFIG_PAR_MASK",
+    "What": "MacroDef",
+    "defdec": "Def",
+    "display": "UART_CONFIG_PAR_MASK",
+    "location": {
+      "column": "9",
+      "line": "92",
+      "path": "C:\\EK-TM4C1294_IAR8\\TivaWare_C_Series-2.1.4.178\\driverlib\\uart.h"
+    },
+    "name": "UART_CONFIG_PAR_MASK",
+    "origin": "user_include",
+    "scope": null
+  },
+  {
+    "ID": "c:uart.h@4790@macro@UART_CONFIG_PAR_NONE",
+    "What": "MacroDef",
+    "defdec": "Def",
+    "display": "UART_CONFIG_PAR_NONE",
+    "location": {
+      "column": "9",
+      "line": "93",
+      "path": "C:\\EK-TM4C1294_IAR8\\TivaWare_C_Series-2.1.4.178\\driverlib\\uart.h"
+    },
+    "name": "UART_CONFIG_PAR_NONE",
+    "origin": "user_include",
+    "scope": null
+  },
+  {
+    "ID": "c:uart.h@4848@macro@UART_CONFIG_PAR_EVEN",
+    "What": "MacroDef",
+    "defdec": "Def",
+    "display": "UART_CONFIG_PAR_EVEN",
+    "location": {
+      "column": "9",
       "line": "94",
-      "path": "C:\\EK-TM4C1294_IAR8\\Projects\\TCC\\src\\TCC.c"
+      "path": "C:\\EK-TM4C1294_IAR8\\TivaWare_C_Series-2.1.4.178\\driverlib\\uart.h"
     },
-    "name": "MenuManualMode",
-    "origin": "project_file",
+    "name": "UART_CONFIG_PAR_EVEN",
+    "origin": "user_include",
     "scope": null
   },
   {
-    "ID": "c:TCC.c@2332@F@MenuManualMode@option",
-    "What": "Variable",
+    "ID": "c:uart.h@4908@macro@UART_CONFIG_PAR_ODD",
+    "What": "MacroDef",
     "defdec": "Def",
-    "display": "option",
+    "display": "UART_CONFIG_PAR_ODD",
     "location": {
-      "column": "7",
+      "column": "9",
+      "line": "95",
+      "path": "C:\\EK-TM4C1294_IAR8\\TivaWare_C_Series-2.1.4.178\\driverlib\\uart.h"
+    },
+    "name": "UART_CONFIG_PAR_ODD",
+    "origin": "user_include",
+    "scope": null
+  },
+  {
+    "ID": "c:uart.h@4967@macro@UART_CONFIG_PAR_ONE",
+    "What": "MacroDef",
+    "defdec": "Def",
+    "display": "UART_CONFIG_PAR_ONE",
+    "location": {
+      "column": "9",
       "line": "96",
-      "path": "C:\\EK-TM4C1294_IAR8\\Projects\\TCC\\src\\TCC.c"
+      "path": "C:\\EK-TM4C1294_IAR8\\TivaWare_C_Series-2.1.4.178\\driverlib\\uart.h"
     },
-    "name": "option",
-    "origin": "project_file",
+    "name": "UART_CONFIG_PAR_ONE",
+    "origin": "user_include",
     "scope": null
   },
   {
-    "ID": "c:TCC.c@2349@F@MenuManualMode@greetings",
-    "What": "Variable",
+    "ID": "c:uart.h@5033@macro@UART_CONFIG_PAR_ZERO",
+    "What": "MacroDef",
     "defdec": "Def",
-    "display": "greetings",
+    "display": "UART_CONFIG_PAR_ZERO",
     "location": {
-      "column": "8",
+      "column": "9",
       "line": "97",
-      "path": "C:\\EK-TM4C1294_IAR8\\Projects\\TCC\\src\\TCC.c"
+      "path": "C:\\EK-TM4C1294_IAR8\\TivaWare_C_Series-2.1.4.178\\driverlib\\uart.h"
     },
-    "name": "greetings",
-    "origin": "project_file",
+    "name": "UART_CONFIG_PAR_ZERO",
+    "origin": "user_include",
     "scope": null
   },
   {
-    "ID": "c:TCC.c@2381@F@MenuManualMode@option_str",
-    "What": "Variable",
+    "ID": "c:uart.h@5409@macro@UART_FIFO_TX1_8",
+    "What": "MacroDef",
     "defdec": "Def",
-    "display": "option_str",
+    "display": "UART_FIFO_TX1_8",
     "location": {
-      "column": "8",
-      "line": "98",
-      "path": "C:\\EK-TM4C1294_IAR8\\Projects\\TCC\\src\\TCC.c"
+      "column": "9",
+      "line": "105",
+      "path": "C:\\EK-TM4C1294_IAR8\\TivaWare_C_Series-2.1.4.178\\driverlib\\uart.h"
     },
-    "name": "option_str",
-    "origin": "project_file",
+    "name": "UART_FIFO_TX1_8",
+    "origin": "user_include",
     "scope": null
   },
   {
-    "ID": "c:@F@ClearAndWriteDisplaySingleLine",
-    "What": "Function",
+    "ID": "c:uart.h@5488@macro@UART_FIFO_TX2_8",
+    "What": "MacroDef",
     "defdec": "Def",
-    "display": "void ClearAndWriteDisplaySingleLine(const char *, int, int)",
+    "display": "UART_FIFO_TX2_8",
     "location": {
-      "column": "6",
-      "line": "122",
-      "path": "C:\\EK-TM4C1294_IAR8\\Projects\\TCC\\src\\TCC.c"
+      "column": "9",
+      "line": "106",
+      "path": "C:\\EK-TM4C1294_IAR8\\TivaWare_C_Series-2.1.4.178\\driverlib\\uart.h"
     },
-    "name": "ClearAndWriteDisplaySingleLine",
-    "origin": "project_file",
+    "name": "UART_FIFO_TX2_8",
+    "origin": "user_include",
     "scope": null
   },
   {
-    "ID": "c:@F@ClearAndWriteDisplayTwoLines",
-    "What": "Function",
+    "ID": "c:uart.h@5567@macro@UART_FIFO_TX4_8",
+    "What": "MacroDef",
     "defdec": "Def",
-    "display": "void ClearAndWriteDisplayTwoLines(const char *, int, int, const char *, int, int)",
+    "display": "UART_FIFO_TX4_8",
     "location": {
-      "column": "6",
+      "column": "9",
+      "line": "107",
+      "path": "C:\\EK-TM4C1294_IAR8\\TivaWare_C_Series-2.1.4.178\\driverlib\\uart.h"
+    },
+    "name": "UART_FIFO_TX4_8",
+    "origin": "user_include",
+    "scope": null
+  },
+  {
+    "ID": "c:uart.h@5646@macro@UART_FIFO_TX6_8",
+    "What": "MacroDef",
+    "defdec": "Def",
+    "display": "UART_FIFO_TX6_8",
+    "location": {
+      "column": "9",
+      "line": "108",
+      "path": "C:\\EK-TM4C1294_IAR8\\TivaWare_C_Series-2.1.4.178\\driverlib\\uart.h"
+    },
+    "name": "UART_FIFO_TX6_8",
+    "origin": "user_include",
+    "scope": null
+  },
+  {
+    "ID": "c:uart.h@5725@macro@UART_FIFO_TX7_8",
+    "What": "MacroDef",
+    "defdec": "Def",
+    "display": "UART_FIFO_TX7_8",
+    "location": {
+      "column": "9",
+      "line": "109",
+      "path": "C:\\EK-TM4C1294_IAR8\\TivaWare_C_Series-2.1.4.178\\driverlib\\uart.h"
+    },
+    "name": "UART_FIFO_TX7_8",
+    "origin": "user_include",
+    "scope": null
+  },
+  {
+    "ID": "c:uart.h@6113@macro@UART_FIFO_RX1_8",
+    "What": "MacroDef",
+    "defdec": "Def",
+    "display": "UART_FIFO_RX1_8",
+    "location": {
+      "column": "9",
+      "line": "117",
+      "path": "C:\\EK-TM4C1294_IAR8\\TivaWare_C_Series-2.1.4.178\\driverlib\\uart.h"
+    },
+    "name": "UART_FIFO_RX1_8",
+    "origin": "user_include",
+    "scope": null
+  },
+  {
+    "ID": "c:uart.h@6191@macro@UART_FIFO_RX2_8",
+    "What": "MacroDef",
+    "defdec": "Def",
+    "display": "UART_FIFO_RX2_8",
+    "location": {
+      "column": "9",
+      "line": "118",
+      "path": "C:\\EK-TM4C1294_IAR8\\TivaWare_C_Series-2.1.4.178\\driverlib\\uart.h"
+    },
+    "name": "UART_FIFO_RX2_8",
+    "origin": "user_include",
+    "scope": null
+  },
+  {
+    "ID": "c:uart.h@6269@macro@UART_FIFO_RX4_8",
+    "What": "MacroDef",
+    "defdec": "Def",
+    "display": "UART_FIFO_RX4_8",
+    "location": {
+      "column": "9",
+      "line": "119",
+      "path": "C:\\EK-TM4C1294_IAR8\\TivaWare_C_Series-2.1.4.178\\driverlib\\uart.h"
+    },
+    "name": "UART_FIFO_RX4_8",
+    "origin": "user_include",
+    "scope": null
+  },
+  {
+    "ID": "c:uart.h@6347@macro@UART_FIFO_RX6_8",
+    "What": "MacroDef",
+    "defdec": "Def",
+    "display": "UART_FIFO_RX6_8",
+    "location": {
+      "column": "9",
+      "line": "120",
+      "path": "C:\\EK-TM4C1294_IAR8\\TivaWare_C_Series-2.1.4.178\\driverlib\\uart.h"
+    },
+    "name": "UART_FIFO_RX6_8",
+    "origin": "user_include",
+    "scope": null
+  },
+  {
+    "ID": "c:uart.h@6425@macro@UART_FIFO_RX7_8",
+    "What": "MacroDef",
+    "defdec": "Def",
+    "display": "UART_FIFO_RX7_8",
+    "location": {
+      "column": "9",
+      "line": "121",
+      "path": "C:\\EK-TM4C1294_IAR8\\TivaWare_C_Series-2.1.4.178\\driverlib\\uart.h"
+    },
+    "name": "UART_FIFO_RX7_8",
+    "origin": "user_include",
+    "scope": null
+  },
+  {
+    "ID": "c:uart.h@6746@macro@UART_DMA_ERR_RXSTOP",
+    "What": "MacroDef",
+    "defdec": "Def",
+    "display": "UART_DMA_ERR_RXSTOP",
+    "location": {
+      "column": "9",
       "line": "128",
-      "path": "C:\\EK-TM4C1294_IAR8\\Projects\\TCC\\src\\TCC.c"
+      "path": "C:\\EK-TM4C1294_IAR8\\TivaWare_C_Series-2.1.4.178\\driverlib\\uart.h"
     },
-    "name": "ClearAndWriteDisplayTwoLines",
-    "origin": "project_file",
+    "name": "UART_DMA_ERR_RXSTOP",
+    "origin": "user_include",
     "scope": null
   },
   {
-    "ID": "c:@F@ClearAndWriteDisplayThreeLines",
+    "ID": "c:uart.h@6825@macro@UART_DMA_TX",
+    "What": "MacroDef",
+    "defdec": "Def",
+    "display": "UART_DMA_TX",
+    "location": {
+      "column": "9",
+      "line": "129",
+      "path": "C:\\EK-TM4C1294_IAR8\\TivaWare_C_Series-2.1.4.178\\driverlib\\uart.h"
+    },
+    "name": "UART_DMA_TX",
+    "origin": "user_include",
+    "scope": null
+  },
+  {
+    "ID": "c:uart.h@6897@macro@UART_DMA_RX",
+    "What": "MacroDef",
+    "defdec": "Def",
+    "display": "UART_DMA_RX",
+    "location": {
+      "column": "9",
+      "line": "130",
+      "path": "C:\\EK-TM4C1294_IAR8\\TivaWare_C_Series-2.1.4.178\\driverlib\\uart.h"
+    },
+    "name": "UART_DMA_RX",
+    "origin": "user_include",
+    "scope": null
+  },
+  {
+    "ID": "c:uart.h@7183@macro@UART_RXERROR_OVERRUN",
+    "What": "MacroDef",
+    "defdec": "Def",
+    "display": "UART_RXERROR_OVERRUN",
+    "location": {
+      "column": "9",
+      "line": "137",
+      "path": "C:\\EK-TM4C1294_IAR8\\TivaWare_C_Series-2.1.4.178\\driverlib\\uart.h"
+    },
+    "name": "UART_RXERROR_OVERRUN",
+    "origin": "user_include",
+    "scope": null
+  },
+  {
+    "ID": "c:uart.h@7227@macro@UART_RXERROR_BREAK",
+    "What": "MacroDef",
+    "defdec": "Def",
+    "display": "UART_RXERROR_BREAK",
+    "location": {
+      "column": "9",
+      "line": "138",
+      "path": "C:\\EK-TM4C1294_IAR8\\TivaWare_C_Series-2.1.4.178\\driverlib\\uart.h"
+    },
+    "name": "UART_RXERROR_BREAK",
+    "origin": "user_include",
+    "scope": null
+  },
+  {
+    "ID": "c:uart.h@7271@macro@UART_RXERROR_PARITY",
+    "What": "MacroDef",
+    "defdec": "Def",
+    "display": "UART_RXERROR_PARITY",
+    "location": {
+      "column": "9",
+      "line": "139",
+      "path": "C:\\EK-TM4C1294_IAR8\\TivaWare_C_Series-2.1.4.178\\driverlib\\uart.h"
+    },
+    "name": "UART_RXERROR_PARITY",
+    "origin": "user_include",
+    "scope": null
+  },
+  {
+    "ID": "c:uart.h@7315@macro@UART_RXERROR_FRAMING",
+    "What": "MacroDef",
+    "defdec": "Def",
+    "display": "UART_RXERROR_FRAMING",
+    "location": {
+      "column": "9",
+      "line": "140",
+      "path": "C:\\EK-TM4C1294_IAR8\\TivaWare_C_Series-2.1.4.178\\driverlib\\uart.h"
+    },
+    "name": "UART_RXERROR_FRAMING",
+    "origin": "user_include",
+    "scope": null
+  },
+  {
+    "ID": "c:uart.h@7637@macro@UART_OUTPUT_RTS",
+    "What": "MacroDef",
+    "defdec": "Def",
+    "display": "UART_OUTPUT_RTS",
+    "location": {
+      "column": "9",
+      "line": "148",
+      "path": "C:\\EK-TM4C1294_IAR8\\TivaWare_C_Series-2.1.4.178\\driverlib\\uart.h"
+    },
+    "name": "UART_OUTPUT_RTS",
+    "origin": "user_include",
+    "scope": null
+  },
+  {
+    "ID": "c:uart.h@7681@macro@UART_OUTPUT_DTR",
+    "What": "MacroDef",
+    "defdec": "Def",
+    "display": "UART_OUTPUT_DTR",
+    "location": {
+      "column": "9",
+      "line": "149",
+      "path": "C:\\EK-TM4C1294_IAR8\\TivaWare_C_Series-2.1.4.178\\driverlib\\uart.h"
+    },
+    "name": "UART_OUTPUT_DTR",
+    "origin": "user_include",
+    "scope": null
+  },
+  {
+    "ID": "c:uart.h@7960@macro@UART_INPUT_RI",
+    "What": "MacroDef",
+    "defdec": "Def",
+    "display": "UART_INPUT_RI",
+    "location": {
+      "column": "9",
+      "line": "156",
+      "path": "C:\\EK-TM4C1294_IAR8\\TivaWare_C_Series-2.1.4.178\\driverlib\\uart.h"
+    },
+    "name": "UART_INPUT_RI",
+    "origin": "user_include",
+    "scope": null
+  },
+  {
+    "ID": "c:uart.h@8004@macro@UART_INPUT_DCD",
+    "What": "MacroDef",
+    "defdec": "Def",
+    "display": "UART_INPUT_DCD",
+    "location": {
+      "column": "9",
+      "line": "157",
+      "path": "C:\\EK-TM4C1294_IAR8\\TivaWare_C_Series-2.1.4.178\\driverlib\\uart.h"
+    },
+    "name": "UART_INPUT_DCD",
+    "origin": "user_include",
+    "scope": null
+  },
+  {
+    "ID": "c:uart.h@8048@macro@UART_INPUT_DSR",
+    "What": "MacroDef",
+    "defdec": "Def",
+    "display": "UART_INPUT_DSR",
+    "location": {
+      "column": "9",
+      "line": "158",
+      "path": "C:\\EK-TM4C1294_IAR8\\TivaWare_C_Series-2.1.4.178\\driverlib\\uart.h"
+    },
+    "name": "UART_INPUT_DSR",
+    "origin": "user_include",
+    "scope": null
+  },
+  {
+    "ID": "c:uart.h@8092@macro@UART_INPUT_CTS",
+    "What": "MacroDef",
+    "defdec": "Def",
+    "display": "UART_INPUT_CTS",
+    "location": {
+      "column": "9",
+      "line": "159",
+      "path": "C:\\EK-TM4C1294_IAR8\\TivaWare_C_Series-2.1.4.178\\driverlib\\uart.h"
+    },
+    "name": "UART_INPUT_CTS",
+    "origin": "user_include",
+    "scope": null
+  },
+  {
+    "ID": "c:uart.h@8402@macro@UART_FLOWCONTROL_TX",
+    "What": "MacroDef",
+    "defdec": "Def",
+    "display": "UART_FLOWCONTROL_TX",
+    "location": {
+      "column": "9",
+      "line": "167",
+      "path": "C:\\EK-TM4C1294_IAR8\\TivaWare_C_Series-2.1.4.178\\driverlib\\uart.h"
+    },
+    "name": "UART_FLOWCONTROL_TX",
+    "origin": "user_include",
+    "scope": null
+  },
+  {
+    "ID": "c:uart.h@8446@macro@UART_FLOWCONTROL_RX",
+    "What": "MacroDef",
+    "defdec": "Def",
+    "display": "UART_FLOWCONTROL_RX",
+    "location": {
+      "column": "9",
+      "line": "168",
+      "path": "C:\\EK-TM4C1294_IAR8\\TivaWare_C_Series-2.1.4.178\\driverlib\\uart.h"
+    },
+    "name": "UART_FLOWCONTROL_RX",
+    "origin": "user_include",
+    "scope": null
+  },
+  {
+    "ID": "c:uart.h@8490@macro@UART_FLOWCONTROL_NONE",
+    "What": "MacroDef",
+    "defdec": "Def",
+    "display": "UART_FLOWCONTROL_NONE",
+    "location": {
+      "column": "9",
+      "line": "169",
+      "path": "C:\\EK-TM4C1294_IAR8\\TivaWare_C_Series-2.1.4.178\\driverlib\\uart.h"
+    },
+    "name": "UART_FLOWCONTROL_NONE",
+    "origin": "user_include",
+    "scope": null
+  },
+  {
+    "ID": "c:uart.h@8799@macro@UART_TXINT_MODE_FIFO",
+    "What": "MacroDef",
+    "defdec": "Def",
+    "display": "UART_TXINT_MODE_FIFO",
+    "location": {
+      "column": "9",
+      "line": "177",
+      "path": "C:\\EK-TM4C1294_IAR8\\TivaWare_C_Series-2.1.4.178\\driverlib\\uart.h"
+    },
+    "name": "UART_TXINT_MODE_FIFO",
+    "origin": "user_include",
+    "scope": null
+  },
+  {
+    "ID": "c:uart.h@8843@macro@UART_TXINT_MODE_EOT",
+    "What": "MacroDef",
+    "defdec": "Def",
+    "display": "UART_TXINT_MODE_EOT",
+    "location": {
+      "column": "9",
+      "line": "178",
+      "path": "C:\\EK-TM4C1294_IAR8\\TivaWare_C_Series-2.1.4.178\\driverlib\\uart.h"
+    },
+    "name": "UART_TXINT_MODE_EOT",
+    "origin": "user_include",
+    "scope": null
+  },
+  {
+    "ID": "c:uart.h@9156@macro@UART_CLOCK_SYSTEM",
+    "What": "MacroDef",
+    "defdec": "Def",
+    "display": "UART_CLOCK_SYSTEM",
+    "location": {
+      "column": "9",
+      "line": "186",
+      "path": "C:\\EK-TM4C1294_IAR8\\TivaWare_C_Series-2.1.4.178\\driverlib\\uart.h"
+    },
+    "name": "UART_CLOCK_SYSTEM",
+    "origin": "user_include",
+    "scope": null
+  },
+  {
+    "ID": "c:uart.h@9200@macro@UART_CLOCK_PIOSC",
+    "What": "MacroDef",
+    "defdec": "Def",
+    "display": "UART_CLOCK_PIOSC",
+    "location": {
+      "column": "9",
+      "line": "187",
+      "path": "C:\\EK-TM4C1294_IAR8\\TivaWare_C_Series-2.1.4.178\\driverlib\\uart.h"
+    },
+    "name": "UART_CLOCK_PIOSC",
+    "origin": "user_include",
+    "scope": null
+  },
+  {
+    "ID": "c:@F@UARTParityModeSet",
+    "What": "Function",
+    "defdec": "Dec",
+    "display": "void UARTParityModeSet(uint32_t, uint32_t)",
+    "location": {
+      "column": "13",
+      "line": "194",
+      "path": "C:\\EK-TM4C1294_IAR8\\TivaWare_C_Series-2.1.4.178\\driverlib\\uart.h"
+    },
+    "name": "UARTParityModeSet",
+    "origin": "user_include",
+    "scope": null
+  },
+  {
+    "ID": "c:@F@UARTParityModeGet",
+    "What": "Function",
+    "defdec": "Dec",
+    "display": "uint32_t UARTParityModeGet(uint32_t)",
+    "location": {
+      "column": "17",
+      "line": "195",
+      "path": "C:\\EK-TM4C1294_IAR8\\TivaWare_C_Series-2.1.4.178\\driverlib\\uart.h"
+    },
+    "name": "UARTParityModeGet",
+    "origin": "user_include",
+    "scope": null
+  },
+  {
+    "ID": "c:@F@UARTFIFOLevelSet",
+    "What": "Function",
+    "defdec": "Dec",
+    "display": "void UARTFIFOLevelSet(uint32_t, uint32_t, uint32_t)",
+    "location": {
+      "column": "13",
+      "line": "196",
+      "path": "C:\\EK-TM4C1294_IAR8\\TivaWare_C_Series-2.1.4.178\\driverlib\\uart.h"
+    },
+    "name": "UARTFIFOLevelSet",
+    "origin": "user_include",
+    "scope": null
+  },
+  {
+    "ID": "c:@F@UARTFIFOLevelGet",
+    "What": "Function",
+    "defdec": "Dec",
+    "display": "void UARTFIFOLevelGet(uint32_t, uint32_t *, uint32_t *)",
+    "location": {
+      "column": "13",
+      "line": "198",
+      "path": "C:\\EK-TM4C1294_IAR8\\TivaWare_C_Series-2.1.4.178\\driverlib\\uart.h"
+    },
+    "name": "UARTFIFOLevelGet",
+    "origin": "user_include",
+    "scope": null
+  },
+  {
+    "ID": "c:@F@UARTConfigSetExpClk",
+    "What": "Function",
+    "defdec": "Dec",
+    "display": "void UARTConfigSetExpClk(uint32_t, uint32_t, uint32_t, uint32_t)",
+    "location": {
+      "column": "13",
+      "line": "200",
+      "path": "C:\\EK-TM4C1294_IAR8\\TivaWare_C_Series-2.1.4.178\\driverlib\\uart.h"
+    },
+    "name": "UARTConfigSetExpClk",
+    "origin": "user_include",
+    "scope": null
+  },
+  {
+    "ID": "c:@F@UARTConfigGetExpClk",
+    "What": "Function",
+    "defdec": "Dec",
+    "display": "void UARTConfigGetExpClk(uint32_t, uint32_t, uint32_t *, uint32_t *)",
+    "location": {
+      "column": "13",
+      "line": "202",
+      "path": "C:\\EK-TM4C1294_IAR8\\TivaWare_C_Series-2.1.4.178\\driverlib\\uart.h"
+    },
+    "name": "UARTConfigGetExpClk",
+    "origin": "user_include",
+    "scope": null
+  },
+  {
+    "ID": "c:@F@UARTEnable",
+    "What": "Function",
+    "defdec": "Dec",
+    "display": "void UARTEnable(uint32_t)",
+    "location": {
+      "column": "13",
+      "line": "204",
+      "path": "C:\\EK-TM4C1294_IAR8\\TivaWare_C_Series-2.1.4.178\\driverlib\\uart.h"
+    },
+    "name": "UARTEnable",
+    "origin": "user_include",
+    "scope": null
+  },
+  {
+    "ID": "c:@F@UARTDisable",
+    "What": "Function",
+    "defdec": "Dec",
+    "display": "void UARTDisable(uint32_t)",
+    "location": {
+      "column": "13",
+      "line": "205",
+      "path": "C:\\EK-TM4C1294_IAR8\\TivaWare_C_Series-2.1.4.178\\driverlib\\uart.h"
+    },
+    "name": "UARTDisable",
+    "origin": "user_include",
+    "scope": null
+  },
+  {
+    "ID": "c:@F@UARTFIFOEnable",
+    "What": "Function",
+    "defdec": "Dec",
+    "display": "void UARTFIFOEnable(uint32_t)",
+    "location": {
+      "column": "13",
+      "line": "206",
+      "path": "C:\\EK-TM4C1294_IAR8\\TivaWare_C_Series-2.1.4.178\\driverlib\\uart.h"
+    },
+    "name": "UARTFIFOEnable",
+    "origin": "user_include",
+    "scope": null
+  },
+  {
+    "ID": "c:@F@UARTFIFODisable",
+    "What": "Function",
+    "defdec": "Dec",
+    "display": "void UARTFIFODisable(uint32_t)",
+    "location": {
+      "column": "13",
+      "line": "207",
+      "path": "C:\\EK-TM4C1294_IAR8\\TivaWare_C_Series-2.1.4.178\\driverlib\\uart.h"
+    },
+    "name": "UARTFIFODisable",
+    "origin": "user_include",
+    "scope": null
+  },
+  {
+    "ID": "c:@F@UARTEnableSIR",
+    "What": "Function",
+    "defdec": "Dec",
+    "display": "void UARTEnableSIR(uint32_t, bool)",
+    "location": {
+      "column": "13",
+      "line": "208",
+      "path": "C:\\EK-TM4C1294_IAR8\\TivaWare_C_Series-2.1.4.178\\driverlib\\uart.h"
+    },
+    "name": "UARTEnableSIR",
+    "origin": "user_include",
+    "scope": null
+  },
+  {
+    "ID": "c:@F@UARTDisableSIR",
+    "What": "Function",
+    "defdec": "Dec",
+    "display": "void UARTDisableSIR(uint32_t)",
+    "location": {
+      "column": "13",
+      "line": "209",
+      "path": "C:\\EK-TM4C1294_IAR8\\TivaWare_C_Series-2.1.4.178\\driverlib\\uart.h"
+    },
+    "name": "UARTDisableSIR",
+    "origin": "user_include",
+    "scope": null
+  },
+  {
+    "ID": "c:@F@UARTCharsAvail",
+    "What": "Function",
+    "defdec": "Dec",
+    "display": "bool UARTCharsAvail(uint32_t)",
+    "location": {
+      "column": "13",
+      "line": "210",
+      "path": "C:\\EK-TM4C1294_IAR8\\TivaWare_C_Series-2.1.4.178\\driverlib\\uart.h"
+    },
+    "name": "UARTCharsAvail",
+    "origin": "user_include",
+    "scope": null
+  },
+  {
+    "ID": "c:@F@UARTSpaceAvail",
+    "What": "Function",
+    "defdec": "Dec",
+    "display": "bool UARTSpaceAvail(uint32_t)",
+    "location": {
+      "column": "13",
+      "line": "211",
+      "path": "C:\\EK-TM4C1294_IAR8\\TivaWare_C_Series-2.1.4.178\\driverlib\\uart.h"
+    },
+    "name": "UARTSpaceAvail",
+    "origin": "user_include",
+    "scope": null
+  },
+  {
+    "ID": "c:@F@UARTCharGetNonBlocking",
+    "What": "Function",
+    "defdec": "Dec",
+    "display": "int32_t UARTCharGetNonBlocking(uint32_t)",
+    "location": {
+      "column": "16",
+      "line": "212",
+      "path": "C:\\EK-TM4C1294_IAR8\\TivaWare_C_Series-2.1.4.178\\driverlib\\uart.h"
+    },
+    "name": "UARTCharGetNonBlocking",
+    "origin": "user_include",
+    "scope": null
+  },
+  {
+    "ID": "c:@F@UARTCharGet",
+    "What": "Function",
+    "defdec": "Dec",
+    "display": "int32_t UARTCharGet(uint32_t)",
+    "location": {
+      "column": "16",
+      "line": "213",
+      "path": "C:\\EK-TM4C1294_IAR8\\TivaWare_C_Series-2.1.4.178\\driverlib\\uart.h"
+    },
+    "name": "UARTCharGet",
+    "origin": "user_include",
+    "scope": null
+  },
+  {
+    "ID": "c:@F@UARTCharPutNonBlocking",
+    "What": "Function",
+    "defdec": "Dec",
+    "display": "bool UARTCharPutNonBlocking(uint32_t, unsigned char)",
+    "location": {
+      "column": "13",
+      "line": "214",
+      "path": "C:\\EK-TM4C1294_IAR8\\TivaWare_C_Series-2.1.4.178\\driverlib\\uart.h"
+    },
+    "name": "UARTCharPutNonBlocking",
+    "origin": "user_include",
+    "scope": null
+  },
+  {
+    "ID": "c:@F@UARTCharPut",
+    "What": "Function",
+    "defdec": "Dec",
+    "display": "void UARTCharPut(uint32_t, unsigned char)",
+    "location": {
+      "column": "13",
+      "line": "215",
+      "path": "C:\\EK-TM4C1294_IAR8\\TivaWare_C_Series-2.1.4.178\\driverlib\\uart.h"
+    },
+    "name": "UARTCharPut",
+    "origin": "user_include",
+    "scope": null
+  },
+  {
+    "ID": "c:@F@UARTBreakCtl",
+    "What": "Function",
+    "defdec": "Dec",
+    "display": "void UARTBreakCtl(uint32_t, bool)",
+    "location": {
+      "column": "13",
+      "line": "216",
+      "path": "C:\\EK-TM4C1294_IAR8\\TivaWare_C_Series-2.1.4.178\\driverlib\\uart.h"
+    },
+    "name": "UARTBreakCtl",
+    "origin": "user_include",
+    "scope": null
+  },
+  {
+    "ID": "c:@F@UARTBusy",
+    "What": "Function",
+    "defdec": "Dec",
+    "display": "bool UARTBusy(uint32_t)",
+    "location": {
+      "column": "13",
+      "line": "217",
+      "path": "C:\\EK-TM4C1294_IAR8\\TivaWare_C_Series-2.1.4.178\\driverlib\\uart.h"
+    },
+    "name": "UARTBusy",
+    "origin": "user_include",
+    "scope": null
+  },
+  {
+    "ID": "c:@F@UARTIntRegister",
+    "What": "Function",
+    "defdec": "Dec",
+    "display": "void UARTIntRegister(uint32_t, void (*)(void))",
+    "location": {
+      "column": "13",
+      "line": "218",
+      "path": "C:\\EK-TM4C1294_IAR8\\TivaWare_C_Series-2.1.4.178\\driverlib\\uart.h"
+    },
+    "name": "UARTIntRegister",
+    "origin": "user_include",
+    "scope": null
+  },
+  {
+    "ID": "c:@F@UARTIntUnregister",
+    "What": "Function",
+    "defdec": "Dec",
+    "display": "void UARTIntUnregister(uint32_t)",
+    "location": {
+      "column": "13",
+      "line": "219",
+      "path": "C:\\EK-TM4C1294_IAR8\\TivaWare_C_Series-2.1.4.178\\driverlib\\uart.h"
+    },
+    "name": "UARTIntUnregister",
+    "origin": "user_include",
+    "scope": null
+  },
+  {
+    "ID": "c:@F@UARTIntEnable",
+    "What": "Function",
+    "defdec": "Dec",
+    "display": "void UARTIntEnable(uint32_t, uint32_t)",
+    "location": {
+      "column": "13",
+      "line": "220",
+      "path": "C:\\EK-TM4C1294_IAR8\\TivaWare_C_Series-2.1.4.178\\driverlib\\uart.h"
+    },
+    "name": "UARTIntEnable",
+    "origin": "user_include",
+    "scope": null
+  },
+  {
+    "ID": "c:@F@UARTIntDisable",
+    "What": "Function",
+    "defdec": "Dec",
+    "display": "void UARTIntDisable(uint32_t, uint32_t)",
+    "location": {
+      "column": "13",
+      "line": "221",
+      "path": "C:\\EK-TM4C1294_IAR8\\TivaWare_C_Series-2.1.4.178\\driverlib\\uart.h"
+    },
+    "name": "UARTIntDisable",
+    "origin": "user_include",
+    "scope": null
+  },
+  {
+    "ID": "c:@F@UARTIntStatus",
+    "What": "Function",
+    "defdec": "Dec",
+    "display": "uint32_t UARTIntStatus(uint32_t, bool)",
+    "location": {
+      "column": "17",
+      "line": "222",
+      "path": "C:\\EK-TM4C1294_IAR8\\TivaWare_C_Series-2.1.4.178\\driverlib\\uart.h"
+    },
+    "name": "UARTIntStatus",
+    "origin": "user_include",
+    "scope": null
+  },
+  {
+    "ID": "c:@F@UARTIntClear",
+    "What": "Function",
+    "defdec": "Dec",
+    "display": "void UARTIntClear(uint32_t, uint32_t)",
+    "location": {
+      "column": "13",
+      "line": "223",
+      "path": "C:\\EK-TM4C1294_IAR8\\TivaWare_C_Series-2.1.4.178\\driverlib\\uart.h"
+    },
+    "name": "UARTIntClear",
+    "origin": "user_include",
+    "scope": null
+  },
+  {
+    "ID": "c:@F@UARTDMAEnable",
+    "What": "Function",
+    "defdec": "Dec",
+    "display": "void UARTDMAEnable(uint32_t, uint32_t)",
+    "location": {
+      "column": "13",
+      "line": "224",
+      "path": "C:\\EK-TM4C1294_IAR8\\TivaWare_C_Series-2.1.4.178\\driverlib\\uart.h"
+    },
+    "name": "UARTDMAEnable",
+    "origin": "user_include",
+    "scope": null
+  },
+  {
+    "ID": "c:@F@UARTDMADisable",
+    "What": "Function",
+    "defdec": "Dec",
+    "display": "void UARTDMADisable(uint32_t, uint32_t)",
+    "location": {
+      "column": "13",
+      "line": "225",
+      "path": "C:\\EK-TM4C1294_IAR8\\TivaWare_C_Series-2.1.4.178\\driverlib\\uart.h"
+    },
+    "name": "UARTDMADisable",
+    "origin": "user_include",
+    "scope": null
+  },
+  {
+    "ID": "c:@F@UARTRxErrorGet",
+    "What": "Function",
+    "defdec": "Dec",
+    "display": "uint32_t UARTRxErrorGet(uint32_t)",
+    "location": {
+      "column": "17",
+      "line": "226",
+      "path": "C:\\EK-TM4C1294_IAR8\\TivaWare_C_Series-2.1.4.178\\driverlib\\uart.h"
+    },
+    "name": "UARTRxErrorGet",
+    "origin": "user_include",
+    "scope": null
+  },
+  {
+    "ID": "c:@F@UARTRxErrorClear",
+    "What": "Function",
+    "defdec": "Dec",
+    "display": "void UARTRxErrorClear(uint32_t)",
+    "location": {
+      "column": "13",
+      "line": "227",
+      "path": "C:\\EK-TM4C1294_IAR8\\TivaWare_C_Series-2.1.4.178\\driverlib\\uart.h"
+    },
+    "name": "UARTRxErrorClear",
+    "origin": "user_include",
+    "scope": null
+  },
+  {
+    "ID": "c:@F@UARTSmartCardEnable",
+    "What": "Function",
+    "defdec": "Dec",
+    "display": "void UARTSmartCardEnable(uint32_t)",
+    "location": {
+      "column": "13",
+      "line": "228",
+      "path": "C:\\EK-TM4C1294_IAR8\\TivaWare_C_Series-2.1.4.178\\driverlib\\uart.h"
+    },
+    "name": "UARTSmartCardEnable",
+    "origin": "user_include",
+    "scope": null
+  },
+  {
+    "ID": "c:@F@UARTSmartCardDisable",
+    "What": "Function",
+    "defdec": "Dec",
+    "display": "void UARTSmartCardDisable(uint32_t)",
+    "location": {
+      "column": "13",
+      "line": "229",
+      "path": "C:\\EK-TM4C1294_IAR8\\TivaWare_C_Series-2.1.4.178\\driverlib\\uart.h"
+    },
+    "name": "UARTSmartCardDisable",
+    "origin": "user_include",
+    "scope": null
+  },
+  {
+    "ID": "c:@F@UARTModemControlSet",
+    "What": "Function",
+    "defdec": "Dec",
+    "display": "void UARTModemControlSet(uint32_t, uint32_t)",
+    "location": {
+      "column": "13",
+      "line": "230",
+      "path": "C:\\EK-TM4C1294_IAR8\\TivaWare_C_Series-2.1.4.178\\driverlib\\uart.h"
+    },
+    "name": "UARTModemControlSet",
+    "origin": "user_include",
+    "scope": null
+  },
+  {
+    "ID": "c:@F@UARTModemControlClear",
+    "What": "Function",
+    "defdec": "Dec",
+    "display": "void UARTModemControlClear(uint32_t, uint32_t)",
+    "location": {
+      "column": "13",
+      "line": "231",
+      "path": "C:\\EK-TM4C1294_IAR8\\TivaWare_C_Series-2.1.4.178\\driverlib\\uart.h"
+    },
+    "name": "UARTModemControlClear",
+    "origin": "user_include",
+    "scope": null
+  },
+  {
+    "ID": "c:@F@UARTModemControlGet",
+    "What": "Function",
+    "defdec": "Dec",
+    "display": "uint32_t UARTModemControlGet(uint32_t)",
+    "location": {
+      "column": "17",
+      "line": "232",
+      "path": "C:\\EK-TM4C1294_IAR8\\TivaWare_C_Series-2.1.4.178\\driverlib\\uart.h"
+    },
+    "name": "UARTModemControlGet",
+    "origin": "user_include",
+    "scope": null
+  },
+  {
+    "ID": "c:@F@UARTModemStatusGet",
+    "What": "Function",
+    "defdec": "Dec",
+    "display": "uint32_t UARTModemStatusGet(uint32_t)",
+    "location": {
+      "column": "17",
+      "line": "233",
+      "path": "C:\\EK-TM4C1294_IAR8\\TivaWare_C_Series-2.1.4.178\\driverlib\\uart.h"
+    },
+    "name": "UARTModemStatusGet",
+    "origin": "user_include",
+    "scope": null
+  },
+  {
+    "ID": "c:@F@UARTFlowControlSet",
+    "What": "Function",
+    "defdec": "Dec",
+    "display": "void UARTFlowControlSet(uint32_t, uint32_t)",
+    "location": {
+      "column": "13",
+      "line": "234",
+      "path": "C:\\EK-TM4C1294_IAR8\\TivaWare_C_Series-2.1.4.178\\driverlib\\uart.h"
+    },
+    "name": "UARTFlowControlSet",
+    "origin": "user_include",
+    "scope": null
+  },
+  {
+    "ID": "c:@F@UARTFlowControlGet",
+    "What": "Function",
+    "defdec": "Dec",
+    "display": "uint32_t UARTFlowControlGet(uint32_t)",
+    "location": {
+      "column": "17",
+      "line": "235",
+      "path": "C:\\EK-TM4C1294_IAR8\\TivaWare_C_Series-2.1.4.178\\driverlib\\uart.h"
+    },
+    "name": "UARTFlowControlGet",
+    "origin": "user_include",
+    "scope": null
+  },
+  {
+    "ID": "c:@F@UARTTxIntModeSet",
+    "What": "Function",
+    "defdec": "Dec",
+    "display": "void UARTTxIntModeSet(uint32_t, uint32_t)",
+    "location": {
+      "column": "13",
+      "line": "236",
+      "path": "C:\\EK-TM4C1294_IAR8\\TivaWare_C_Series-2.1.4.178\\driverlib\\uart.h"
+    },
+    "name": "UARTTxIntModeSet",
+    "origin": "user_include",
+    "scope": null
+  },
+  {
+    "ID": "c:@F@UARTTxIntModeGet",
+    "What": "Function",
+    "defdec": "Dec",
+    "display": "uint32_t UARTTxIntModeGet(uint32_t)",
+    "location": {
+      "column": "17",
+      "line": "237",
+      "path": "C:\\EK-TM4C1294_IAR8\\TivaWare_C_Series-2.1.4.178\\driverlib\\uart.h"
+    },
+    "name": "UARTTxIntModeGet",
+    "origin": "user_include",
+    "scope": null
+  },
+  {
+    "ID": "c:@F@UARTClockSourceSet",
+    "What": "Function",
+    "defdec": "Dec",
+    "display": "void UARTClockSourceSet(uint32_t, uint32_t)",
+    "location": {
+      "column": "13",
+      "line": "238",
+      "path": "C:\\EK-TM4C1294_IAR8\\TivaWare_C_Series-2.1.4.178\\driverlib\\uart.h"
+    },
+    "name": "UARTClockSourceSet",
+    "origin": "user_include",
+    "scope": null
+  },
+  {
+    "ID": "c:@F@UARTClockSourceGet",
+    "What": "Function",
+    "defdec": "Dec",
+    "display": "uint32_t UARTClockSourceGet(uint32_t)",
+    "location": {
+      "column": "17",
+      "line": "239",
+      "path": "C:\\EK-TM4C1294_IAR8\\TivaWare_C_Series-2.1.4.178\\driverlib\\uart.h"
+    },
+    "name": "UARTClockSourceGet",
+    "origin": "user_include",
+    "scope": null
+  },
+  {
+    "ID": "c:@F@UART9BitEnable",
+    "What": "Function",
+    "defdec": "Dec",
+    "display": "void UART9BitEnable(uint32_t)",
+    "location": {
+      "column": "13",
+      "line": "240",
+      "path": "C:\\EK-TM4C1294_IAR8\\TivaWare_C_Series-2.1.4.178\\driverlib\\uart.h"
+    },
+    "name": "UART9BitEnable",
+    "origin": "user_include",
+    "scope": null
+  },
+  {
+    "ID": "c:@F@UART9BitDisable",
+    "What": "Function",
+    "defdec": "Dec",
+    "display": "void UART9BitDisable(uint32_t)",
+    "location": {
+      "column": "13",
+      "line": "241",
+      "path": "C:\\EK-TM4C1294_IAR8\\TivaWare_C_Series-2.1.4.178\\driverlib\\uart.h"
+    },
+    "name": "UART9BitDisable",
+    "origin": "user_include",
+    "scope": null
+  },
+  {
+    "ID": "c:@F@UART9BitAddrSet",
+    "What": "Function",
+    "defdec": "Dec",
+    "display": "void UART9BitAddrSet(uint32_t, uint8_t, uint8_t)",
+    "location": {
+      "column": "13",
+      "line": "242",
+      "path": "C:\\EK-TM4C1294_IAR8\\TivaWare_C_Series-2.1.4.178\\driverlib\\uart.h"
+    },
+    "name": "UART9BitAddrSet",
+    "origin": "user_include",
+    "scope": null
+  },
+  {
+    "ID": "c:@F@UART9BitAddrSend",
+    "What": "Function",
+    "defdec": "Dec",
+    "display": "void UART9BitAddrSend(uint32_t, uint8_t)",
+    "location": {
+      "column": "13",
+      "line": "244",
+      "path": "C:\\EK-TM4C1294_IAR8\\TivaWare_C_Series-2.1.4.178\\driverlib\\uart.h"
+    },
+    "name": "UART9BitAddrSend",
+    "origin": "user_include",
+    "scope": null
+  },
+  {
+    "ID": "c:@F@UARTLoopbackEnable",
+    "What": "Function",
+    "defdec": "Dec",
+    "display": "void UARTLoopbackEnable(uint32_t)",
+    "location": {
+      "column": "13",
+      "line": "245",
+      "path": "C:\\EK-TM4C1294_IAR8\\TivaWare_C_Series-2.1.4.178\\driverlib\\uart.h"
+    },
+    "name": "UARTLoopbackEnable",
+    "origin": "user_include",
+    "scope": null
+  },
+  {
+    "ID": "c:@F@InitConsole",
     "What": "Function",
     "defdec": "Def",
-    "display": "void ClearAndWriteDisplayThreeLines(const char *, int, int, const char *, int, int, const char *, int, int)",
+    "display": "void InitConsole(void)",
     "location": {
-      "column": "6",
-      "line": "135",
+      "column": "1",
+      "line": "408",
       "path": "C:\\EK-TM4C1294_IAR8\\Projects\\TCC\\src\\TCC.c"
     },
-    "name": "ClearAndWriteDisplayThreeLines",
+    "name": "InitConsole",
     "origin": "project_file",
     "scope": null
   },
@@ -71389,10 +73143,10 @@
     "ID": "c:@F@main",
     "What": "Function",
     "defdec": "Def",
-    "display": "void main(void)",
+    "display": "int main(void)",
     "location": {
-      "column": "6",
-      "line": "143",
+      "column": "1",
+      "line": "454",
       "path": "C:\\EK-TM4C1294_IAR8\\Projects\\TCC\\src\\TCC.c"
     },
     "name": "main",
@@ -71400,660 +73154,226 @@
     "scope": null
   },
   {
-    "ID": "c:TCC.c@6541@F@main@pC",
+    "ID": "c:TCC.c@18283@F@main@pui32ADC0Value",
     "What": "Variable",
     "defdec": "Def",
-    "display": "pC",
+    "display": "pui32ADC0Value",
     "location": {
-      "column": "7",
-      "line": "186",
+      "column": "14",
+      "line": "468",
       "path": "C:\\EK-TM4C1294_IAR8\\Projects\\TCC\\src\\TCC.c"
     },
-    "name": "pC",
+    "name": "pui32ADC0Value",
     "origin": "project_file",
     "scope": null
   },
   {
-    "ID": "c:TCC.c@6541@F@main@pD",
+    "ID": "c:TCC.c@18440@F@main@ui32TempValueC",
     "What": "Variable",
     "defdec": "Def",
-    "display": "pD",
+    "display": "ui32TempValueC",
     "location": {
-      "column": "7",
-      "line": "186",
+      "column": "14",
+      "line": "474",
       "path": "C:\\EK-TM4C1294_IAR8\\Projects\\TCC\\src\\TCC.c"
     },
-    "name": "pD",
+    "name": "ui32TempValueC",
     "origin": "project_file",
     "scope": null
   },
   {
-    "ID": "c:TCC.c@7236@F@main@option",
+    "ID": "c:TCC.c@18470@F@main@ui32TempValueF",
     "What": "Variable",
     "defdec": "Def",
-    "display": "option",
+    "display": "ui32TempValueF",
     "location": {
-      "column": "11",
-      "line": "197",
+      "column": "14",
+      "line": "475",
       "path": "C:\\EK-TM4C1294_IAR8\\Projects\\TCC\\src\\TCC.c"
     },
-    "name": "option",
+    "name": "ui32TempValueF",
     "origin": "project_file",
     "scope": null
   },
   {
-    "ID": "c:TCC.c@7257@F@main@greetings",
-    "What": "Variable",
-    "defdec": "Def",
-    "display": "greetings",
-    "location": {
-      "column": "12",
-      "line": "198",
-      "path": "C:\\EK-TM4C1294_IAR8\\Projects\\TCC\\src\\TCC.c"
-    },
-    "name": "greetings",
-    "origin": "project_file",
-    "scope": null
-  },
-  {
-    "ID": "c:DLib_Product_stdlib.h@251@macro@_DLIB_PRODUCTS_STDLIB_H_",
+    "ID": "c:stdarg.h@65@macro@_STDARG",
     "What": "MacroDef",
     "defdec": "Def",
-    "display": "_DLIB_PRODUCTS_STDLIB_H_",
+    "display": "_STDARG",
     "location": {
       "column": "9",
+      "line": "4",
+      "path": "C:\\Program Files\\IAR Systems\\Embedded Workbench 9.1\\arm\\inc\\c\\stdarg.h"
+    },
+    "name": "_STDARG",
+    "origin": "system_include",
+    "scope": null
+  },
+  {
+    "ID": "c:stdarg.h@T@va_list",
+    "What": "Typedef",
+    "defdec": "Def",
+    "display": "__builtin_va_list",
+    "location": {
+      "column": "29",
       "line": "10",
-      "path": "C:\\Program Files\\IAR Systems\\Embedded Workbench 9.1\\arm\\inc\\c\\DLib_Product_stdlib.h"
+      "path": "C:\\Program Files\\IAR Systems\\Embedded Workbench 9.1\\arm\\inc\\c\\stdarg.h"
     },
-    "name": "_DLIB_PRODUCTS_STDLIB_H_",
+    "name": "va_list",
     "origin": "system_include",
     "scope": null
   },
   {
-    "ID": "c:@F@div",
-    "What": "Function",
+    "ID": "c:stdarg.h@181@macro@va_start",
+    "What": "MacroDef",
     "defdec": "Def",
-    "display": "div_t div(int, int)",
-    "location": {
-      "column": "7",
-      "line": "29",
-      "path": "C:\\Program Files\\IAR Systems\\Embedded Workbench 9.1\\arm\\inc\\c\\DLib_Product_stdlib.h"
-    },
-    "name": "div",
-    "origin": "system_include",
-    "scope": null
-  },
-  {
-    "ID": "c:DLib_Product_stdlib.h@647@F@div@q",
-    "What": "Variable",
-    "defdec": "Def",
-    "display": "q",
-    "location": {
-      "column": "7",
-      "line": "32",
-      "path": "C:\\Program Files\\IAR Systems\\Embedded Workbench 9.1\\arm\\inc\\c\\DLib_Product_stdlib.h"
-    },
-    "name": "q",
-    "origin": "system_include",
-    "scope": null
-  },
-  {
-    "ID": "c:DLib_Product_stdlib.h@665@F@div@r",
-    "What": "Variable",
-    "defdec": "Def",
-    "display": "r",
-    "location": {
-      "column": "7",
-      "line": "33",
-      "path": "C:\\Program Files\\IAR Systems\\Embedded Workbench 9.1\\arm\\inc\\c\\DLib_Product_stdlib.h"
-    },
-    "name": "r",
-    "origin": "system_include",
-    "scope": null
-  },
-  {
-    "ID": "c:DLib_Product_stdlib.h@687@F@div@d",
-    "What": "Variable",
-    "defdec": "Def",
-    "display": "d",
+    "display": "va_start",
     "location": {
       "column": "9",
-      "line": "34",
-      "path": "C:\\Program Files\\IAR Systems\\Embedded Workbench 9.1\\arm\\inc\\c\\DLib_Product_stdlib.h"
+      "line": "11",
+      "path": "C:\\Program Files\\IAR Systems\\Embedded Workbench 9.1\\arm\\inc\\c\\stdarg.h"
     },
-    "name": "d",
+    "name": "va_start",
     "origin": "system_include",
     "scope": null
   },
   {
-    "ID": "c:@F@ldiv",
-    "What": "Function",
-    "defdec": "Def",
-    "display": "ldiv_t ldiv(long, long)",
-    "location": {
-      "column": "8",
-      "line": "45",
-      "path": "C:\\Program Files\\IAR Systems\\Embedded Workbench 9.1\\arm\\inc\\c\\DLib_Product_stdlib.h"
-    },
-    "name": "ldiv",
-    "origin": "system_include",
-    "scope": null
-  },
-  {
-    "ID": "c:DLib_Product_stdlib.h@1014@F@ldiv@q",
-    "What": "Variable",
-    "defdec": "Def",
-    "display": "q",
-    "location": {
-      "column": "7",
-      "line": "54",
-      "path": "C:\\Program Files\\IAR Systems\\Embedded Workbench 9.1\\arm\\inc\\c\\DLib_Product_stdlib.h"
-    },
-    "name": "q",
-    "origin": "system_include",
-    "scope": null
-  },
-  {
-    "ID": "c:DLib_Product_stdlib.h@1032@F@ldiv@r",
-    "What": "Variable",
-    "defdec": "Def",
-    "display": "r",
-    "location": {
-      "column": "7",
-      "line": "55",
-      "path": "C:\\Program Files\\IAR Systems\\Embedded Workbench 9.1\\arm\\inc\\c\\DLib_Product_stdlib.h"
-    },
-    "name": "r",
-    "origin": "system_include",
-    "scope": null
-  },
-  {
-    "ID": "c:DLib_Product_stdlib.h@1054@F@ldiv@ld",
-    "What": "Variable",
-    "defdec": "Def",
-    "display": "ld",
-    "location": {
-      "column": "10",
-      "line": "56",
-      "path": "C:\\Program Files\\IAR Systems\\Embedded Workbench 9.1\\arm\\inc\\c\\DLib_Product_stdlib.h"
-    },
-    "name": "ld",
-    "origin": "system_include",
-    "scope": null
-  },
-  {
-    "ID": "c:@F@__aeabi_ldivmod",
-    "What": "Function",
-    "defdec": "Dec",
-    "display": "lldiv_t __aeabi_ldivmod(long long, long long)",
-    "location": {
-      "column": "13",
-      "line": "83",
-      "path": "C:\\Program Files\\IAR Systems\\Embedded Workbench 9.1\\arm\\inc\\c\\DLib_Product_stdlib.h"
-    },
-    "name": "__aeabi_ldivmod",
-    "origin": "system_include",
-    "scope": null
-  },
-  {
-    "ID": "c:@F@lldiv",
-    "What": "Function",
-    "defdec": "Def",
-    "display": "lldiv_t lldiv(long long, long long)",
-    "location": {
-      "column": "13",
-      "line": "87",
-      "path": "C:\\Program Files\\IAR Systems\\Embedded Workbench 9.1\\arm\\inc\\c\\DLib_Product_stdlib.h"
-    },
-    "name": "lldiv",
-    "origin": "system_include",
-    "scope": null
-  },
-  {
-    "ID": "c:ysizet.h@111@macro@_YSIZET_H",
+    "ID": "c:stdarg.h@240@macro@va_end",
     "What": "MacroDef",
     "defdec": "Def",
-    "display": "_YSIZET_H",
+    "display": "va_end",
     "location": {
       "column": "9",
-      "line": "5",
-      "path": "C:\\Program Files\\IAR Systems\\Embedded Workbench 9.1\\arm\\inc\\c\\ysizet.h"
+      "line": "12",
+      "path": "C:\\Program Files\\IAR Systems\\Embedded Workbench 9.1\\arm\\inc\\c\\stdarg.h"
     },
-    "name": "_YSIZET_H",
+    "name": "va_end",
     "origin": "system_include",
     "scope": null
   },
   {
-    "ID": "c:ysizet.h@277@macro@_SIZE_T",
+    "ID": "c:stdarg.h@290@macro@va_arg",
     "What": "MacroDef",
     "defdec": "Def",
-    "display": "_SIZE_T",
-    "location": {
-      "column": "11",
-      "line": "16",
-      "path": "C:\\Program Files\\IAR Systems\\Embedded Workbench 9.1\\arm\\inc\\c\\ysizet.h"
-    },
-    "name": "_SIZE_T",
-    "origin": "system_include",
-    "scope": null
-  },
-  {
-    "ID": "c:ysizet.h@296@macro@_STD_USING_SIZE_T",
-    "What": "MacroDef",
-    "defdec": "Def",
-    "display": "_STD_USING_SIZE_T",
-    "location": {
-      "column": "11",
-      "line": "17",
-      "path": "C:\\Program Files\\IAR Systems\\Embedded Workbench 9.1\\arm\\inc\\c\\ysizet.h"
-    },
-    "name": "_STD_USING_SIZE_T",
-    "origin": "system_include",
-    "scope": null
-  },
-  {
-    "ID": "c:ysizet.h@T@size_t",
-    "What": "Typedef",
-    "defdec": "Def",
-    "display": "_Sizet",
-    "location": {
-      "column": "18",
-      "line": "18",
-      "path": "C:\\Program Files\\IAR Systems\\Embedded Workbench 9.1\\arm\\inc\\c\\ysizet.h"
-    },
-    "name": "size_t",
-    "origin": "system_include",
-    "scope": null
-  },
-  {
-    "ID": "c:ysizet.h@359@macro@__DATA_PTR_MEM_HELPER1__",
-    "What": "MacroDef",
-    "defdec": "Def",
-    "display": "__DATA_PTR_MEM_HELPER1__",
+    "display": "va_arg",
     "location": {
       "column": "9",
-      "line": "21",
-      "path": "C:\\Program Files\\IAR Systems\\Embedded Workbench 9.1\\arm\\inc\\c\\ysizet.h"
+      "line": "13",
+      "path": "C:\\Program Files\\IAR Systems\\Embedded Workbench 9.1\\arm\\inc\\c\\stdarg.h"
     },
-    "name": "__DATA_PTR_MEM_HELPER1__",
+    "name": "va_arg",
     "origin": "system_include",
     "scope": null
   },
   {
-    "ID": "c:ysizet.h@T@__data_size_t",
-    "What": "Typedef",
-    "defdec": "Def",
-    "display": "unsigned int",
-    "location": {
-      "column": "1",
-      "line": "23",
-      "path": "C:\\Program Files\\IAR Systems\\Embedded Workbench 9.1\\arm\\inc\\c\\ysizet.h"
-    },
-    "name": "__data_size_t",
-    "origin": "system_include",
-    "scope": null
-  },
-  {
-    "ID": "c:systick.h@2031@macro@__DRIVERLIB_SYSTICK_H__",
+    "ID": "c:stdarg.h@346@macro@va_copy",
     "What": "MacroDef",
     "defdec": "Def",
-    "display": "__DRIVERLIB_SYSTICK_H__",
+    "display": "va_copy",
     "location": {
       "column": "9",
-      "line": "41",
-      "path": "C:\\EK-TM4C1294_IAR8\\TivaWare_C_Series-2.1.4.178\\driverlib\\systick.h"
+      "line": "14",
+      "path": "C:\\Program Files\\IAR Systems\\Embedded Workbench 9.1\\arm\\inc\\c\\stdarg.h"
     },
-    "name": "__DRIVERLIB_SYSTICK_H__",
+    "name": "va_copy",
+    "origin": "system_include",
+    "scope": null
+  },
+  {
+    "ID": "c:uartstdio.h@1194@macro@__UARTSTDIO_H__",
+    "What": "MacroDef",
+    "defdec": "Def",
+    "display": "__UARTSTDIO_H__",
+    "location": {
+      "column": "9",
+      "line": "26",
+      "path": "C:\\EK-TM4C1294_IAR8\\TivaWare_C_Series-2.1.4.178\\utils\\uartstdio.h"
+    },
+    "name": "__UARTSTDIO_H__",
     "origin": "user_include",
     "scope": null
   },
   {
-    "ID": "c:@F@SysTickEnable",
+    "ID": "c:@F@UARTStdioConfig",
     "What": "Function",
     "defdec": "Dec",
-    "display": "void SysTickEnable(void)",
-    "location": {
-      "column": "13",
-      "line": "59",
-      "path": "C:\\EK-TM4C1294_IAR8\\TivaWare_C_Series-2.1.4.178\\driverlib\\systick.h"
-    },
-    "name": "SysTickEnable",
-    "origin": "user_include",
-    "scope": null
-  },
-  {
-    "ID": "c:@F@SysTickDisable",
-    "What": "Function",
-    "defdec": "Dec",
-    "display": "void SysTickDisable(void)",
-    "location": {
-      "column": "13",
-      "line": "60",
-      "path": "C:\\EK-TM4C1294_IAR8\\TivaWare_C_Series-2.1.4.178\\driverlib\\systick.h"
-    },
-    "name": "SysTickDisable",
-    "origin": "user_include",
-    "scope": null
-  },
-  {
-    "ID": "c:@F@SysTickIntRegister",
-    "What": "Function",
-    "defdec": "Dec",
-    "display": "void SysTickIntRegister(void (*)(void))",
+    "display": "void UARTStdioConfig(uint32_t, uint32_t, uint32_t)",
     "location": {
       "column": "13",
       "line": "61",
-      "path": "C:\\EK-TM4C1294_IAR8\\TivaWare_C_Series-2.1.4.178\\driverlib\\systick.h"
+      "path": "C:\\EK-TM4C1294_IAR8\\TivaWare_C_Series-2.1.4.178\\utils\\uartstdio.h"
     },
-    "name": "SysTickIntRegister",
+    "name": "UARTStdioConfig",
     "origin": "user_include",
     "scope": null
   },
   {
-    "ID": "c:@F@SysTickIntUnregister",
+    "ID": "c:@F@UARTgets",
     "What": "Function",
     "defdec": "Dec",
-    "display": "void SysTickIntUnregister(void)",
+    "display": "int UARTgets(char *, uint32_t)",
     "location": {
-      "column": "13",
-      "line": "62",
-      "path": "C:\\EK-TM4C1294_IAR8\\TivaWare_C_Series-2.1.4.178\\driverlib\\systick.h"
-    },
-    "name": "SysTickIntUnregister",
-    "origin": "user_include",
-    "scope": null
-  },
-  {
-    "ID": "c:@F@SysTickIntEnable",
-    "What": "Function",
-    "defdec": "Dec",
-    "display": "void SysTickIntEnable(void)",
-    "location": {
-      "column": "13",
+      "column": "12",
       "line": "63",
-      "path": "C:\\EK-TM4C1294_IAR8\\TivaWare_C_Series-2.1.4.178\\driverlib\\systick.h"
+      "path": "C:\\EK-TM4C1294_IAR8\\TivaWare_C_Series-2.1.4.178\\utils\\uartstdio.h"
     },
-    "name": "SysTickIntEnable",
+    "name": "UARTgets",
     "origin": "user_include",
     "scope": null
   },
   {
-    "ID": "c:@F@SysTickIntDisable",
+    "ID": "c:@F@UARTgetc",
     "What": "Function",
     "defdec": "Dec",
-    "display": "void SysTickIntDisable(void)",
+    "display": "unsigned char UARTgetc(void)",
     "location": {
-      "column": "13",
+      "column": "22",
       "line": "64",
-      "path": "C:\\EK-TM4C1294_IAR8\\TivaWare_C_Series-2.1.4.178\\driverlib\\systick.h"
+      "path": "C:\\EK-TM4C1294_IAR8\\TivaWare_C_Series-2.1.4.178\\utils\\uartstdio.h"
     },
-    "name": "SysTickIntDisable",
+    "name": "UARTgetc",
     "origin": "user_include",
     "scope": null
   },
   {
-    "ID": "c:@F@SysTickPeriodSet",
+    "ID": "c:@F@UARTprintf",
     "What": "Function",
     "defdec": "Dec",
-    "display": "void SysTickPeriodSet(uint32_t)",
+    "display": "void UARTprintf(const char *, ...)",
     "location": {
       "column": "13",
       "line": "65",
-      "path": "C:\\EK-TM4C1294_IAR8\\TivaWare_C_Series-2.1.4.178\\driverlib\\systick.h"
+      "path": "C:\\EK-TM4C1294_IAR8\\TivaWare_C_Series-2.1.4.178\\utils\\uartstdio.h"
     },
-    "name": "SysTickPeriodSet",
+    "name": "UARTprintf",
     "origin": "user_include",
     "scope": null
   },
   {
-    "ID": "c:@F@SysTickPeriodGet",
+    "ID": "c:@F@UARTvprintf",
     "What": "Function",
     "defdec": "Dec",
-    "display": "uint32_t SysTickPeriodGet(void)",
+    "display": "void UARTvprintf(const char *, va_list)",
     "location": {
-      "column": "17",
+      "column": "13",
       "line": "66",
-      "path": "C:\\EK-TM4C1294_IAR8\\TivaWare_C_Series-2.1.4.178\\driverlib\\systick.h"
+      "path": "C:\\EK-TM4C1294_IAR8\\TivaWare_C_Series-2.1.4.178\\utils\\uartstdio.h"
     },
-    "name": "SysTickPeriodGet",
+    "name": "UARTvprintf",
     "origin": "user_include",
     "scope": null
   },
   {
-    "ID": "c:@F@SysTickValueGet",
+    "ID": "c:@F@UARTwrite",
     "What": "Function",
     "defdec": "Dec",
-    "display": "uint32_t SysTickValueGet(void)",
+    "display": "int UARTwrite(const char *, uint32_t)",
     "location": {
-      "column": "17",
+      "column": "12",
       "line": "67",
-      "path": "C:\\EK-TM4C1294_IAR8\\TivaWare_C_Series-2.1.4.178\\driverlib\\systick.h"
+      "path": "C:\\EK-TM4C1294_IAR8\\TivaWare_C_Series-2.1.4.178\\utils\\uartstdio.h"
     },
-    "name": "SysTickValueGet",
-    "origin": "user_include",
-    "scope": null
-  },
-  {
-    "ID": "c:cfaf128x128x16.h@342@macro@__CFAF128X128X16_H__",
-    "What": "MacroDef",
-    "defdec": "Def",
-    "display": "__CFAF128X128X16_H__",
-    "location": {
-      "column": "9",
-      "line": "9",
-      "path": "C:\\EK-TM4C1294_IAR8\\Projects\\drivers\\cfaf128x128x16.h"
-    },
-    "name": "__CFAF128X128X16_H__",
-    "origin": "user_include",
-    "scope": null
-  },
-  {
-    "ID": "c:@F@cfaf128x128x16Init",
-    "What": "Function",
-    "defdec": "Dec",
-    "display": "void cfaf128x128x16Init(void)",
-    "location": {
-      "column": "13",
-      "line": "16",
-      "path": "C:\\EK-TM4C1294_IAR8\\Projects\\drivers\\cfaf128x128x16.h"
-    },
-    "name": "cfaf128x128x16Init",
-    "origin": "user_include",
-    "scope": null
-  },
-  {
-    "ID": "c:@F@cfaf128x128x16Clear",
-    "What": "Function",
-    "defdec": "Dec",
-    "display": "void cfaf128x128x16Clear(void)",
-    "location": {
-      "column": "13",
-      "line": "17",
-      "path": "C:\\EK-TM4C1294_IAR8\\Projects\\drivers\\cfaf128x128x16.h"
-    },
-    "name": "cfaf128x128x16Clear",
-    "origin": "user_include",
-    "scope": null
-  },
-  {
-    "ID": "c:@g_sCfaf128x128x16",
-    "What": "Variable",
-    "defdec": "Dec",
-    "display": "g_sCfaf128x128x16",
-    "location": {
-      "column": "23",
-      "line": "18",
-      "path": "C:\\EK-TM4C1294_IAR8\\Projects\\drivers\\cfaf128x128x16.h"
-    },
-    "name": "g_sCfaf128x128x16",
-    "origin": "user_include",
-    "scope": null
-  },
-  {
-    "ID": "c:@blackColor",
-    "What": "Variable",
-    "defdec": "Dec",
-    "display": "blackColor",
-    "location": {
-      "column": "23",
-      "line": "21",
-      "path": "C:\\EK-TM4C1294_IAR8\\Projects\\drivers\\cfaf128x128x16.h"
-    },
-    "name": "blackColor",
-    "origin": "user_include",
-    "scope": null
-  },
-  {
-    "ID": "c:@whiteColor",
-    "What": "Variable",
-    "defdec": "Dec",
-    "display": "whiteColor",
-    "location": {
-      "column": "23",
-      "line": "22",
-      "path": "C:\\EK-TM4C1294_IAR8\\Projects\\drivers\\cfaf128x128x16.h"
-    },
-    "name": "whiteColor",
-    "origin": "user_include",
-    "scope": null
-  },
-  {
-    "ID": "c:@redColor",
-    "What": "Variable",
-    "defdec": "Dec",
-    "display": "redColor",
-    "location": {
-      "column": "23",
-      "line": "23",
-      "path": "C:\\EK-TM4C1294_IAR8\\Projects\\drivers\\cfaf128x128x16.h"
-    },
-    "name": "redColor",
-    "origin": "user_include",
-    "scope": null
-  },
-  {
-    "ID": "c:@greenColor",
-    "What": "Variable",
-    "defdec": "Dec",
-    "display": "greenColor",
-    "location": {
-      "column": "23",
-      "line": "24",
-      "path": "C:\\EK-TM4C1294_IAR8\\Projects\\drivers\\cfaf128x128x16.h"
-    },
-    "name": "greenColor",
-    "origin": "user_include",
-    "scope": null
-  },
-  {
-    "ID": "c:@blueColor",
-    "What": "Variable",
-    "defdec": "Dec",
-    "display": "blueColor",
-    "location": {
-      "column": "23",
-      "line": "25",
-      "path": "C:\\EK-TM4C1294_IAR8\\Projects\\drivers\\cfaf128x128x16.h"
-    },
-    "name": "blueColor",
-    "origin": "user_include",
-    "scope": null
-  },
-  {
-    "ID": "c:@yellowColor",
-    "What": "Variable",
-    "defdec": "Dec",
-    "display": "yellowColor",
-    "location": {
-      "column": "23",
-      "line": "26",
-      "path": "C:\\EK-TM4C1294_IAR8\\Projects\\drivers\\cfaf128x128x16.h"
-    },
-    "name": "yellowColor",
-    "origin": "user_include",
-    "scope": null
-  },
-  {
-    "ID": "c:@cyanColor",
-    "What": "Variable",
-    "defdec": "Dec",
-    "display": "cyanColor",
-    "location": {
-      "column": "23",
-      "line": "27",
-      "path": "C:\\EK-TM4C1294_IAR8\\Projects\\drivers\\cfaf128x128x16.h"
-    },
-    "name": "cyanColor",
-    "origin": "user_include",
-    "scope": null
-  },
-  {
-    "ID": "c:@orangeColor",
-    "What": "Variable",
-    "defdec": "Dec",
-    "display": "orangeColor",
-    "location": {
-      "column": "23",
-      "line": "28",
-      "path": "C:\\EK-TM4C1294_IAR8\\Projects\\drivers\\cfaf128x128x16.h"
-    },
-    "name": "orangeColor",
-    "origin": "user_include",
-    "scope": null
-  },
-  {
-    "ID": "c:@magentaColor",
-    "What": "Variable",
-    "defdec": "Dec",
-    "display": "magentaColor",
-    "location": {
-      "column": "23",
-      "line": "29",
-      "path": "C:\\EK-TM4C1294_IAR8\\Projects\\drivers\\cfaf128x128x16.h"
-    },
-    "name": "magentaColor",
-    "origin": "user_include",
-    "scope": null
-  },
-  {
-    "ID": "c:@violetColor",
-    "What": "Variable",
-    "defdec": "Dec",
-    "display": "violetColor",
-    "location": {
-      "column": "23",
-      "line": "30",
-      "path": "C:\\EK-TM4C1294_IAR8\\Projects\\drivers\\cfaf128x128x16.h"
-    },
-    "name": "violetColor",
-    "origin": "user_include",
-    "scope": null
-  },
-  {
-    "ID": "c:@grayColor",
-    "What": "Variable",
-    "defdec": "Dec",
-    "display": "grayColor",
-    "location": {
-      "column": "23",
-      "line": "31",
-      "path": "C:\\EK-TM4C1294_IAR8\\Projects\\drivers\\cfaf128x128x16.h"
-    },
-    "name": "grayColor",
-    "origin": "user_include",
-    "scope": null
-  },
-  {
-    "ID": "c:@darkGrayColor",
-    "What": "Variable",
-    "defdec": "Dec",
-    "display": "darkGrayColor",
-    "location": {
-      "column": "23",
-      "line": "32",
-      "path": "C:\\EK-TM4C1294_IAR8\\Projects\\drivers\\cfaf128x128x16.h"
-    },
-    "name": "darkGrayColor",
+    "name": "UARTwrite",
     "origin": "user_include",
     "scope": null
   }
