@@ -47,7 +47,7 @@ void LM35_Init(void){
 //*************** Funcion que inicia muestreo del ADC **************//
 float LM35_ReadTemp(void){
      Cuenta_ADC_ISR=0;
-     ADC0_PSSI_R = 0x08;                                          // Inicia conversión del SS3
+     ADC0_PSSI_R = 0x0008;                                          // Inicia conversión del SS3
      while(Cuenta_ADC_ISR==0){};
      return TEMP;
 }

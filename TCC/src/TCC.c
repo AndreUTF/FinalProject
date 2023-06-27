@@ -1,4 +1,3 @@
-/*
 #include <stdint.h>
 #include <stdio.h>
 #include <stdlib.h>
@@ -12,56 +11,167 @@
 #include "grlib/grlib.h"
 #include "cfaf128x128x16.h" // Projects/drivers
 #include "LM35.h"
+#include "driverlib/adc.h"
+#include "driverlib/interrupt.h"
+#include "temp.h"
+#include "inc/hw_i2c.h"
+#include "driverlib/i2c.h"
+#include "driverlib/pin_map.h"
+#include "driverlib/rom_map.h"
+#include "buzzer.h"
 
-typedef enum {InitialAutomaticMode, AwaitingRain, RemovingWasteWater, WaterCollect, WaterRemoval} state_Automatic;
-typedef enum {InitialManualMode, Sanitazing, InternalRecircularion, AbsoluteTankLevel, RelativeTankLevel, TemperatureRead, WaterOutput} state_Manual;
+#define MAX_TIME 7500
+#define ECHO (1U<<5) //PA5(INput)
+#define TRIGGER (1U<<4) //PA4(OUTPUT)
+#define BLUE_LED (1U<<0)//PF3 onboard Blue LED
+
+uint32_t counter =0;
+float distance=0;
+
+uint32_t pui32ADC0Value[1];
+uint32_t ui32TempValueC;
+uint32_t ui32TempValueF;
+float levelBeforeCollection_old;
+
+bool AutomaticMode_Flag = false;
+bool ManualMode_Flag = false;
+
+typedef enum {InitialAutomaticMode, RemovingWasteWater, WaterCollection, WaterTreatment, CycleInternalState, Blocked} state_Automatic;
+typedef enum {InitialManualMode, SanitazingManualMode, InternalRecircularionManualMode, AbsoluteTankLevelManualMode, RelativeTankLevelManualMode, TemperatureReadManualMode, WaterOutputManualMode, EmptyTank, null} state_Manual;
+
+float area = 0.40;
+float height = 26;
 
 uint8_t LED_D1 = 0;
 tContext sContext;
 float TEMP;
-int Cuenta_ADC_ISR;
+uint32_t timer_treat = 0;
 
-void ISR_ADC0_SS3(void){
-int ADC_Dato;
-float Voltaje;
+float levelBeforeCollection = 0;
+float levelAfterCollection = 0;
 
-ADC_Dato = (ADC0_SSFIFO3_R & 0xFFF);                                //Guarda FIFO3
-Voltaje = ADC_Dato * (3.29/4095.0);                                 //Convierte a voltaje
-TEMP=Voltaje*100;                                                   //Convierte a temperatura
-Cuenta_ADC_ISR=1;                                                   //Condicion de salida LM35_ReadTemp
-ADC0_ISC_R |= 0x0008;                                               //Limpia bandera de interrupción
+float timeRemovingWater = 0;
+float timeRemovingWaterActive = 0;
+
+float timeControlLevel = 0;
+
+float manualModeCounter;
+
+float absoluteTemperatureAverage;
+float absoluteTemperatureSum;
+float absoluteTemperatureValues[10];
+float absoluteTemperatureMaximum;
+float absoluteTemperatureMinimum;
+
+static void intToString(int64_t value, char * pBuf, uint32_t len, uint32_t base, uint8_t zeros){
+	static const char* pAscii = "0123456789ABCDEFGHIJKLMNOPQRSTUVWXYZ";
+	bool n = false;
+	int pos = 0, d = 0;
+	int64_t tmpValue = value;
+
+	// the buffer must not be null and at least have a length of 2 to handle one
+	// digit and null-terminator
+	if (pBuf == NULL || len < 2)
+			return;
+
+	// a valid base cannot be less than 2 or larger than 36
+	// a base value of 2 means binary representation. A value of 1 would mean only zeros
+	// a base larger than 36 can only be used if a larger alphabet were used.
+	if (base < 2 || base > 36)
+			return;
+
+	if (zeros > len)
+		return;
+	
+	// negative value
+	if (value < 0)
+	{
+			tmpValue = -tmpValue;
+			value    = -value;
+			pBuf[pos++] = '-';
+			n = true;
+	}
+
+	// calculate the required length of the buffer
+	do {
+			pos++;
+			tmpValue /= base;
+	} while(tmpValue > 0);
+
+
+	if (pos > len)
+			// the len parameter is invalid.
+			return;
+
+	if(zeros > pos){
+		pBuf[zeros] = '\0';
+		do{
+			pBuf[d++ + (n ? 1 : 0)] = pAscii[0]; 
+		}
+		while(zeros > d + pos);
+	}
+	else
+		pBuf[pos] = '\0';
+
+	pos += d;
+	do {
+			pBuf[--pos] = pAscii[value % base];
+			value /= base;
+	} while(value > 0);
 }
 
-void TemparatureSensor_Init()
-{
-   SYSCTL_RCGCGPIO_R |= 0x0010;                                    // Habilita reloj para Puerto E
-    while( (SYSCTL_PRGPIO_R & 0x010) ==0);
-    GPIO_PORTE_AHB_DIR_R &= ~0x10;                                  // PE4 como entrada
-    GPIO_PORTE_AHB_AFSEL_R |= 0x10;                                 // Función Alterna de PE4
-    GPIO_PORTE_AHB_DEN_R &= 0x10;                                   // Deshabilita Función Digital de PE4
-    GPIO_PORTE_AHB_AMSEL_R |= 0x10;                                 // Habilita Función Analógica de PE4
+static void floatToString(float value, char *pBuf, uint32_t len, uint32_t base, uint8_t zeros, uint8_t precision){
+	static const char* pAscii = "0123456789ABCDEFGHIJKLMNOPQRSTUVWXYZ";
+	uint8_t start = 0xFF;
+	if(len < 2)
+		return;
+	
+	if (base < 2 || base > 36)
+		return;
+	
+	if(zeros + precision + 1 > len)
+		return;
+	
+	intToString((int64_t) value, pBuf, len, base, zeros);
+	while(pBuf[++start] != '\0' && start < len); 
 
-    SYSCTL_RCGCADC_R = 0x01;                                        // Habilita reloj del ADC0
-    while((SYSCTL_PRADC_R&0x01)==0);
-    ADC0_PC_R = 0x01;                                               // Configura para 125Ks/s
-    ADC0_SSPRI_R = 0x0123;                                          // SS3 con la más alta prioridad
-    ADC0_ACTSS_R = 0x0000;                                          // Deshabilita SS3 antes de cambiar configuración de registros
-    ADC0_SAC_R = 0X6;                                               // 64x Hardware oversampling
-    ADC0_EMUX_R = 0x0000;                                           // Iniciar muestreo por software
-    ADC0_SSEMUX3_R = 0x00;                                          // Rango de entradas para bit EMUX0: AIN[15:0]
-    ADC0_SSMUX3_R = 0X9;                                            // Para bit MUX0: Canal AIN9 => PE4
-    ADC0_SSCTL3_R = 0x0006;                                         // Entrada externa, IN, Ultima muestra, no diferencial
-    ADC0_ISC_R = 0x0008;                                            // Limpia la bandera RIS del ADC0
-    ADC0_IM_R = 0x0008;                                             // Habilita interrupciones de SS3
-    ADC0_ACTSS_R |= 0x0008;                                         // Habilita SS3
+	if(start + precision + 1 > len)
+		return;
+	
+	pBuf[start+precision+1] = '\0';
+	
+	if(value < 0)
+		value = -value;
+	pBuf[start++] = '.';
+	while(precision-- > 0){
+		value -= (uint32_t) value;
+		value *= (float) base;
+		pBuf[start++] = pAscii[(uint32_t) value];
+	}
+}
 
-    SYSCTL_PLLFREQ0_R |= SYSCTL_PLLFREQ0_PLLPWR;                    // Enciende PLL
-    while((SYSCTL_PLLSTAT_R&0x01)==0);                              // Espera a que el PLL fije su frecuencia
-    SYSCTL_PLLFREQ0_R &= ~SYSCTL_PLLFREQ0_PLLPWR;                   // Apaga PLL
-    //ADC0 SS3 -> #17
-    NVIC_EN0_R |= 0X20000;                                          // Habilita interrupción general del secuenciador SS3 de ADC0
-    NVIC_PRI4_R &=~0x0000E000;
+void TemparatureSensor_Init(){
+  SysCtlPeripheralEnable(SYSCTL_PERIPH_ADC0);
+  SysCtlPeripheralEnable(SYSCTL_PERIPH_GPIOK);
+  GPIOPinTypeADC(GPIO_PORTK_BASE, GPIO_PIN_3);
+  ADCSequenceConfigure(ADC0_BASE, 0, ADC_TRIGGER_PROCESSOR, 0);
+  ADCSequenceStepConfigure(ADC0_BASE, 0, 0, ADC_CTL_CH19 | ADC_CTL_IE |
+                             ADC_CTL_END);
+  ADCSequenceEnable(ADC0_BASE, 0);
+  ADCIntClear(ADC0_BASE, 0);
 }//TemparatureSensor_Init
+
+uint32_t readingADCs(){
+    ADCProcessorTrigger(ADC0_BASE, 0);
+    while(!ADCIntStatus(ADC0_BASE, 0, false))
+    {
+    }
+    ADCIntClear(ADC0_BASE, 0);
+    ADCSequenceDataGet(ADC0_BASE, 0, pui32ADC0Value); 
+    uint32_t read = pui32ADC0Value[0];
+    uint32_t read1 = pui32ADC0Value[1];
+    return read;
+}
 
 float LM35_ReadTemp1(void){
      uint16_t temp = 0x0FFF;
@@ -72,27 +182,58 @@ float LM35_ReadTemp1(void){
 	return temp;
 }//LM35_ReadTemp1
 
-void WaterSensorInit()
-{
-  SysCtlPeripheralEnable(SYSCTL_PERIPH_GPIOM); // Habilita GPIO M (WaterSensor = PM6)
-  while(!SysCtlPeripheralReady(SYSCTL_PERIPH_GPIOM)); // Aguarda final da habilitação
-  GPIOPinTypeGPIOInput(GPIO_PORTM_BASE, GPIO_PIN_6); // water sensor como estrada (PM6)
-  GPIOPadConfigSet(GPIO_PORTM_BASE, GPIO_PIN_6, GPIO_STRENGTH_2MA, GPIO_PIN_TYPE_STD_WPU);
-}//WaterSensorInit
+void RainDetectorSensorInit(){
+  SysCtlPeripheralEnable(SYSCTL_PERIPH_GPIOK); // Habilita GPIO K2 (WaterSensor = PK2)
+  while(!SysCtlPeripheralReady(SYSCTL_PERIPH_GPIOK)); // Aguarda final da habilitação
+  GPIOPinTypeGPIOInput(GPIO_PORTK_BASE, GPIO_PIN_2); // water sensor como estrada (PM6)
+  GPIOPadConfigSet(GPIO_PORTK_BASE, GPIO_PIN_2, GPIO_STRENGTH_2MA, GPIO_PIN_TYPE_STD_WPU);
+}//RainDetectorSensorInit
 
-bool WaterSensorRead()
-{
-  if(GPIOPinRead(GPIO_PORTM_BASE, GPIO_PIN_6) == GPIO_PIN_6) // Check push button SW2 state
+bool RainDetectorSensorRead(){
+  if(GPIOPinRead(GPIO_PORTK_BASE, GPIO_PIN_2) == GPIO_PIN_2) // Check push button SW2 state
   {
     return true;
   }
   else{
     return false;
   } 
-}//WaterSensorRead
+}//RainDetectorSensorRead
 
-bool isSwitchButton1Pressed()
-{
+void SanitazingLiquidDetectorSensorInit(){
+  SysCtlPeripheralEnable(SYSCTL_PERIPH_GPIOK); // Habilita GPIO K2 (WaterSensor = PK2)
+  while(!SysCtlPeripheralReady(SYSCTL_PERIPH_GPIOK)); // Aguarda final da habilitação
+  GPIOPinTypeGPIOInput(GPIO_PORTK_BASE, GPIO_PIN_1); // water sensor como estrada (PM6)
+  GPIOPadConfigSet(GPIO_PORTK_BASE, GPIO_PIN_1, GPIO_STRENGTH_2MA, GPIO_PIN_TYPE_STD_WPU);
+}//SanitazingLiquidDetectorSensorInit
+
+bool SanitazingLiquidDetectorSensorRead(){
+  if(GPIOPinRead(GPIO_PORTK_BASE, GPIO_PIN_1) == GPIO_PIN_1) // Check push button SW2 state
+  {
+    return true;
+  }
+  else{
+    return false;
+  } 
+}//SanitazingLiquidDetectorSensorRead
+
+void PumpLiquidDetectorSensorInit(){
+  SysCtlPeripheralEnable(SYSCTL_PERIPH_GPIOK); // Habilita GPIO K2 (WaterSensor = PK2)
+  while(!SysCtlPeripheralReady(SYSCTL_PERIPH_GPIOK)); // Aguarda final da habilitação
+  GPIOPinTypeGPIOInput(GPIO_PORTK_BASE, GPIO_PIN_0); // water sensor como estrada (PM6)
+  GPIOPadConfigSet(GPIO_PORTK_BASE, GPIO_PIN_0, GPIO_STRENGTH_2MA, GPIO_PIN_TYPE_STD_WPU);
+}//PumpLiquidDetectorSensorInit
+
+bool PumpLiquidDetectorSensorRead(){
+  if(GPIOPinRead(GPIO_PORTK_BASE, GPIO_PIN_0) == GPIO_PIN_0) // Check push button SW2 state
+  {
+    return true;
+  }
+  else{
+    return false;
+  } 
+}//PumpLiquidDetectorSensorRead
+
+bool isSwitchButton1Pressed(){
   if(GPIOPinRead(GPIO_PORTJ_BASE, GPIO_PIN_0) == GPIO_PIN_0) // Check push button SW1 state
   {
     return false;
@@ -102,8 +243,7 @@ bool isSwitchButton1Pressed()
   }  
 }//SwitchButton1Read
 
-bool isSwitchButton2Pressed()
-{
+bool isSwitchButton2Pressed(){
   if(GPIOPinRead(GPIO_PORTJ_BASE, GPIO_PIN_1) == GPIO_PIN_1) // Check push button SW2 state
   {
     return false;
@@ -113,8 +253,7 @@ bool isSwitchButton2Pressed()
   } 
 }//SwitchButton2Read
 
-bool isSwitchButtonKit1Pressed()
-{
+bool isSwitchButtonKit1Pressed(){
   if(GPIOPinRead(GPIO_PORTL_BASE, GPIO_PIN_1) == GPIO_PIN_1) // Check push button SW1 state
   {
     return false;
@@ -124,8 +263,7 @@ bool isSwitchButtonKit1Pressed()
   }  
 }//SwitchButton1Read
 
-bool isSwitchButtonKit2Pressed()
-{
+bool isSwitchButtonKit2Pressed(){
   if(GPIOPinRead(GPIO_PORTL_BASE, GPIO_PIN_2) == GPIO_PIN_2) // Check push button SW2 state
   {
     return false;
@@ -151,23 +289,20 @@ void ContextInit(){
 } // ContextInit
 
 void SysTick_Handler(void){
-  GPIOPinWrite(GPIO_PORTN_BASE, GPIO_PIN_1, LED_D1); // Acende ou apaga LED D1
-  LED_D1 ^= GPIO_PIN_1; // Troca estado do LED D1
+  //GPIOPinWrite(GPIO_PORTN_BASE, GPIO_PIN_1, LED_D1); // Acende ou apaga LED D1
+  //LED_D1 ^= GPIO_PIN_1; // Troca estado do LED D1
 } // SysTick_Handler
 
-void ClearDisplay()
-{
+void ClearDisplay(){
   cfaf128x128x16Clear();
   GrFlush(&sContext);
 }//ClearDisplay
 
-int WaterLevelSensor()
-{
+int WaterLevelSensor(){
   return 2;
 }//WaterLevelSensor
 
-void MenuManualMode()
-{
+void MenuManualMode(){
   cfaf128x128x16Clear();
   GrFlush(&sContext);
   GrStringDraw(&sContext, "1: Sanitazing", -1, 1, 1, true);
@@ -198,27 +333,642 @@ void MenuManualMode()
     }
 }
 //MenuManualMode
-
-void ClearAndWriteDisplaySingleLine(const char *StringLine1, int xPosition, int yPosition)
-{
+void ClearAndWriteDisplaySingleLine(const char *StringLine1, int xPosition, int yPosition){
   ClearDisplay();
   GrStringDraw(&sContext, StringLine1, -1, xPosition, yPosition, true);
 }//ClearAndWriteDisplaySingleLine
-
-void ClearAndWriteDisplayTwoLines(const char *StringLine1, int xPosition1, int yPosition1, const char *StringLine2, int xPosition2, int yPosition2)
-{
+void ClearAndWriteDisplayTwoLines(const char *StringLine1, int xPosition1, int yPosition1, const char *StringLine2, int xPosition2, int yPosition2){
   ClearDisplay();
   GrStringDraw(&sContext, StringLine1, -1, xPosition1, yPosition1, true);
   GrStringDraw(&sContext, StringLine2, -1, xPosition2, yPosition2, true);
 }//ClearAndWriteDisplayTwoLines
-
-void ClearAndWriteDisplayThreeLines(const char *StringLine1, int xPosition1, int yPosition1, const char *StringLine2, int xPosition2, int yPosition2, const char *StringLine3, int xPosition3, int yPosition3)
-{
+void ClearAndWriteDisplayThreeLines(const char *StringLine1, int xPosition1, int yPosition1, const char *StringLine2, int xPosition2, int yPosition2, const char *StringLine3, int xPosition3, int yPosition3){
   ClearDisplay();
   GrStringDraw(&sContext, StringLine1, -1, xPosition1, yPosition1, true);
   GrStringDraw(&sContext, StringLine2, -1, xPosition2, yPosition2, true);
   GrStringDraw(&sContext, StringLine3, -1, xPosition3, yPosition3, true);
 }//ClearAndWriteDisplayThreeLines
+
+void InitADC() {
+  //PIN PD5(AINM=6) will be used to read ADC
+  SysCtlPeripheralEnable(SYSCTL_PERIPH_ADC0);
+  SysCtlPeripheralReset(SYSCTL_PERIPH_GPIOD);
+  SysCtlPeripheralEnable(SYSCTL_PERIPH_GPIOD);
+  while(!SysCtlPeripheralReady(SYSCTL_PERIPH_GPIOD));
+  SysCtlPeripheralReset(SYSCTL_PERIPH_GPIOD);
+  GPIOPinTypeGPIOInput(GPIO_PORTD_BASE, GPIO_PIN_5);
+  GPIOPinTypeADC(GPIO_PORTD_BASE, GPIO_PIN_5);
+  GPIOPadConfigSet(GPIO_PORTD_BASE, GPIO_PIN_5, GPIO_STRENGTH_2MA, GPIO_PIN_TYPE_ANALOG);
+  SysCtlDelay(80u);
+  ADCClockConfigSet(ADC0_BASE, ADC_CLOCK_SRC_PLL | ADC_CLOCK_RATE_FULL, 5);
+  SysCtlDelay(10); // Time for the clock configuration to set
+  ADCIntDisable(ADC0_BASE, 0u);
+  ADCSequenceDisable(ADC0_BASE,0u);
+  ADCSequenceConfigure(ADC0_BASE, 3, ADC_TRIGGER_PROCESSOR, 0u);
+  ADCSequenceStepConfigure(ADC0_BASE,3,0u,ADC_CTL_CH6 | ADC_CTL_END | ADC_CTL_IE);
+  ADCSequenceEnable(ADC0_BASE,3); //Once configuration is set, re-enable the sequencer
+  ADCIntClear(ADC0_BASE,3);
+  ADCIntEnable(ADC0_BASE, 3);
+}//InitADC
+
+uint32_t ReadADC() {
+  uint32_t temp = 0;
+  uint32_t pui32ADC0Value[12];
+  ADCProcessorTrigger(ADC0_BASE, 3);
+  while(!ADCIntStatus(ADC0_BASE, 3, false))
+  {
+  }
+  ADCIntClear(ADC0_BASE, 3);
+  ADCSequenceDataGet(ADC0_BASE, 3, pui32ADC0Value);
+  temp=pui32ADC0Value[0];
+  return temp;
+}//ReadADC
+
+void IntGlobalEnable(void){
+        SysTickIntEnable();
+        SysTickEnable();
+}
+
+void Interrupt_Init(void){
+        
+}
+
+void DistanceSensor_Init(void){
+    SYSCTL_RCGCGPIO_R |=(1U<<0); //Enable clock for PORTA 
+    SYSCTL_RCGCGPIO_R |=(1U<<5); //Enable clock for PORTF 
+    GPIO_PORTA_AHB_DIR_R =TRIGGER;
+    GPIO_PORTF_AHB_DIR_R =BLUE_LED;
+    GPIO_PORTA_AHB_DEN_R |=(ECHO)|(TRIGGER);
+    GPIO_PORTF_AHB_DEN_R |= BLUE_LED;
+}
+
+void delay_Microsecond(uint32_t time){
+    int i;
+    SYSCTL_RCGCTIMER_R |=(1U<<1);
+    TIMER1_CTL_R=0;
+    TIMER1_CFG_R=0x04;
+    TIMER1_TAMR_R=0x02;
+    TIMER1_TAILR_R= 16-1;
+    TIMER1_ICR_R =0x1;
+    TIMER1_CTL_R |=0x01;
+ 
+    for(i=0;i<time;i++){ 
+        while((TIMER1_RIS_R & 0x1)==0);
+        TIMER1_ICR_R = 0x1;
+    }
+ 
+}
+
+float measureD(void){
+    GPIO_PORTA_AHB_DATA_R &=~TRIGGER;
+    //delay_Microsecond(10);
+    SysCtlDelay(250); 
+    GPIO_PORTA_AHB_DATA_R |= TRIGGER;
+    //delay_Microsecond(100);
+    SysCtlDelay(25); 
+    GPIO_PORTA_AHB_DATA_R &=~TRIGGER;
+    counter=0;
+    while((GPIO_PORTA_AHB_DATA_R &ECHO)==0)    {}
+    while(((GPIO_PORTA_AHB_DATA_R &ECHO )!=0) &(counter < MAX_TIME)) 
+ { 
+  counter++; 
+  //delay_Microsecond(1);
+  SysCtlDelay(25); 
+  } 
+ distance = (float)counter*(float)0.08598;
+ return distance; }
+
+float measureLevelSensor(void){
+  measureD();
+    
+    if(measureD() < 10.0)
+    { 
+      GPIO_PORTF_AHB_DATA_R |=BLUE_LED;
+    }
+    else
+    {
+      GPIO_PORTF_AHB_DATA_R &=~BLUE_LED;
+    }
+    //delay_Microsecond(10);
+    return measureD();
+}
+
+void initAllActuators(void){
+  //Test Relay
+  SysCtlPeripheralEnable(SYSCTL_PERIPH_GPIOH); // Habilita GPIO H
+  while(!SysCtlPeripheralReady(SYSCTL_PERIPH_GPIOH)); // Aguarda final da habilitacao do GPIO H
+ 
+  GPIOPinTypeGPIOOutput(GPIO_PORTH_BASE, GPIO_PIN_1 | GPIO_PIN_0); // Pinos PH1 e PH0 como saida
+  GPIOPinWrite(GPIO_PORTH_BASE, GPIO_PIN_1 | GPIO_PIN_0, 0); // Pinos PH1 e PH0 em nivel 0
+  GPIOPadConfigSet(GPIO_PORTH_BASE, GPIO_PIN_1 | GPIO_PIN_0, GPIO_STRENGTH_4MA, GPIO_PIN_TYPE_STD);
+  
+  SysCtlPeripheralEnable(SYSCTL_PERIPH_GPIOM); // Habilita GPIO M
+  while(!SysCtlPeripheralReady(SYSCTL_PERIPH_GPIOM)); // Aguarda final da habilitacao do GPIO M
+ 
+  GPIOPinTypeGPIOOutput(GPIO_PORTM_BASE, GPIO_PIN_2 | GPIO_PIN_1); // Pinos PM2 e PM1 como saida
+  GPIOPinWrite(GPIO_PORTM_BASE, GPIO_PIN_2 | GPIO_PIN_1, 0); // Pinos PM2 e PM1 em nivel 0
+  GPIOPadConfigSet(GPIO_PORTM_BASE, GPIO_PIN_2 | GPIO_PIN_1, GPIO_STRENGTH_4MA, GPIO_PIN_TYPE_STD);
+}
+
+void activateAllActuators(void){
+  GPIOPinWrite(GPIO_PORTH_BASE, GPIO_PIN_1, GPIO_PIN_1); // PH1 ON
+  GPIOPinWrite(GPIO_PORTH_BASE, GPIO_PIN_0, GPIO_PIN_0); // PH0 ON
+  GPIOPinWrite(GPIO_PORTM_BASE, GPIO_PIN_1, GPIO_PIN_1); // PM1 ON
+  GPIOPinWrite(GPIO_PORTM_BASE, GPIO_PIN_2, GPIO_PIN_2); // PM2 ON
+}
+
+void deactivateAllActuators(void){
+  GPIOPinWrite(GPIO_PORTH_BASE, GPIO_PIN_1, 0); // PH1 OFF
+  GPIOPinWrite(GPIO_PORTH_BASE, GPIO_PIN_0, 0); // PH0 OFF
+  GPIOPinWrite(GPIO_PORTM_BASE, GPIO_PIN_1, 0); // PM1 OFF
+  GPIOPinWrite(GPIO_PORTM_BASE, GPIO_PIN_2, 0); // PM2 OFF
+}
+
+void deactivatePump1(void){
+  GPIOPinWrite(GPIO_PORTH_BASE, GPIO_PIN_1, 0); // PH1 OFF
+}
+
+void activatePump1(void){
+  GPIOPinWrite(GPIO_PORTH_BASE, GPIO_PIN_1, GPIO_PIN_1); // PH1 ON
+}
+
+void deactivatePump2(void){
+  GPIOPinWrite(GPIO_PORTH_BASE, GPIO_PIN_0, 0); // PH0 OFF
+}
+
+void activatePump2(void){
+  GPIOPinWrite(GPIO_PORTH_BASE, GPIO_PIN_0, GPIO_PIN_0); // PH0 ON
+}
+
+void deactivatePump3(void){
+  GPIOPinWrite(GPIO_PORTM_BASE, GPIO_PIN_2, 0); // PM2 OFF
+}
+
+void activatePump3(void){
+  GPIOPinWrite(GPIO_PORTM_BASE, GPIO_PIN_2, GPIO_PIN_2); // PM2 ON
+}
+
+void deactivatePump4(void){
+  GPIOPinWrite(GPIO_PORTM_BASE, GPIO_PIN_1, 0); // PM1 ON
+}
+
+void activatePump4(void){
+  GPIOPinWrite(GPIO_PORTM_BASE, GPIO_PIN_1, GPIO_PIN_1); // PM1 ON
+}
+
+void deactivateValve(void){
+  GPIOPinWrite(GPIO_PORTK_BASE, GPIO_PIN_7, 0); // PK6 OFF
+}
+
+void activateValve(void){
+  GPIOPinWrite(GPIO_PORTK_BASE, GPIO_PIN_7, GPIO_PIN_7); // PK6 OFF
+}
+
+void clearAndPrintMenuAutomatic(char mode[], char state[], int lastRainInterval){
+  char printableModeText[50];
+  if(((strcmp(state, "Inicial")==0)&&(strcmp(mode, "Automatico")==0))||(strcmp(state, "Bloqueado")==0)||(strcmp(state, "Tratamento")==0)||(strcmp(state, "Saida de agua")==0)||
+    (strcmp(state, "Recirculacao da agua")==0)||(strcmp(state, "Leitura absoluta")==0)||(strcmp(state, "Leitura Relativa")==0)||(strcmp(state, "Saida de agua")==0)||(strcmp(state, "Esvaziar")==0))
+  {
+    sprintf(printableModeText, "Modo: %s", mode);
+    GrFlush(&sContext);
+    GrStringDraw(&sContext, printableModeText, -1, 1, 1, true);
+    
+    GrFlush(&sContext);
+    char printableStateText[50];
+    sprintf(printableStateText, "Estado: %s", state);
+    GrStringDraw(&sContext, printableStateText, -1, 1, 11, true);
+    
+    GrFlush(&sContext);
+    char printableTemperatureText[50];
+    float temperature12;
+    temperature12 = temp_read_celsius();
+    sprintf(printableTemperatureText, "Temperatura: %.3f C", temperature12);
+    GrStringDraw(&sContext, printableTemperatureText, -1, 1, 21, true);
+    
+    GrFlush(&sContext);
+    float level1 = measureD();
+    float relative1 = (1-(level1/height))*100;
+    int absoluteLevel1 = (int)relative1;
+    char text2[50];
+    sprintf(text2, "Nivel do tanque:%.1f %\r", relative1);
+    GrStringDraw(&sContext, text2, -1, 1, 31, true);
+    GrFlush(&sContext);
+    GrStringDraw(&sContext, "Nivel Cloro: OK", -1, 1, 41, true);
+    
+    GrFlush(&sContext);
+    char printableLastRainText[50];
+    sprintf(printableLastRainText, "Tempo sem chuva: %d", lastRainInterval);  
+    GrStringDraw(&sContext, printableLastRainText, -1, 1, 51, true);
+    GrFlush(&sContext);
+    GrStringDraw(&sContext, "segundos", -1, 11, 61, true);
+    
+    GrFlush(&sContext);
+    char printableTimeToWaterTreatmentText[50];
+    sprintf(printableTimeToWaterTreatmentText, "Tratamento em: %d", 3600-lastRainInterval);  
+    GrStringDraw(&sContext, printableTimeToWaterTreatmentText, -1, 1, 71, true);
+    GrFlush(&sContext);
+    GrStringDraw(&sContext, "segundos", -1, 11, 81, true);
+  }
+  if((strcmp(state, "Coleta de Agua")==0))
+  {
+    sprintf(printableModeText, "Modo: %s", mode);
+    GrFlush(&sContext);
+    GrStringDraw(&sContext, printableModeText, -1, 1, 1, true);
+    
+    GrFlush(&sContext);
+    char printableStateText[50];
+    sprintf(printableStateText, "Estado: %s", state);
+    GrStringDraw(&sContext, printableStateText, -1, 1, 11, true);
+    
+    GrFlush(&sContext);
+    char printableTemperatureText[50];
+    float temperature12;
+    temperature12 = temp_read_celsius();
+    sprintf(printableTemperatureText, "Temperatura: %.3f C", temperature12);
+    GrStringDraw(&sContext, printableTemperatureText, -1, 1, 21, true);
+    
+    GrFlush(&sContext);
+    float level1 = measureD();
+    float relative1 = (1-(level1/height))*100;
+    int absoluteLevel1 = (int)relative1;
+    char text2[50];
+    sprintf(text2, "Nivel do tanque:%.1f %\r", relative1);
+    GrStringDraw(&sContext, text2, -1, 1, 31, true);
+    GrFlush(&sContext);
+    GrStringDraw(&sContext, "Nivel Cloro: OK", -1, 1, 41, true);
+    
+    GrFlush(&sContext);
+    char printableLastRainText[50];
+    float relative2 = (1-(levelBeforeCollection/height))*100;
+    int absoluteLevel2 = (int)relative2;
+    sprintf(printableLastRainText, "Nivel inicial:%.1f %\r", relative2);  
+    GrStringDraw(&sContext, printableLastRainText, -1, 1, 51, true);
+    
+    GrFlush(&sContext);
+    char printableTimeToWaterTreatmentText[50];
+    sprintf(printableTimeToWaterTreatmentText, "Variacao do sistema: %1.f %\r", relative1-relative2);
+    GrStringDraw(&sContext, printableLastRainText, -1, 1, 61, true);
+  }
+  if((strcmp(state, "Remocao do 1mm")==0))
+  {
+    sprintf(printableModeText, "Modo: %s", mode);
+    GrFlush(&sContext);
+    GrStringDraw(&sContext, printableModeText, -1, 1, 1, true);
+    
+    GrFlush(&sContext);
+    char printableStateText[50];
+    sprintf(printableStateText, "Estado: %s", state);
+    GrStringDraw(&sContext, printableStateText, -1, 1, 11, true);
+    
+    GrFlush(&sContext);
+    char printableTemperatureText[50];
+    float temperature12;
+    temperature12 = temp_read_celsius();
+    sprintf(printableTemperatureText, "Temperatura: %.3f C", temperature12);
+    GrStringDraw(&sContext, printableTemperatureText, -1, 1, 21, true);
+    
+    GrFlush(&sContext);
+    float level1 = measureD();
+    float relative1 = (1-(level1/height))*100;
+    int absoluteLevel1 = (int)relative1;
+    char text2[50];
+    sprintf(text2, "Nivel do tanque:%.1f %\r", relative1);
+    GrStringDraw(&sContext, text2, -1, 1, 31, true);
+    GrFlush(&sContext);
+    GrStringDraw(&sContext, "Nivel Cloro: OK", -1, 1, 41, true);
+    
+    GrFlush(&sContext);
+    sprintf(printableTemperatureText, "Tempo de remocao: %.3f", timeRemovingWater);
+    GrStringDraw(&sContext, printableTemperatureText, -1, 1, 51, true);
+    
+    GrFlush(&sContext);
+    sprintf(printableTemperatureText, "Tempo ativo: %.3f", timeRemovingWaterActive);
+    GrStringDraw(&sContext, printableTemperatureText, -1, 1, 61, true);
+    
+    GrFlush(&sContext);
+    temperature12 = temp_read_celsius();
+    sprintf(printableTemperatureText, "Tempo desativo: %.3f", timeRemovingWater-timeRemovingWaterActive);
+    GrStringDraw(&sContext, printableTemperatureText, -1, 1, 71, true);
+  }
+  if((strcmp(state, "Controle do nivel")==0))
+  {
+    sprintf(printableModeText, "Modo: %s", mode);
+    GrFlush(&sContext);
+    GrStringDraw(&sContext, printableModeText, -1, 1, 1, true);
+    
+    GrFlush(&sContext);
+    char printableStateText[50];
+    sprintf(printableStateText, "Estado: %s", state);
+    GrStringDraw(&sContext, printableStateText, -1, 1, 11, true);
+    
+    GrFlush(&sContext);
+    char printableTemperatureText[50];
+    float temperature12;
+    temperature12 = temp_read_celsius();
+    sprintf(printableTemperatureText, "Temperatura: %.3f C", temperature12);
+    GrStringDraw(&sContext, printableTemperatureText, -1, 1, 21, true);
+    
+    GrFlush(&sContext);
+    float level1 = measureD();
+    float relative1 = (1-(level1/height))*100;
+    int absoluteLevel1 = (int)relative1;
+    char text2[50];
+    sprintf(text2, "Nivel do tanque:%.1f %\r", relative1);
+    GrStringDraw(&sContext, text2, -1, 1, 31, true);
+    GrFlush(&sContext);
+    GrStringDraw(&sContext, "Nivel Cloro: OK", -1, 1, 41, true);
+    
+    GrFlush(&sContext);
+    sprintf(printableTemperatureText, "Tempo em estado: %.3f", timeControlLevel);
+    GrStringDraw(&sContext, printableTemperatureText, -1, 1, 51, true);
+  }
+  if((strcmp(state, "Tratamento da agua")==0))
+  {
+    sprintf(printableModeText, "Modo: %s", mode);
+    GrFlush(&sContext);
+    GrStringDraw(&sContext, printableModeText, -1, 1, 1, true);
+    
+    GrFlush(&sContext);
+    char printableStateText[50];
+    sprintf(printableStateText, "Estado: %s", state);
+    GrStringDraw(&sContext, printableStateText, -1, 1, 11, true);
+    
+    GrFlush(&sContext);
+    char printableTemperatureText[50];
+    float temperature12;
+    temperature12 = temp_read_celsius();
+    sprintf(printableTemperatureText, "Temperatura: %.3f C", temperature12);
+    GrStringDraw(&sContext, printableTemperatureText, -1, 1, 21, true);
+    
+    GrFlush(&sContext);
+    float level1 = measureD();
+    float relative1 = (1-(level1/height))*100;
+    int absoluteLevel1 = (int)relative1;
+    char text2[50];
+    sprintf(text2, "Nivel do tanque:%.1f %\r", relative1);
+    GrStringDraw(&sContext, text2, -1, 1, 31, true);
+    GrFlush(&sContext);
+    GrStringDraw(&sContext, "Nivel Cloro: OK", -1, 1, 41, true);
+    
+    GrFlush(&sContext);
+    sprintf(printableTemperatureText, "Volume adicionado: 20mL");
+    GrStringDraw(&sContext, printableTemperatureText, -1, 1, 51, true);
+  }
+  if((strcmp(state, "Leitura da Temperatura")==0))
+  {
+    sprintf(printableModeText, "Modo: %s", mode);
+    GrFlush(&sContext);
+    GrStringDraw(&sContext, printableModeText, -1, 1, 1, true);
+    
+    GrFlush(&sContext);
+    char printableStateText[50];
+    sprintf(printableStateText, "Estado: %s", state);
+    GrStringDraw(&sContext, printableStateText, -1, 1, 11, true);
+    
+    GrFlush(&sContext);
+    char printableTemperatureText[50];
+    float temperature12;
+    temperature12 = temp_read_celsius();
+    sprintf(printableTemperatureText, "Temperatura: %.2f C", temperature12);
+    GrStringDraw(&sContext, printableTemperatureText, -1, 1, 21, true);
+    
+    GrFlush(&sContext);
+    sprintf(printableTemperatureText, "Temp. Media: %.2fC", absoluteTemperatureAverage);
+    GrStringDraw(&sContext, printableTemperatureText, -1, 1, 31, true);
+    
+    GrFlush(&sContext);
+    sprintf(printableTemperatureText, "Temp. Maxima: %.2fC", absoluteTemperatureMaximum);
+    GrStringDraw(&sContext, printableTemperatureText, -1, 1, 41, true);
+    
+    GrFlush(&sContext);
+    sprintf(printableTemperatureText, "Temp. Minima: %.2fC", absoluteTemperatureMinimum);
+    GrStringDraw(&sContext, printableTemperatureText, -1, 1, 51, true);
+  }
+  
+}
+
+void clearAndPrintMenuAutomaticCollection(char mode[], char state[], int lastRainInterval, float initialLevel){
+  char printableModeText[50];
+  if(((strcmp(state, "Inicial")==0)&&(strcmp(mode, "Automatico")==0))||(strcmp(state, "Bloqueado")==0)||(strcmp(state, "Tratamento")==0)||(strcmp(state, "Saida de agua")==0)||
+    (strcmp(state, "Recirculacao da agua")==0)||(strcmp(state, "Leitura absoluta")==0)||(strcmp(state, "Leitura Relativa")==0)||(strcmp(state, "Saida de agua")==0))
+  {
+    sprintf(printableModeText, "Modo: %s", mode);
+    GrFlush(&sContext);
+    GrStringDraw(&sContext, printableModeText, -1, 1, 1, true);
+    
+    GrFlush(&sContext);
+    char printableStateText[50];
+    sprintf(printableStateText, "Estado: %s", state);
+    GrStringDraw(&sContext, printableStateText, -1, 1, 11, true);
+    
+    GrFlush(&sContext);
+    char printableTemperatureText[50];
+    float temperature12;
+    temperature12 = temp_read_celsius();
+    sprintf(printableTemperatureText, "Temperatura: %.3f C", temperature12);
+    GrStringDraw(&sContext, printableTemperatureText, -1, 1, 21, true);
+    
+    GrFlush(&sContext);
+    float level1 = measureD();
+    float relative1 = (1-(level1/height))*100;
+    int absoluteLevel1 = (int)relative1;
+    char text2[50];
+    sprintf(text2, "Nivel do tanque:%.1f %\r", relative1);
+    GrStringDraw(&sContext, text2, -1, 1, 31, true);
+    GrFlush(&sContext);
+    GrStringDraw(&sContext, "Nivel Cloro: OK", -1, 1, 41, true);
+    
+    GrFlush(&sContext);
+    char printableLastRainText[50];
+    sprintf(printableLastRainText, "Tempo sem chuva: %d", lastRainInterval);  
+    GrStringDraw(&sContext, printableLastRainText, -1, 1, 51, true);
+    GrFlush(&sContext);
+    GrStringDraw(&sContext, "segundos", -1, 11, 61, true);
+    
+    GrFlush(&sContext);
+    char printableTimeToWaterTreatmentText[50];
+    sprintf(printableTimeToWaterTreatmentText, "Tratamento em: %d", 3600-lastRainInterval);  
+    GrStringDraw(&sContext, printableTimeToWaterTreatmentText, -1, 1, 71, true);
+    GrFlush(&sContext);
+    GrStringDraw(&sContext, "segundos", -1, 11, 81, true);
+  }
+  if((strcmp(state, "Coleta de Agua")==0))
+  {
+    sprintf(printableModeText, "Modo: %s", mode);
+    GrFlush(&sContext);
+    GrStringDraw(&sContext, printableModeText, -1, 1, 1, true);
+    
+    GrFlush(&sContext);
+    char printableStateText[50];
+    sprintf(printableStateText, "Estado: %s", state);
+    GrStringDraw(&sContext, printableStateText, -1, 1, 11, true);
+    
+    GrFlush(&sContext);
+    char printableTemperatureText[50];
+    float temperature12;
+    temperature12 = temp_read_celsius();
+    sprintf(printableTemperatureText, "Temperatura: %.3f C", temperature12);
+    GrStringDraw(&sContext, printableTemperatureText, -1, 1, 21, true);
+    
+    GrFlush(&sContext);
+    float level1 = initialLevel;
+    float relative1 = (1-(level1/height))*100;
+    int absoluteLevel1 = (int)relative1;
+    char text2[50];
+    sprintf(text2, "Nivel do tanque:%.1f %\r", relative1);
+    GrStringDraw(&sContext, text2, -1, 1, 31, true);
+    GrFlush(&sContext);
+    GrStringDraw(&sContext, "Nivel Cloro: OK", -1, 1, 41, true);
+    
+    GrFlush(&sContext);
+    char printableLastRainText[50];
+    float relative2 = (1-(levelBeforeCollection/height))*100;
+    int absoluteLevel2 = (int)relative2;
+    sprintf(printableLastRainText, "Nivel inicial:%.1f %\r", relative2);  
+    GrStringDraw(&sContext, printableLastRainText, -1, 1, 51, true);
+    
+    GrFlush(&sContext);
+    char printableTimeToWaterTreatmentText[50];
+    sprintf(printableTimeToWaterTreatmentText, "Variacao do sistema: %1.f %\r", relative1-relative2);
+    GrStringDraw(&sContext, printableLastRainText, -1, 1, 61, true);
+  }
+  if((strcmp(state, "Remocao do 1mm")==0))
+  {
+    sprintf(printableModeText, "Modo: %s", mode);
+    GrFlush(&sContext);
+    GrStringDraw(&sContext, printableModeText, -1, 1, 1, true);
+    
+    GrFlush(&sContext);
+    char printableStateText[50];
+    sprintf(printableStateText, "Estado: %s", state);
+    GrStringDraw(&sContext, printableStateText, -1, 1, 11, true);
+    
+    GrFlush(&sContext);
+    char printableTemperatureText[50];
+    float temperature12;
+    temperature12 = temp_read_celsius();
+    sprintf(printableTemperatureText, "Temperatura: %.3f C", temperature12);
+    GrStringDraw(&sContext, printableTemperatureText, -1, 1, 21, true);
+    
+    GrFlush(&sContext);
+    float level1 = measureD();
+    float relative1 = (1-(level1/height))*100;
+    int absoluteLevel1 = (int)relative1;
+    char text2[50];
+    sprintf(text2, "Nivel do tanque:%.1f %\r", relative1);
+    GrStringDraw(&sContext, text2, -1, 1, 31, true);
+    GrFlush(&sContext);
+    GrStringDraw(&sContext, "Nivel Cloro: OK", -1, 1, 41, true);
+    
+    GrFlush(&sContext);
+    sprintf(printableTemperatureText, "Tempo de remocao: %.3f", timeRemovingWater);
+    GrStringDraw(&sContext, printableTemperatureText, -1, 1, 51, true);
+    
+    GrFlush(&sContext);
+    sprintf(printableTemperatureText, "Tempo ativo: %.3f", timeRemovingWaterActive);
+    GrStringDraw(&sContext, printableTemperatureText, -1, 1, 61, true);
+    
+    GrFlush(&sContext);
+    temperature12 = temp_read_celsius();
+    sprintf(printableTemperatureText, "Tempo desativo: %.3f", timeRemovingWater-timeRemovingWaterActive);
+    GrStringDraw(&sContext, printableTemperatureText, -1, 1, 71, true);
+  }
+  if((strcmp(state, "Controle do nivel")==0))
+  {
+    sprintf(printableModeText, "Modo: %s", mode);
+    GrFlush(&sContext);
+    GrStringDraw(&sContext, printableModeText, -1, 1, 1, true);
+    
+    GrFlush(&sContext);
+    char printableStateText[50];
+    sprintf(printableStateText, "Estado: %s", state);
+    GrStringDraw(&sContext, printableStateText, -1, 1, 11, true);
+    
+    GrFlush(&sContext);
+    char printableTemperatureText[50];
+    float temperature12;
+    temperature12 = temp_read_celsius();
+    sprintf(printableTemperatureText, "Temperatura: %.3f C", temperature12);
+    GrStringDraw(&sContext, printableTemperatureText, -1, 1, 21, true);
+    
+    GrFlush(&sContext);
+    float level1 = measureD();
+    float relative1 = (1-(level1/height))*100;
+    int absoluteLevel1 = (int)relative1;
+    char text2[50];
+    sprintf(text2, "Nivel do tanque:%.1f %\r", relative1);
+    GrStringDraw(&sContext, text2, -1, 1, 31, true);
+    GrFlush(&sContext);
+    GrStringDraw(&sContext, "Nivel Cloro: OK", -1, 1, 41, true);
+    
+    GrFlush(&sContext);
+    sprintf(printableTemperatureText, "Tempo em estado: %.3f", timeControlLevel);
+    GrStringDraw(&sContext, printableTemperatureText, -1, 1, 51, true);
+  }
+  if((strcmp(state, "Tratamento da agua")==0))
+  {
+    sprintf(printableModeText, "Modo: %s", mode);
+    GrFlush(&sContext);
+    GrStringDraw(&sContext, printableModeText, -1, 1, 1, true);
+    
+    GrFlush(&sContext);
+    char printableStateText[50];
+    sprintf(printableStateText, "Estado: %s", state);
+    GrStringDraw(&sContext, printableStateText, -1, 1, 11, true);
+    
+    GrFlush(&sContext);
+    char printableTemperatureText[50];
+    float temperature12;
+    temperature12 = temp_read_celsius();
+    sprintf(printableTemperatureText, "Temperatura: %.3f C", temperature12);
+    GrStringDraw(&sContext, printableTemperatureText, -1, 1, 21, true);
+    
+    GrFlush(&sContext);
+    float level1 = measureD();
+    float relative1 = (1-(level1/height))*100;
+    int absoluteLevel1 = (int)relative1;
+    char text2[50];
+    sprintf(text2, "Nivel do tanque:%.1f %\r", relative1);
+    GrStringDraw(&sContext, text2, -1, 1, 31, true);
+    GrFlush(&sContext);
+    GrStringDraw(&sContext, "Nivel Cloro: OK", -1, 1, 41, true);
+    
+    GrFlush(&sContext);
+    sprintf(printableTemperatureText, "Volume adicionado: 20mL");
+    GrStringDraw(&sContext, printableTemperatureText, -1, 1, 51, true);
+  }
+  if((strcmp(state, "Leitura da Temperatura")==0))
+  {
+    sprintf(printableModeText, "Modo: %s", mode);
+    GrFlush(&sContext);
+    GrStringDraw(&sContext, printableModeText, -1, 1, 1, true);
+    
+    GrFlush(&sContext);
+    char printableStateText[50];
+    sprintf(printableStateText, "Estado: %s", state);
+    GrStringDraw(&sContext, printableStateText, -1, 1, 11, true);
+    
+    GrFlush(&sContext);
+    char printableTemperatureText[50];
+    float temperature12;
+    temperature12 = temp_read_celsius();
+    sprintf(printableTemperatureText, "Temperatura: %.2f C", temperature12);
+    GrStringDraw(&sContext, printableTemperatureText, -1, 1, 21, true);
+    
+    GrFlush(&sContext);
+    sprintf(printableTemperatureText, "Temp. Media: %.2fC", absoluteTemperatureAverage);
+    GrStringDraw(&sContext, printableTemperatureText, -1, 1, 31, true);
+    
+    GrFlush(&sContext);
+    sprintf(printableTemperatureText, "Temp. Maxima: %.2fC", absoluteTemperatureMaximum);
+    GrStringDraw(&sContext, printableTemperatureText, -1, 1, 41, true);
+    
+    GrFlush(&sContext);
+    sprintf(printableTemperatureText, "Temp. Minima: %.2fC", absoluteTemperatureMinimum);
+    GrStringDraw(&sContext, printableTemperatureText, -1, 1, 51, true);
+  }
+  
+}
 
 void main(void){
   DisplayInit();
@@ -232,14 +982,12 @@ void main(void){
   GPIOPinTypeGPIOOutput(GPIO_PORTN_BASE, GPIO_PIN_0 | GPIO_PIN_1); // LEDs D1 e D2 como saída
   GPIOPinWrite(GPIO_PORTN_BASE, GPIO_PIN_0 | GPIO_PIN_1, 0); // LEDs D1 e D2 apagados
   GPIOPadConfigSet(GPIO_PORTN_BASE, GPIO_PIN_0 | GPIO_PIN_1, GPIO_STRENGTH_12MA, GPIO_PIN_TYPE_STD);
-
   SysCtlPeripheralEnable(SYSCTL_PERIPH_GPIOF); // Habilita GPIO F (LED D3 = PF4, LED D4 = PF0)
   while(!SysCtlPeripheralReady(SYSCTL_PERIPH_GPIOF)); // Aguarda final da habilitação
     
   GPIOPinTypeGPIOOutput(GPIO_PORTF_BASE, GPIO_PIN_0 | GPIO_PIN_4); // LEDs D3 e D4 como saída
   GPIOPinWrite(GPIO_PORTF_BASE, GPIO_PIN_0 | GPIO_PIN_4, 0); // LEDs D3 e D4 apagados
   GPIOPadConfigSet(GPIO_PORTF_BASE, GPIO_PIN_0 | GPIO_PIN_4, GPIO_STRENGTH_12MA, GPIO_PIN_TYPE_STD);
-
   SysCtlPeripheralEnable(SYSCTL_PERIPH_GPIOJ); // Habilita GPIO J (push-button SW1 = PJ0, push-button SW2 = PJ1)
   while(!SysCtlPeripheralReady(SYSCTL_PERIPH_GPIOJ)); // Aguarda final da habilitação
     
@@ -251,356 +999,856 @@ void main(void){
     
   GPIOPinTypeGPIOInput(GPIO_PORTL_BASE, GPIO_PIN_1 | GPIO_PIN_2); // push-buttons SW1 e SW2 como entrada
   GPIOPadConfigSet(GPIO_PORTL_BASE, GPIO_PIN_1 | GPIO_PIN_2, GPIO_STRENGTH_2MA, GPIO_PIN_TYPE_STD_WPU);
-
+  
+  SysCtlPeripheralEnable(SYSCTL_PERIPH_GPIOF); // Habilita GPIO N (LED D1 = PN1, LED D2 = PN0)
+  while(!SysCtlPeripheralReady(SYSCTL_PERIPH_GPIOF)); // Aguarda final da habilitação
+  GPIOPinTypeGPIOOutput(GPIO_PORTF_BASE, GPIO_PIN_1); // LEDs D1 e D2 como saída
+  GPIOPinWrite(GPIO_PORTF_BASE, GPIO_PIN_1, 0); // LEDs D1 e D2 apagados
+  GPIOPadConfigSet(GPIO_PORTF_BASE, GPIO_PIN_1, GPIO_STRENGTH_12MA, GPIO_PIN_TYPE_STD);
+  
   SysTickIntEnable();
   SysTickEnable();
-  WaterSensorInit();
+  RainDetectorSensorInit();
   TemparatureSensor_Init();
+  temp_init();
+  buzzer_init();
+  initAllActuators();
+  SanitazingLiquidDetectorSensorInit();
+  PumpLiquidDetectorSensorInit();
   
-  while(1){
-    
-    if(GPIOPinRead(GPIO_PORTJ_BASE, GPIO_PIN_0) == GPIO_PIN_0) // Testa estado do push-button SW1
-      GPIOPinWrite(GPIO_PORTF_BASE, GPIO_PIN_4, 0); // Apaga LED D3
-    else
-    {
-      GPIOPinWrite(GPIO_PORTF_BASE, GPIO_PIN_4, GPIO_PIN_4); // Acende LED D3
-      /*
-      cfaf128x128x16Clear();
-      GrFlush(&sContext);
-      GrStringDraw(&sContext, "1: Sanitazing", -1, 1, 1, true);
-      GrStringDraw(&sContext, "2: Recirculation", -1, 1, 10, true);
-      GrStringDraw(&sContext, "3: Absolute Water", -1, 1, 20, true);
-      GrStringDraw(&sContext, "Level", -1, 1, 30, true);
-      GrStringDraw(&sContext, "4: Relative Water Level", -1, 1, 40, true);
-      GrStringDraw(&sContext, "Level", -1, 1, 50, true);
-      GrStringDraw(&sContext, "5: Temperature Read", -1, 1, 60, true);
-      GrStringDraw(&sContext, "6: Water Output", -1, 1, 70, true);
-      GrStringDraw(&sContext, "7: Initial Manual Mode", -1, 1, 80, true);
-      GrStringDraw(&sContext, "Mode", -1, 1, 90, true);
-      int option=1;
-      char greetings[] = "Input ";
-      sprintf(greetings, "Input: %d", option);
-      GrStringDraw(&sContext, greetings, -1, 1, 100, true);
-      
-      while(1)
-      {
-        if(WaterLevelSensor() == 1){
-          break;
-        }
-        if(isSwitchButtonKit1Pressed() == true){
-          (option > 7) ? option=1 : option++;
-          sprintf(greetings, "Input: %d", option);
-          GrStringDraw(&sContext, greetings, -1, 1, 100, true);
-          SysCtlDelay(5000000);
-        }
-      }
-      
-    }
-    
-    printf("Temp: %.2f",LM35_ReadTemp1());
-    
-    if(WaterSensorRead() == true)
-    {
-      cfaf128x128x16Clear();
-      GrFlush(&sContext);
-      GrStringDraw(&sContext, "Water Detected", -1, 1, 1, true);
-      SysCtlDelay(5000000);
-    }
-    else
-    {
-      cfaf128x128x16Clear();
-      GrFlush(&sContext);
-      GrStringDraw(&sContext, "No Water Detected", -1, 1, 1, true);
-      SysCtlDelay(5000000);
-    }
-  } // while
-} // main
-
-*/
-//*****************************************************************************
-//
-// temperature_sensor.c - Example demonstrating the internal ADC temperature
-//                        sensor.
-//
-// Copyright (c) 2010-2017 Texas Instruments Incorporated.  All rights reserved.
-// Software License Agreement
-// 
-//   Redistribution and use in source and binary forms, with or without
-//   modification, are permitted provided that the following conditions
-//   are met:
-// 
-//   Redistributions of source code must retain the above copyright
-//   notice, this list of conditions and the following disclaimer.
-// 
-//   Redistributions in binary form must reproduce the above copyright
-//   notice, this list of conditions and the following disclaimer in the
-//   documentation and/or other materials provided with the  
-//   distribution.
-// 
-//   Neither the name of Texas Instruments Incorporated nor the names of
-//   its contributors may be used to endorse or promote products derived
-//   from this software without specific prior written permission.
-// 
-// THIS SOFTWARE IS PROVIDED BY THE COPYRIGHT HOLDERS AND CONTRIBUTORS
-// "AS IS" AND ANY EXPRESS OR IMPLIED WARRANTIES, INCLUDING, BUT NOT
-// LIMITED TO, THE IMPLIED WARRANTIES OF MERCHANTABILITY AND FITNESS FOR
-// A PARTICULAR PURPOSE ARE DISCLAIMED. IN NO EVENT SHALL THE COPYRIGHT
-// OWNER OR CONTRIBUTORS BE LIABLE FOR ANY DIRECT, INDIRECT, INCIDENTAL,
-// SPECIAL, EXEMPLARY, OR CONSEQUENTIAL DAMAGES (INCLUDING, BUT NOT
-// LIMITED TO, PROCUREMENT OF SUBSTITUTE GOODS OR SERVICES; LOSS OF USE,
-// DATA, OR PROFITS; OR BUSINESS INTERRUPTION) HOWEVER CAUSED AND ON ANY
-// THEORY OF LIABILITY, WHETHER IN CONTRACT, STRICT LIABILITY, OR TORT
-// (INCLUDING NEGLIGENCE OR OTHERWISE) ARISING IN ANY WAY OUT OF THE USE
-// OF THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
-// 
-// This is part of revision 2.1.4.178 of the Tiva Firmware Development Package.
-//
-//*****************************************************************************
-
-#include <stdbool.h>
-#include <stdint.h>
-#include "inc/hw_memmap.h"
-#include "driverlib/adc.h"
-#include "driverlib/gpio.h"
-#include "driverlib/pin_map.h"
-#include "driverlib/sysctl.h"
-#include "driverlib/uart.h"
-#include "utils/uartstdio.h"
-
-//*****************************************************************************
-//
-//! \addtogroup adc_examples_list
-//! <h1>ADC Temperature Sensor (temperature_sensor)</h1>
-//!
-//! This example shows how to setup ADC0 to read the internal temperature
-//! sensor.
-//!
-//! NOTE: The internal temperature sensor is not calibrated.  This example
-//! just takes the raw temperature sensor sample and converts it using the
-//! equation found in the LM3S9B96 datasheet.
-//!
-//! This example uses the following peripherals and I/O signals.  You must
-//! review these and change as needed for your own board:
-//! - ADC0 peripheral
-//!
-//! The following UART signals are configured only for displaying console
-//! messages for this example.  These are not required for operation of the
-//! ADC.
-//! - UART0 peripheral
-//! - GPIO Port A peripheral (for UART0 pins)
-//! - UART0RX - PA0
-//! - UART0TX - PA1
-//!
-//! This example uses the following interrupt handlers.  To use this example
-//! in your own application you must add these interrupt handlers to your
-//! vector table.
-//! - None.
-//
-//*****************************************************************************
-
-//*****************************************************************************
-//
-// This function sets up UART0 to be used for a console to display information
-// as the example is running.
-//
-//*****************************************************************************
-void
-InitConsole(void)
-{
-    //
-    // Enable GPIO port A which is used for UART0 pins.
-    // TODO: change this to whichever GPIO port you are using.
-    //
-    SysCtlPeripheralEnable(SYSCTL_PERIPH_GPIOA);
-
-    //
-    // Configure the pin muxing for UART0 functions on port A0 and A1.
-    // This step is not necessary if your part does not support pin muxing.
-    // TODO: change this to select the port/pin you are using.
-    //
-    GPIOPinConfigure(GPIO_PA0_U0RX);
-    GPIOPinConfigure(GPIO_PA1_U0TX);
-
-    //
-    // Enable UART0 so that we can configure the clock.
-    //
-    SysCtlPeripheralEnable(SYSCTL_PERIPH_UART0);
-
-    //
-    // Use the internal 16MHz oscillator as the UART clock source.
-    //
-    UARTClockSourceSet(UART0_BASE, UART_CLOCK_PIOSC);
-
-    //
-    // Select the alternate (UART) function for these pins.
-    // TODO: change this to select the port/pin you are using.
-    //
-    GPIOPinTypeUART(GPIO_PORTA_BASE, GPIO_PIN_0 | GPIO_PIN_1);
-
-    //
-    // Initialize the UART for console I/O.
-    //
-    UARTStdioConfig(0, 115200, 16000000);
-}
-
-//*****************************************************************************
-//
-// Configure ADC0 for the temperature sensor input with a single sample.  Once
-// the sample is done, an interrupt flag will be set, and the data will be
-// read then displayed on the console via UART0.
-//
-//*****************************************************************************
-int
-main(void)
-{
-#if defined(TARGET_IS_TM4C129_RA0) ||                                         \
-    defined(TARGET_IS_TM4C129_RA1) ||                                         \
-    defined(TARGET_IS_TM4C129_RA2)
-    uint32_t ui32SysClock;
-#endif
-
-    //
-    // This array is used for storing the data read from the ADC FIFO. It
-    // must be as large as the FIFO for the sequencer in use.  This example
-    // uses sequence 3 which has a FIFO depth of 1.  If another sequence
-    // was used with a deeper FIFO, then the array size must be changed.
-    //
-    uint32_t pui32ADC0Value[1];
-
-    //
-    // These variables are used to store the temperature conversions for
-    // Celsius and Fahrenheit.
-    //
-    uint32_t ui32TempValueC;
-    uint32_t ui32TempValueF;
-
-    //
-    // Set the clocking to run at 20 MHz (200 MHz / 10) using the PLL.  When
-    // using the ADC, you must either use the PLL or supply a 16 MHz clock
-    // source.
-    // TODO: The SYSCTL_XTAL_ value must be changed to match the value of the
-    // crystal on your board.
-    //
-#if defined(TARGET_IS_TM4C129_RA0) ||                                         \
-    defined(TARGET_IS_TM4C129_RA1) ||                                         \
-    defined(TARGET_IS_TM4C129_RA2)
-    ui32SysClock = SysCtlClockFreqSet((SYSCTL_XTAL_25MHZ |
+  uint32_t ui32SysClock = SysCtlClockFreqSet((SYSCTL_XTAL_25MHZ |
                                        SYSCTL_OSC_MAIN |
                                        SYSCTL_USE_PLL |
                                        SYSCTL_CFG_VCO_480), 20000000);
-#else
-    SysCtlClockSet(SYSCTL_SYSDIV_10 | SYSCTL_USE_PLL | SYSCTL_OSC_MAIN |
-                   SYSCTL_XTAL_16MHZ);
-#endif
-
-    //
-    // Set up the serial console to use for displaying messages.  This is just
-    // for this example program and is not needed for ADC operation.
-    //
-    InitConsole();
-
-    //
-    // Display the setup on the console.
-    //
-    UARTprintf("ADC ->\n");
-    UARTprintf("  Type: Internal Temperature Sensor\n");
-    UARTprintf("  Samples: One\n");
-    UARTprintf("  Update Rate: 250ms\n");
-    UARTprintf("  Input Pin: Internal temperature sensor\n\n");
-
-    //
-    // The ADC0 peripheral must be enabled for use.
-    //
-    SysCtlPeripheralEnable(SYSCTL_PERIPH_ADC0);
-
-    //
-    // Enable sample sequence 3 with a processor signal trigger.  Sequence 3
-    // will do a single sample when the processor sends a singal to start the
-    // conversion.  Each ADC module has 4 programmable sequences, sequence 0
-    // to sequence 3.  This example is arbitrarily using sequence 3.
-    //
-    ADCSequenceConfigure(ADC0_BASE, 3, ADC_TRIGGER_PROCESSOR, 0);
-
-    //
-    // Configure step 0 on sequence 3.  Sample the temperature sensor
-    // (ADC_CTL_TS) and configure the interrupt flag (ADC_CTL_IE) to be set
-    // when the sample is done.  Tell the ADC logic that this is the last
-    // conversion on sequence 3 (ADC_CTL_END).  Sequence 3 has only one
-    // programmable step.  Sequence 1 and 2 have 4 steps, and sequence 0 has
-    // 8 programmable steps.  Since we are only doing a single conversion using
-    // sequence 3 we will only configure step 0.  For more information on the
-    // ADC sequences and steps, reference the datasheet.
-    //
-    ADCSequenceStepConfigure(ADC0_BASE, 3, 0, ADC_CTL_TS | ADC_CTL_IE |
-                             ADC_CTL_END);
-
-    //
-    // Since sample sequence 3 is now configured, it must be enabled.
-    //
-    ADCSequenceEnable(ADC0_BASE, 3);
-
-    //
-    // Clear the interrupt status flag.  This is done to make sure the
-    // interrupt flag is cleared before we sample.
-    //
-    ADCIntClear(ADC0_BASE, 3);
-
-    //
-    // Sample the temperature sensor forever.  Display the value on the
-    // console.
-    //
-    while(1)
+  
+  uint32_t temp =0;
+  DistanceSensor_Init();
+  
+  SysCtlPeripheralEnable(SYSCTL_PERIPH_GPIOF); // Habilita GPIO F (LED D3 = PF4, LED D4 = PF0)
+  while(!SysCtlPeripheralReady(SYSCTL_PERIPH_GPIOF)); // Aguarda final da habilitação
+  GPIOPinTypeGPIOOutput(GPIO_PORTF_BASE, GPIO_PIN_4); // LEDs D3 e D4 como saída
+  GPIOPinWrite(GPIO_PORTF_BASE, GPIO_PIN_4, 0); // LEDs D3 e D4 apagados
+  GPIOPadConfigSet(GPIO_PORTF_BASE, GPIO_PIN_4, GPIO_STRENGTH_12MA, GPIO_PIN_TYPE_STD);
+  GPIOPinWrite(GPIO_PORTF_BASE, GPIO_PIN_4, GPIO_PIN_4);
+  uint32_t a = 0;
+  
+  
+  AutomaticMode_Flag = true;
+  ManualMode_Flag = false;
+  state_Automatic e_state_Automatic = InitialAutomaticMode;
+  state_Manual e_state_Manual = null;
+  
+  int selection = 0;
+  int last_rain = 0;
+  
+  GPIOPinWrite(GPIO_PORTN_BASE, GPIO_PIN_1, 0);
+  GPIOPinWrite(GPIO_PORTN_BASE, GPIO_PIN_0, 0);
+  GPIOPinWrite(GPIO_PORTF_BASE, GPIO_PIN_4, 0);
+  GPIOPinWrite(GPIO_PORTF_BASE, GPIO_PIN_0, 0);
+  
+  deactivateAllActuators();
+  manualModeCounter = 0;
+  while(1){
+    if(e_state_Automatic == InitialAutomaticMode && AutomaticMode_Flag == true &&
+       e_state_Manual==null && ManualMode_Flag == false)
     {
-        //
-        // Trigger the ADC conversion.
-        //
-        ADCProcessorTrigger(ADC0_BASE, 3);
-
-        //
-        // Wait for conversion to be completed.
-        //
-        while(!ADCIntStatus(ADC0_BASE, 3, false))
+      deactivateAllActuators();
+      cfaf128x128x16Clear();
+      clearAndPrintMenuAutomatic("Automatico", "Inicial", timer_treat);
+      SysCtlDelay(8000000); 
+      timer_treat++;
+      if(RainDetectorSensorRead() == true && SanitazingLiquidDetectorSensorRead() == true)
+      {
+        //GPIOPinWrite(GPIO_PORTF_BASE, GPIO_PIN_4, GPIO_PIN_4);
+        e_state_Automatic = RemovingWasteWater;
+        timer_treat = 0;
+      }
+      else if (SanitazingLiquidDetectorSensorRead() == false)
+      {
+        e_state_Automatic = Blocked;
+        timer_treat = 0;
+      }
+      else
+      {
+        if(timer_treat<3600)
         {
+          e_state_Automatic = InitialAutomaticMode;
         }
-
-        //
-        // Clear the ADC interrupt flag.
-        //
-        ADCIntClear(ADC0_BASE, 3);
-
-        //
-        // Read ADC Value.
-        //
-        ADCSequenceDataGet(ADC0_BASE, 3, pui32ADC0Value);
-
-        //
-        // Use non-calibrated conversion provided in the data sheet.  Make
-        // sure you divide last to avoid dropout.
-        //
-        ui32TempValueC = ((1475 * 1023) - (2250 * pui32ADC0Value[0])) / 10230;
-
-        //
-        // Get Fahrenheit value.  Make sure you divide last to avoid dropout.
-        //
-        ui32TempValueF = ((ui32TempValueC * 9) + 160) / 5;
-
-        //
-        // Display the temperature value on the console.
-        //
-        UARTprintf("Temperature = %3d*C or %3d*F\r", ui32TempValueC,
-                   ui32TempValueF);
-
-        //
-        // This function provides a means of generating a constant length
-        // delay.  The function delay (in cycles) = 3 * parameter.  Delay
-        // 250ms arbitrarily.
-        //
-#if defined(TARGET_IS_TM4C129_RA0) ||                                         \
-    defined(TARGET_IS_TM4C129_RA1) ||                                         \
-    defined(TARGET_IS_TM4C129_RA2)
-        SysCtlDelay(ui32SysClock / 12);
-#else
-        SysCtlDelay(SysCtlClockGet() / 12);
-#endif
+        if(timer_treat>3600)
+        {
+          if(RainDetectorSensorRead() == false)
+          {
+            e_state_Automatic = WaterTreatment;
+            timer_treat = 0;
+          }
+          if(RainDetectorSensorRead() == true)
+          {
+            timer_treat = 0;
+            e_state_Automatic = RemovingWasteWater;
+          }
+        }
+      }
+      if(isSwitchButtonKit1Pressed() == true)
+      {
+        e_state_Manual = InitialManualMode;
+        AutomaticMode_Flag = false;
+        ManualMode_Flag = true;
+      }
     }
-}
+    else if(e_state_Automatic == Blocked && AutomaticMode_Flag == true)
+    {
+      //GPIOPinWrite(GPIO_PORTF_BASE, GPIO_PIN_1, GPIO_PIN_1); // PF1-Buzzer
+      buzzer_write(true);
+      buzzer_vol_set(10000);
+      buzzer_per_set(10000);
+      //activateValve();
+      cfaf128x128x16Clear();
+      clearAndPrintMenuAutomatic("Automatico", "Bloqueado", timer_treat);
+      SysCtlDelay(8000000); 
+      
+      if(PumpLiquidDetectorSensorRead()==true){
+        activatePump1();
+      }
+      else{
+        deactivatePump1();
+      }
+      
+      if (SanitazingLiquidDetectorSensorRead() == false)
+      {
+        e_state_Automatic = Blocked;
+        timer_treat = 0;
+      }
+      else{
+        deactivateAllActuators();
+        e_state_Automatic = InitialAutomaticMode;
+        timer_treat++;
+        buzzer_write(false);
+        buzzer_vol_set(0);
+        buzzer_per_set(0);
+      }
+    }
+    else if(e_state_Automatic == RemovingWasteWater && AutomaticMode_Flag == true)
+    {
+      //activateValve();
+      cfaf128x128x16Clear();
+      clearAndPrintMenuAutomatic("Automatico", "Remocao do 1mm", timer_treat);
+      SysCtlDelay(8000000);
+      for(int count=0;count<35;count++){
+        if(RainDetectorSensorRead() == true){
+          clearAndPrintMenuAutomatic("Automatico", "Remocao do 1mm", timer_treat);
+          timeRemovingWater++;
+          if(PumpLiquidDetectorSensorRead()==true){
+            activatePump1();
+            timeRemovingWaterActive++;
+          }
+          else{
+            deactivatePump1();
+          }
+          SysCtlDelay(8000000);
+        }
+        else{
+          e_state_Automatic = InitialAutomaticMode;
+          break;
+        }
+        
+      }
+      deactivateAllActuators();
+      if(RainDetectorSensorRead() == false && SanitazingLiquidDetectorSensorRead() == true)
+        {
+           e_state_Automatic = InitialAutomaticMode;
+           deactivateAllActuators();
+           timeRemovingWater = 0;
+           timeRemovingWaterActive = 0;
+        }
+      if (SanitazingLiquidDetectorSensorRead() == false)
+      {
+        e_state_Automatic = Blocked;
+        timer_treat = 0;
+        timeRemovingWater = 0;
+        timeRemovingWaterActive = 0;
+      }
+      if(RainDetectorSensorRead() == true)
+      {
+         float level = measureD();
+         if (level <= 5)
+         {
+            e_state_Automatic = CycleInternalState;
+            timeRemovingWater = 0;
+            timeRemovingWaterActive = 0;
+         }
+         else
+         {
+            deactivateAllActuators();
+            e_state_Automatic = WaterCollection;
+            timeRemovingWater = 0;
+            timeRemovingWaterActive = 0;
+            levelBeforeCollection_old = measureD();
+         }
+      }
+    }
+    else if(e_state_Automatic == WaterCollection && AutomaticMode_Flag == true)
+    { 
+      deactivateAllActuators();
+      cfaf128x128x16Clear();
+      //clearAndPrintMenuAutomatic("Automatico", "Coleta de Agua", timer_treat);
+      clearAndPrintMenuAutomaticCollection("Automatico", "Coleta de Agua", timer_treat,levelBeforeCollection_old);
+      SysCtlDelay(8000000); 
+      if (SanitazingLiquidDetectorSensorRead() == false)
+      {
+        e_state_Automatic = Blocked;
+        timer_treat = 0;
+      }
+      if(RainDetectorSensorRead() == true)
+      {
+         float level = measureD();
+         if (level <= 5)
+         {
+            e_state_Automatic = CycleInternalState;
+            levelBeforeCollection = 24;
+            levelBeforeCollection_old = 0;
+         }
+         else
+         {
+            e_state_Automatic = WaterCollection;
+            levelBeforeCollection = measureD();
+         }
+      }
+      else
+      {
+         e_state_Automatic = WaterTreatment;
+         levelBeforeCollection_old = 0;
+      }
+    }
+    else if(e_state_Automatic == CycleInternalState && AutomaticMode_Flag == true)
+    {
+      timeControlLevel++;
+      //activatePump1();
+      //activateValve();
+      cfaf128x128x16Clear();
+      clearAndPrintMenuAutomatic("Automatico", "Controle do nivel", timer_treat);
+      SysCtlDelay(8000000);
+      /*
+      activatePump3();
+      SysCtlDelay(8000000);
+      SysCtlDelay(8000000);
+      SysCtlDelay(8000000);
+      deactivatePump3();
+      */
+      while(1)
+      {
+        if (SanitazingLiquidDetectorSensorRead() == false)
+        {
+          e_state_Automatic = Blocked;
+          timer_treat = 0;
+          deactivateAllActuators();
+          break;
+        }
+        if((RainDetectorSensorRead() == true)&&(PumpLiquidDetectorSensorRead()==true))
+        {
+          activatePump1();
+        }
+        if((RainDetectorSensorRead() == true)&&(PumpLiquidDetectorSensorRead()==false))
+        {
+          deactivatePump1();
+        }
+        if((RainDetectorSensorRead() == false))
+        {
+          deactivateAllActuators();
+          e_state_Automatic = WaterTreatment;
+          timeControlLevel = 0;
+          break;
+        }
+        SysCtlDelay(8000000);
+      }
+      
+      if (SanitazingLiquidDetectorSensorRead() == false)
+      {
+        e_state_Automatic = Blocked;
+        timer_treat = 0;
+      }
+      /*
+      if(RainDetectorSensorRead() == true)
+      {
+         float level = measureD();
+         if (level <= 5)
+         {
+            e_state_Automatic = CycleInternalState;
+            timeControlLevel = 0;
+         }
+         else
+         {
+            e_state_Automatic = WaterCollection;
+         }
+      }
+      */
+      else
+      {
+        deactivateAllActuators();
+        e_state_Automatic = WaterTreatment;
+        timeControlLevel = 0;
+      }
+    }
+    else if(e_state_Automatic == WaterTreatment && AutomaticMode_Flag == true)
+    {
+      cfaf128x128x16Clear();
+      clearAndPrintMenuAutomatic("Automatico", "Tratamento", timer_treat);
+      SysCtlDelay(8000000);
+      //inject sanitizing liquid
+      if(SanitazingLiquidDetectorSensorRead() == true)
+      {
+        activatePump2();
+        SysCtlDelay(8000000);
+        SysCtlDelay(8000000);
+        deactivatePump2();
+      }
+      
+      
+      //inject sanitizing liquid
+      activatePump4();
+      SysCtlDelay(8000000);
+      SysCtlDelay(8000000);
+      SysCtlDelay(8000000);
+      SysCtlDelay(8000000);
+      deactivatePump4();
+      
+      timer_treat++;
+      bool sensor = RainDetectorSensorRead();
+      deactivateAllActuators();
+      if (SanitazingLiquidDetectorSensorRead() == false)
+      {
+        e_state_Automatic = Blocked;
+        timer_treat = 0;
+      }
+      else if(RainDetectorSensorRead() == true)
+      {
+          float level = measureD();
+         if (level <= 5)
+         {
+            e_state_Automatic = CycleInternalState;
+         }
+         else
+         {
+            e_state_Automatic = WaterCollection;
+         }
+        
+      }
+      else{
+        e_state_Automatic = InitialAutomaticMode;
+      } 
+    }
+    else if(e_state_Automatic == InitialAutomaticMode && AutomaticMode_Flag == false && ManualMode_Flag == true && e_state_Manual == InitialManualMode)
+    {
+      manualModeCounter++;
+      if(manualModeCounter> 30.0)
+      {
+        AutomaticMode_Flag = true;
+        ManualMode_Flag = false;
+        e_state_Automatic = InitialAutomaticMode;
+        e_state_Manual = null;
+        deactivateAllActuators();
+        manualModeCounter = 0;
+      }
+      if (SanitazingLiquidDetectorSensorRead() == false)
+      {
+        timer_treat = 0;
+        AutomaticMode_Flag = true;
+        ManualMode_Flag = false;
+        e_state_Automatic = Blocked;
+        e_state_Manual = null;
+      }
+      if(RainDetectorSensorRead() == true && SanitazingLiquidDetectorSensorRead() == true)
+      {
+        AutomaticMode_Flag = true;
+        ManualMode_Flag = false;
+        e_state_Automatic = InitialAutomaticMode;
+        e_state_Manual = null;
+        deactivateAllActuators();
+      }
+      if(manualModeCounter<30.0){
+        cfaf128x128x16Clear();
+        GrFlush(&sContext);
+        GrStringDraw(&sContext, "Modo: InitialManual", -1, 1, 1, true);
+        GrStringDraw(&sContext, "1: Tratamento", -1, 1, 10, true);
+        GrStringDraw(&sContext, "2: Recirculacao", -1, 1, 20, true);
+        GrStringDraw(&sContext, "3: Nivel", -1, 1, 30, true);
+        GrStringDraw(&sContext, "Absoluto", -1, 1, 40, true);
+        GrStringDraw(&sContext, "4: Nivel", -1, 1, 50, true);
+        GrStringDraw(&sContext, "Relativo", -1, 1, 60, true);
+        GrStringDraw(&sContext, "5: Temperatura", -1, 1, 70, true);
+        GrStringDraw(&sContext, "6: Saida de A.", -1, 1, 80, true);
+        GrStringDraw(&sContext, "7: Esvaziar", -1, 1, 90, true);
+        SysCtlDelay(4000000);
+        if(isSwitchButtonKit2Pressed()==true){
+          SysCtlDelay(400000);
+          bool status = isSwitchButtonKit2Pressed();
+          if(status = true){
+            selection > 8 ? selection=1 : selection++;
+          }
+        }
+        
+        cfaf128x128x16Clear();
+        GrFlush(&sContext);
+        char greetings2[] = "";
+        sprintf(greetings2, "Selecao = %d\r", selection);
+        GrStringDraw(&sContext, greetings2, -1, 1, 1, true);
+        char greetings3[] = "";
+        sprintf(greetings3, "Selection = %d\r", selection);
+          if(selection == 1){
+            GrStringDraw(&sContext, "Tratamento", -1, 1, 10, true);
+          }
+          else if(selection == 2){
+            GrStringDraw(&sContext, "Recirculacao", -1, 1, 10, true);
+          }
+          else if(selection == 3){
+            GrStringDraw(&sContext, "Nivel Abs.", -1, 1, 10, true);
+          }
+          else if(selection == 4){
+            GrStringDraw(&sContext, "Nivel Rel.", -1, 1, 10, true);
+          }
+          else if(selection == 5){
+            GrStringDraw(&sContext, "Temperatura", -1, 1, 10, true);
+          }
+          else if(selection == 6){
+            GrStringDraw(&sContext, "Saida de A.", -1, 1, 10, true);
+          }
+          else if(selection == 7){
+            GrStringDraw(&sContext, "Esvaziar", -1, 1, 10, true);
+          }
+        
+        SysCtlDelay(4000000);
+        
+        if(isSwitchButtonKit1Pressed() == true){
+          if(selection == 1){
+            e_state_Manual = SanitazingManualMode;
+          }
+          else if(selection == 2){
+            e_state_Manual = InternalRecircularionManualMode;
+          }
+          else if(selection == 3){
+            e_state_Manual = AbsoluteTankLevelManualMode;
+          }
+          else if(selection == 4){
+            e_state_Manual = RelativeTankLevelManualMode;
+          }
+          else if(selection == 5){
+            e_state_Manual = TemperatureReadManualMode;
+          }
+          else if(selection == 6){
+            e_state_Manual = WaterOutputManualMode;
+          }
+          else if(selection == 7){
+            e_state_Manual = EmptyTank;
+          }
+        }
+      }
+      
+      
+      
+      //else{
+      //   e_state_Manual = null;
+      //}
+    }
+    
+    else if(e_state_Automatic == InitialAutomaticMode && AutomaticMode_Flag == false &&
+            ManualMode_Flag == true && e_state_Manual == SanitazingManualMode)
+    {
+      cfaf128x128x16Clear();
+      clearAndPrintMenuAutomatic("Manual", "Tratamento da agua", timer_treat);
+      SysCtlDelay(8000000);
+      if(SanitazingLiquidDetectorSensorRead() == true)
+      {
+        activatePump2();
+        SysCtlDelay(8000000);
+      }
+        
+      if(RainDetectorSensorRead() == true && SanitazingLiquidDetectorSensorRead() == true)
+      {
+        AutomaticMode_Flag = true;
+        ManualMode_Flag = false;
+        e_state_Automatic = InitialAutomaticMode;
+        e_state_Manual = null;
+        deactivateAllActuators();
+      }
+      if (SanitazingLiquidDetectorSensorRead() == false)
+      {
+        timer_treat = 0;
+        AutomaticMode_Flag = true;
+        ManualMode_Flag = false;
+        e_state_Automatic = Blocked;
+        e_state_Manual = null;
+      }
+      SysCtlDelay(8000000);
+      SysCtlDelay(8000000);
+      deactivatePump2();
+      activatePump4();
+      SysCtlDelay(8000000);
+      SysCtlDelay(8000000);
+      SysCtlDelay(8000000);
+      deactivatePump4();
+      e_state_Manual = null;
+      AutomaticMode_Flag = true;
+      ManualMode_Flag = false;
+      e_state_Automatic = InitialAutomaticMode;
+      selection = 0;
+    }
+    else if(e_state_Automatic == InitialAutomaticMode && AutomaticMode_Flag == false &&
+            ManualMode_Flag == true && e_state_Manual == InternalRecircularionManualMode)
+    {
+      cfaf128x128x16Clear();
+      clearAndPrintMenuAutomatic("Manual", "Recirculacao da agua", timer_treat);
+      SysCtlDelay(8000000);
+      if(RainDetectorSensorRead() == true && SanitazingLiquidDetectorSensorRead() == true)
+      {
+        AutomaticMode_Flag = true;
+        ManualMode_Flag = false;
+        e_state_Automatic = InitialAutomaticMode;
+        e_state_Manual = null;
+        deactivateAllActuators();
+      }
+      if (SanitazingLiquidDetectorSensorRead() == false)
+      {
+        timer_treat = 0;
+        AutomaticMode_Flag = true;
+        ManualMode_Flag = false;
+        e_state_Automatic = Blocked;
+        e_state_Manual = null;
+      }
+      
+      float level4 = measureD();
+      if(level4 < 22 && (RainDetectorSensorRead() == false))
+      {
+        deactivateAllActuators();
+        activatePump4();
+        SysCtlDelay(8000000);
+        SysCtlDelay(8000000);
+        SysCtlDelay(8000000);
+        SysCtlDelay(8000000);
+        deactivatePump4();
+        deactivateAllActuators();
+      }
+
+      
+      e_state_Manual = null;
+      AutomaticMode_Flag = true;
+      ManualMode_Flag = false;
+      e_state_Automatic = InitialAutomaticMode;
+      selection = 0;
+    }
+    else if(e_state_Automatic == InitialAutomaticMode && AutomaticMode_Flag == false &&
+            ManualMode_Flag == true && e_state_Manual == AbsoluteTankLevelManualMode)
+    {
+      cfaf128x128x16Clear();
+      clearAndPrintMenuAutomatic("Manual", "Leitura absoluta", timer_treat);
+      SysCtlDelay(8000000);
+      SysCtlDelay(8000000);
+      if(RainDetectorSensorRead() == true && SanitazingLiquidDetectorSensorRead() == true)
+      {
+        AutomaticMode_Flag = true;
+        ManualMode_Flag = false;
+        e_state_Automatic = InitialAutomaticMode;
+        e_state_Manual = null;
+        deactivateAllActuators();
+      }
+      if (SanitazingLiquidDetectorSensorRead() == false)
+      {
+        timer_treat = 0;
+        AutomaticMode_Flag = true;
+        ManualMode_Flag = false;
+        e_state_Automatic = Blocked;
+        e_state_Manual = null;
+      }
+      e_state_Manual = null;
+      AutomaticMode_Flag = true;
+      ManualMode_Flag = false;
+      e_state_Automatic = InitialAutomaticMode;
+      selection = 0;
+    }
+    else if(e_state_Automatic == InitialAutomaticMode && AutomaticMode_Flag == false &&
+            ManualMode_Flag == true && e_state_Manual == RelativeTankLevelManualMode)
+    {
+      cfaf128x128x16Clear();
+      clearAndPrintMenuAutomatic("Manual", "Leitura Relativa", timer_treat);
+      SysCtlDelay(8000000);
+      if(RainDetectorSensorRead() == true && SanitazingLiquidDetectorSensorRead() == true)
+      {
+        AutomaticMode_Flag = true;
+        ManualMode_Flag = false;
+        e_state_Automatic = InitialAutomaticMode;
+        e_state_Manual = null;
+        deactivateAllActuators();
+      }
+      if (SanitazingLiquidDetectorSensorRead() == false)
+      {
+        timer_treat = 0;
+        AutomaticMode_Flag = true;
+        ManualMode_Flag = false;
+        e_state_Automatic = Blocked;
+        e_state_Manual = null;
+      }
+      e_state_Manual = null;
+      AutomaticMode_Flag = true;
+      ManualMode_Flag = false;
+      e_state_Automatic = InitialAutomaticMode;
+      selection = 0;
+    }
+    else if(e_state_Automatic == InitialAutomaticMode && AutomaticMode_Flag == false &&
+            ManualMode_Flag == true && e_state_Manual == TemperatureReadManualMode)
+    {
+      cfaf128x128x16Clear();
+      deactivateAllActuators();
+      if(RainDetectorSensorRead() == true && SanitazingLiquidDetectorSensorRead() == true)
+      {
+        AutomaticMode_Flag = true;
+        ManualMode_Flag = false;
+        e_state_Automatic = InitialAutomaticMode;
+        e_state_Manual = null;
+        deactivateAllActuators();
+      }
+      if (SanitazingLiquidDetectorSensorRead() == false)
+      {
+        timer_treat = 0;
+        AutomaticMode_Flag = true;
+        ManualMode_Flag = false;
+        e_state_Automatic = Blocked;
+        e_state_Manual = null;
+      }
+      SysCtlDelay(8000000);
+      absoluteTemperatureSum = 0.0;
+      absoluteTemperatureAverage = 0.0;
+      float temperature13;
+      temperature13 = temp_read_celsius();
+      absoluteTemperatureMaximum = temperature13;
+      absoluteTemperatureMinimum = temperature13;
+      for (int h=0;h<20;h++)
+      {
+        float temperature12;
+        temperature12 = temp_read_celsius();
+        absoluteTemperatureValues[h]=temperature12;
+        absoluteTemperatureSum += temperature12;
+        if(absoluteTemperatureValues[h] >= absoluteTemperatureMaximum)
+        {
+          absoluteTemperatureMaximum = absoluteTemperatureValues[h];
+        }
+        if(absoluteTemperatureValues[h] <= absoluteTemperatureMinimum)
+        {
+          absoluteTemperatureMinimum = absoluteTemperatureValues[h];
+        }
+      }
+      absoluteTemperatureAverage = absoluteTemperatureSum/10.0;
+      clearAndPrintMenuAutomatic("Manual", "Leitura da Temperatura", timer_treat);
+      e_state_Manual = null;
+      AutomaticMode_Flag = true;
+      ManualMode_Flag = false;
+      e_state_Automatic = InitialAutomaticMode;
+      selection = 0;
+      timer_treat = 0;
+    }
+    else if(e_state_Automatic == InitialAutomaticMode && AutomaticMode_Flag == false &&
+            ManualMode_Flag == true && e_state_Manual == WaterOutputManualMode)
+    {
+      cfaf128x128x16Clear();
+      clearAndPrintMenuAutomatic("Manual", "Saida de agua", timer_treat);
+      SysCtlDelay(8000000);
+      if(RainDetectorSensorRead() == true && SanitazingLiquidDetectorSensorRead() == true)
+      {
+        AutomaticMode_Flag = true;
+        ManualMode_Flag = false;
+        state_Automatic e_state_Automatic = InitialAutomaticMode;
+        state_Manual e_state_Manual = null;
+        deactivateAllActuators();
+      }
+      if (SanitazingLiquidDetectorSensorRead() == false)
+      {
+        timer_treat = 0;
+        AutomaticMode_Flag = true;
+        ManualMode_Flag = false;
+        e_state_Automatic = Blocked;
+        e_state_Manual = null;
+      }
+      for (int j=0;j<11;j++){
+        float level = measureD();
+        if(RainDetectorSensorRead() == true && SanitazingLiquidDetectorSensorRead() == true)
+        {
+          AutomaticMode_Flag = true;
+          ManualMode_Flag = false;
+          state_Automatic e_state_Automatic = InitialAutomaticMode;
+          state_Manual e_state_Manual = null;
+          deactivateAllActuators();
+        }
+        if((level >= 5)&&(level <=20))
+        {
+          activatePump3();
+        }
+        else{
+          deactivatePump3();
+        }
+        SysCtlDelay(8000000);
+      }
+      deactivateAllActuators();
+      e_state_Manual = null;
+      AutomaticMode_Flag = true;
+      ManualMode_Flag = false;
+      e_state_Automatic = InitialAutomaticMode;
+      selection = 0;
+    }
+    else if(e_state_Automatic == InitialAutomaticMode && AutomaticMode_Flag == false &&
+            ManualMode_Flag == true && e_state_Manual == EmptyTank)
+    {
+      cfaf128x128x16Clear();
+      clearAndPrintMenuAutomatic("Manual", "Esvaziar", timer_treat);
+      SysCtlDelay(8000000);
+      if(RainDetectorSensorRead() == true && SanitazingLiquidDetectorSensorRead() == true)
+      {
+        AutomaticMode_Flag = true;
+        ManualMode_Flag = false;
+        state_Automatic e_state_Automatic = InitialAutomaticMode;
+        state_Manual e_state_Manual = null;
+        deactivateAllActuators();
+      }
+      if (SanitazingLiquidDetectorSensorRead() == false)
+      {
+        timer_treat = 0;
+        AutomaticMode_Flag = true;
+        ManualMode_Flag = false;
+        e_state_Automatic = Blocked;
+        e_state_Manual = null;
+      }
+      float level3 = measureD();
+      while (1)
+      {
+        level3 = measureD();
+        clearAndPrintMenuAutomatic("Manual", "Esvaziar", timer_treat);
+        if(level3 < 22 && (RainDetectorSensorRead() == false))
+        {
+          activatePump3();
+        }
+        else
+        {
+          break;
+        }
+        SysCtlDelay(2000000);
+      }
+      deactivateAllActuators();
+      e_state_Manual = null;
+      AutomaticMode_Flag = true;
+      ManualMode_Flag = false;
+      e_state_Automatic = InitialAutomaticMode;
+      selection = 0;
+    }
+    
+    //Debugging Table (Values will be displayed as binary
+    // LED D1,D2,D3,D4
+    // 0 - 0000 - Initialization Mode
+    // 1 - 1000 - State InitialAutomaticMode
+    // 2 - 0100 - State RemovingWasteWater
+    // 3 - 1100 - State WaterCollection
+    // 4 - 0010 - State WaterTreatment
+    // 5 - 1010 - State CycleInternalState
+    // 6 - 0110 - State InitialManualMode
+    // 7 - 1110 - State SanitazingManualMode
+    // 8 - 0001 - State InternalRecircularionManualMode
+    // 9 - 1001 - State AbsoluteTankLevelManualMode
+    // 10 - 0101 - State RelativeTankLevelManualMode
+    // 11 - 1101 - State TemperatureReadManualMode
+    // 12 - 0011 - State WaterOutputManualMode
+    
+    if(e_state_Automatic == InitialAutomaticMode && AutomaticMode_Flag == true)
+    {
+      GPIOPinWrite(GPIO_PORTN_BASE, GPIO_PIN_1, GPIO_PIN_1);
+      GPIOPinWrite(GPIO_PORTN_BASE, GPIO_PIN_0, 0);
+      GPIOPinWrite(GPIO_PORTF_BASE, GPIO_PIN_4, 0);
+      GPIOPinWrite(GPIO_PORTF_BASE, GPIO_PIN_0, 0);
+    }
+    if(e_state_Automatic == RemovingWasteWater && AutomaticMode_Flag == true)
+    {
+      GPIOPinWrite(GPIO_PORTN_BASE, GPIO_PIN_1, 0);
+      GPIOPinWrite(GPIO_PORTN_BASE, GPIO_PIN_0, GPIO_PIN_0);
+      GPIOPinWrite(GPIO_PORTF_BASE, GPIO_PIN_4, 0);
+      GPIOPinWrite(GPIO_PORTF_BASE, GPIO_PIN_0, 0);
+    }
+    if(e_state_Automatic == WaterCollection && AutomaticMode_Flag == true)
+    {
+      GPIOPinWrite(GPIO_PORTN_BASE, GPIO_PIN_1, GPIO_PIN_1);
+      GPIOPinWrite(GPIO_PORTN_BASE, GPIO_PIN_0, GPIO_PIN_0);
+      GPIOPinWrite(GPIO_PORTF_BASE, GPIO_PIN_4, 0);
+      GPIOPinWrite(GPIO_PORTF_BASE, GPIO_PIN_0, 0);
+    }
+    if(e_state_Automatic == WaterTreatment && AutomaticMode_Flag == true)
+    {
+      GPIOPinWrite(GPIO_PORTN_BASE, GPIO_PIN_1, 0);
+      GPIOPinWrite(GPIO_PORTN_BASE, GPIO_PIN_0, 0);
+      GPIOPinWrite(GPIO_PORTF_BASE, GPIO_PIN_4, GPIO_PIN_4);
+      GPIOPinWrite(GPIO_PORTF_BASE, GPIO_PIN_0, 0);
+    }
+    if(e_state_Automatic == CycleInternalState && AutomaticMode_Flag == true)
+    {
+      GPIOPinWrite(GPIO_PORTN_BASE, GPIO_PIN_1, GPIO_PIN_1);
+      GPIOPinWrite(GPIO_PORTN_BASE, GPIO_PIN_0, 0);
+      GPIOPinWrite(GPIO_PORTF_BASE, GPIO_PIN_4, GPIO_PIN_4);
+      GPIOPinWrite(GPIO_PORTF_BASE, GPIO_PIN_0, 0); 
+    }
+    if(e_state_Automatic == Blocked && AutomaticMode_Flag == true)
+    {
+      GPIOPinWrite(GPIO_PORTN_BASE, GPIO_PIN_1, 0);
+      GPIOPinWrite(GPIO_PORTN_BASE, GPIO_PIN_0, GPIO_PIN_0);
+      GPIOPinWrite(GPIO_PORTF_BASE, GPIO_PIN_4, GPIO_PIN_4);
+      GPIOPinWrite(GPIO_PORTF_BASE, GPIO_PIN_0, 0); 
+    }
+    if(e_state_Automatic == InitialAutomaticMode && AutomaticMode_Flag == false && ManualMode_Flag == true && e_state_Manual == InitialManualMode)
+    {
+      GPIOPinWrite(GPIO_PORTN_BASE, GPIO_PIN_1, GPIO_PIN_1);
+      GPIOPinWrite(GPIO_PORTN_BASE, GPIO_PIN_0, GPIO_PIN_0);
+      GPIOPinWrite(GPIO_PORTF_BASE, GPIO_PIN_4, GPIO_PIN_4);
+      GPIOPinWrite(GPIO_PORTF_BASE, GPIO_PIN_0, 0); 
+    }
+    if(e_state_Automatic == InitialAutomaticMode && AutomaticMode_Flag == false && ManualMode_Flag == true && e_state_Manual == SanitazingManualMode)
+    {
+      GPIOPinWrite(GPIO_PORTN_BASE, GPIO_PIN_1, 0);
+      GPIOPinWrite(GPIO_PORTN_BASE, GPIO_PIN_0, 0);
+      GPIOPinWrite(GPIO_PORTF_BASE, GPIO_PIN_4, 0);
+      GPIOPinWrite(GPIO_PORTF_BASE, GPIO_PIN_0, GPIO_PIN_0);  
+    }
+    if(e_state_Automatic == InitialAutomaticMode && AutomaticMode_Flag == false && ManualMode_Flag == true && e_state_Manual == InternalRecircularionManualMode)
+    {
+      GPIOPinWrite(GPIO_PORTN_BASE, GPIO_PIN_1, GPIO_PIN_1);
+      GPIOPinWrite(GPIO_PORTN_BASE, GPIO_PIN_0, 0);
+      GPIOPinWrite(GPIO_PORTF_BASE, GPIO_PIN_4, 0);
+      GPIOPinWrite(GPIO_PORTF_BASE, GPIO_PIN_0, GPIO_PIN_0); 
+    }
+    if(e_state_Automatic == InitialAutomaticMode && AutomaticMode_Flag == false && ManualMode_Flag == true && e_state_Manual == AbsoluteTankLevelManualMode)
+    {
+      GPIOPinWrite(GPIO_PORTN_BASE, GPIO_PIN_1, 0);
+      GPIOPinWrite(GPIO_PORTN_BASE, GPIO_PIN_0, GPIO_PIN_0);
+      GPIOPinWrite(GPIO_PORTF_BASE, GPIO_PIN_4, 0);
+      GPIOPinWrite(GPIO_PORTF_BASE, GPIO_PIN_0, GPIO_PIN_0); 
+    }
+    if(e_state_Automatic == InitialAutomaticMode && AutomaticMode_Flag == false && ManualMode_Flag == true && e_state_Manual == RelativeTankLevelManualMode)
+    {
+      GPIOPinWrite(GPIO_PORTN_BASE, GPIO_PIN_1, GPIO_PIN_1);
+      GPIOPinWrite(GPIO_PORTN_BASE, GPIO_PIN_0, GPIO_PIN_0);
+      GPIOPinWrite(GPIO_PORTF_BASE, GPIO_PIN_4, 0);
+      GPIOPinWrite(GPIO_PORTF_BASE, GPIO_PIN_0, GPIO_PIN_0); 
+    }
+    if(e_state_Automatic == InitialAutomaticMode && AutomaticMode_Flag == false && ManualMode_Flag == true && e_state_Manual == TemperatureReadManualMode)
+    {
+      GPIOPinWrite(GPIO_PORTN_BASE, GPIO_PIN_1, 0);
+      GPIOPinWrite(GPIO_PORTN_BASE, GPIO_PIN_0, 0);
+      GPIOPinWrite(GPIO_PORTF_BASE, GPIO_PIN_4, GPIO_PIN_4);
+      GPIOPinWrite(GPIO_PORTF_BASE, GPIO_PIN_0, GPIO_PIN_0); 
+    }
+    if(e_state_Automatic == InitialAutomaticMode && AutomaticMode_Flag == false && ManualMode_Flag == true && e_state_Manual == WaterOutputManualMode)
+    {
+      GPIOPinWrite(GPIO_PORTN_BASE, GPIO_PIN_1, GPIO_PIN_1);
+      GPIOPinWrite(GPIO_PORTN_BASE, GPIO_PIN_0, 0);
+      GPIOPinWrite(GPIO_PORTF_BASE, GPIO_PIN_4, GPIO_PIN_4);
+      GPIOPinWrite(GPIO_PORTF_BASE, GPIO_PIN_0, GPIO_PIN_0); 
+    }
+    if(e_state_Automatic == InitialAutomaticMode && AutomaticMode_Flag == false && ManualMode_Flag == true && e_state_Manual == EmptyTank)
+    {
+      GPIOPinWrite(GPIO_PORTN_BASE, GPIO_PIN_1, GPIO_PIN_1);
+      GPIOPinWrite(GPIO_PORTN_BASE, GPIO_PIN_0, GPIO_PIN_0);
+      GPIOPinWrite(GPIO_PORTF_BASE, GPIO_PIN_4, 0);
+      GPIOPinWrite(GPIO_PORTF_BASE, GPIO_PIN_0, 0); 
+    }
+  } // while
+} // main
